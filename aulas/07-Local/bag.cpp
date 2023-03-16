@@ -29,7 +29,7 @@ int main() {
   const int rand_seed = 42;
   vector<item> items;
   vector<item> curr_bag;
-  uniform_int_distribution<int> distribution(0.0, 1.0);
+  uniform_real_distribution<double> distribution(0.0, 1.0);
   default_random_engine generator;
 
   max_iter = 10;

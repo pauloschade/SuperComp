@@ -16,6 +16,11 @@ bool hasSlot(movie curr, movie prev) {
   return curr.start >= prev.end;
 }
 
+void include_movie(movie &curr_movie, vector<movie> &movies, map<int, int> &lim_cats) {
+  movies.push_back(curr_movie);
+  lim_cats[curr_movie.cat] --;
+}
+
 int main() {
   int n_mov, n_cat, id;
   // int id, n, w, weigth, val;
@@ -55,8 +60,9 @@ int main() {
       if (has_selected) {
         min_time = 100;
         //time_end = selected_movie.end;
-        selected.push_back(selected_movie);
-        lim_cats[selected_movie.cat] --;
+        // selected.push_back(selected_movie);
+        // lim_cats[selected_movie.cat] --;
+        include_movie(selected_movie, selected, lim_cats);
         last_selected = selected_movie;
         has_selected = false;
       };
