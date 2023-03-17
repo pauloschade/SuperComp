@@ -1,0 +1,19 @@
+#ifndef HELPERS_H_   /* Include guard */
+#define HELPERS_H_
+#include <map>
+#include <vector>
+#include<iostream>
+
+struct movie {
+  int id;
+  int start;
+  int end;
+  int cat;
+};
+
+void include_movie(movie &curr_movie, std::vector<movie> &movies, std::map<int, int> &lim_cats);
+void print_agenda(std::vector<movie> selected);
+void set_cats_limit(std::map<int, int> &lim_cats, int n_cat);
+void read_movies_data(std::vector<movie> &movies, int n_mov);
+
+#endif // HELPERS_H_

@@ -35,6 +35,12 @@
 *.out
 *.app
 
+## Obj-C/Swift specific
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
 .vscode/
 .vscode/*
 !.vscode/settings.json
@@ -48,3 +54,8 @@
 
 # Built Visual Studio Code Extensions
 *.vsix
+
+#ignore in directory
+in/
+/in
+in/*
