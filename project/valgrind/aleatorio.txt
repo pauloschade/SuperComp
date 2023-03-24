@@ -1,0 +1,130 @@
+-- line 3 ----------------------------------------
+    .  #include <random>
+    .  #include <chrono>
+    .  
+    .  #define SEED 42
+    .  #define PROB 0.75
+    .  
+    .  using namespace std;
+    .  
+2,618  bool hasSlot(movie curr, map<int, bool> &filled_slots) {
+  724    if(curr.end == curr.start) return !filled_slots[curr.start];
+1,164    for(int i = curr.start; i < curr.end; i++) {
+  976      if(filled_slots[i]) return false;
+    .    }
+   14    return true;
+1,904  }
+    .  
+  121  void fill_slot(map<int, bool> &filled_slots, movie curr) {
+   33    if(curr.end == curr.start) {
+    1      filled_slots[curr.start] = true;
+    1      return;
+    .    }
+  136    for(int i = curr.start; i < curr.end; i++) {
+   24      filled_slots[i] = true;
+    .    }
+   88  }
+    .  
+   17  void select_movies(vector<movie> &movies, vector<movie> &selected, map<int, int> &lim_cats, map<int, bool> &filled_slots, int n_cat, int n_mov) {
+    .    uniform_real_distribution<double> distribution(0.0, 1.0);
+    .    default_random_engine generator;
+    3    generator.seed(SEED + time(0));
+    8  => ???:0x0000000000109260 (1x)
+    .  
+    2    int time_end = 0;
+    1    int min_time = 100;
+    1    int times_filed = 0;
+    1    bool has_selected = false;
+    .  
+    .    //movie last_selected = {0, 0, 0, 0};
+    .    movie selected_movie;
+  844    for(int i = 0; i < n_mov; i++) {
+  848      if(n_cat <= 0) return;
+  424      if(times_filed > 24) return;
+  844      if(movies[i].end > time_end) {
+    .        time_end = movies[i].end;
+    .  
+   24        if (has_selected) {
+   15          include_movie(selected_movie, selected, times_filed);
+  344  => /home/user/supercomp/project/helpers/helpers.cpp:include_movie(movie&, std::vector<movie, std::allocator<movie> >&, int&) (3x)
+   12          set_cats_limit(lim_cats, selected_movie.cat, n_cat);
+  220  => /home/user/supercomp/project/helpers/helpers.cpp:set_cats_limit(std::map<int, int, std::less<int>, std::allocator<std::pair<int const, int> > >&, int, int&) (3x)
+   12          fill_slot(filled_slots, selected_movie);
+  182  => aleatorio.cpp:fill_slot(std::map<int, bool, std::less<int>, std::allocator<std::pair<int const, bool> > >&, movie) (3x)
+    .  
+    9          min_time = 100;
+    6          has_selected = false;
+    .        };
+    .      }
+  422      if(distribution(generator) > PROB) {
+   48        uniform_int_distribution<int> distribution(i, movies.size()-1);
+    .        int p = distribution(generator);
+  561        if(hasSlot(movies[p], filled_slots) && lim_cats[movies[p].cat] > 0) {
+12,009  => aleatorio.cpp:hasSlot(movie, std::map<int, bool, std::less<int>, std::allocator<std::pair<int const, bool> > >&) (48x)
+   24          include_movie(movies[p], selected, times_filed);
+2,601  => /home/user/supercomp/project/helpers/helpers.cpp:include_movie(movie&, std::vector<movie, std::allocator<movie> >&, int&) (8x)
+   48          set_cats_limit(lim_cats, movies[p].cat, n_cat);
+  549  => /home/user/supercomp/project/helpers/helpers.cpp:set_cats_limit(std::map<int, int, std::less<int>, std::allocator<std::pair<int const, int> > >&, int, int&) (8x)
+   48          fill_slot(filled_slots, movies[p]);
+1,064  => aleatorio.cpp:fill_slot(std::map<int, bool, std::less<int>, std::allocator<std::pair<int const, bool> > >&, movie) (8x)
+    .          
+   48          if(!(hasSlot(selected_movie, filled_slots) && lim_cats[selected_movie.cat] > 0)) {
+  460  => aleatorio.cpp:hasSlot(movie, std::map<int, bool, std::less<int>, std::allocator<std::pair<int const, bool> > >&) (8x)
+   16            min_time = 100;
+   16            has_selected = false;
+    .          }
+    .        }
+    .      }
+2,534      if(movies[i].start < min_time && lim_cats[movies[i].cat] > 0 && hasSlot(movies[i], filled_slots))  {
+11,881  => aleatorio.cpp:hasSlot(movie, std::map<int, bool, std::less<int>, std::allocator<std::pair<int const, bool> > >&) (182x)
+    8        selected_movie = movies[i];
+    8        min_time = movies[i].start;
+    8        has_selected = true;
+    .      }
+    .    }
+   11  }
+    .  
+   12  int main(int argc, char *argv[]) {
+    .    int n_mov, n_cat;
+    .    // int id, n, w, weigth, val;
+    .  
+    .    map<int, bool> filled_slots;
+    .    map<int, int> lim_cats;
+    .    vector<movie> movies, selected;
+    .  
+    8    cin >> n_mov >> n_cat;
+8,358  => ???:0x0000000000109210 (2x)
+    .  
+    1    movies.reserve(n_mov);
+    .  
+    5    set_cats_limit(lim_cats, n_cat);
+9,254  => /home/user/supercomp/project/helpers/helpers.cpp:set_cats_limit(std::map<int, int, std::less<int>, std::allocator<std::pair<int const, int> > >&, int) (1x)
+    .  
+    5    read_movies_data(movies, n_mov);
+3,294,712  => /home/user/supercomp/project/helpers/helpers.cpp:read_movies_data(std::vector<movie, std::allocator<movie> >&, int) (1x)
+    .  
+    .    sort(movies.begin(), movies.end(), [](auto& i, auto& j){return i.end < j.end;});
+    .  
+    2    chrono::steady_clock::time_point begin = chrono::steady_clock::now();
+  950  => ???:0x00000000001092f0 (1x)
+    .  
+    8    select_movies(movies, selected, lim_cats, filled_slots, n_cat, n_mov);
+55,592  => aleatorio.cpp:select_movies(std::vector<movie, std::allocator<movie> >&, std::vector<movie, std::allocator<movie> >&, std::map<int, int, std::less<int>, std::allocator<std::pair<int const, int> > >&, std::map<int, bool, std::less<int>, std::allocator<std::pair<int const, bool> > >&, int, int) (1x)
+    .  
+    1    chrono::steady_clock::time_point end = chrono::steady_clock::now();
+   40  => ???:0x00000000001092f0 (1x)
+    .  
+    .    cout << chrono::duration_cast<chrono::microseconds>(end - begin).count();
+    .  
+    2    if(argc > 1) return 0;
+    .  
+    .    cout << endl;
+    .  
+    .    sort(selected.begin(), selected.end(), [](auto& i, auto& j){return i.start < j.start;});
+    .  
+    2    print_agenda(selected);
+134,776  => /home/user/supercomp/project/helpers/helpers.cpp:print_agenda(std::vector<movie, std::allocator<movie> >) (1x)
+    .  
+   15  }
+
+--------------------------------------------------------------------------------

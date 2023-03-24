@@ -23,5 +23,5 @@ generator:
 
 .PHONY: clean
 clean:
-	rm -f *.o *.gch *.out guloso aleatorio
+	rm -f *.o *.gch *.out guloso aleatorio gen
 	rm -rf generator/*.dSYM *.dSYM

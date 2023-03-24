@@ -26,7 +26,7 @@ void fill_slot(map<int, bool> &filled_slots, movie curr) {
   }
 }
 
-void select_movies(vector<movie> &movies, vector<movie> &selected, map<int, int> &lim_cats, map<int, bool> &filled_slots, int n_cat) {
+void select_movies(vector<movie> &movies, vector<movie> &selected, map<int, int> &lim_cats, map<int, bool> &filled_slots, int n_cat, int n_mov) {
   uniform_real_distribution<double> distribution(0.0, 1.0);
   default_random_engine generator;
   generator.seed(SEED + time(0));
@@ -38,7 +38,7 @@ void select_movies(vector<movie> &movies, vector<movie> &selected, map<int, int>
 
   //movie last_selected = {0, 0, 0, 0};
   movie selected_movie;
-  for(int i = 0; i < movies.size(); i++) {
+  for(int i = 0; i < n_mov; i++) {
     if(n_cat <= 0) return;
     if(times_filed > 24) return;
     if(movies[i].end > time_end) {
@@ -95,7 +95,7 @@ int main(int argc, char *argv[]) {
 
   chrono::steady_clock::time_point begin = chrono::steady_clock::now();
 
-  select_movies(movies, selected, lim_cats, filled_slots, n_cat);
+  select_movies(movies, selected, lim_cats, filled_slots, n_cat, n_mov);
 
   chrono::steady_clock::time_point end = chrono::steady_clock::now();
 

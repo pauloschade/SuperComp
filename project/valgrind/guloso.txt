@@ -1,0 +1,82 @@
+-- line 2 ----------------------------------------
+    .  #include <cassert>
+    .  #include <chrono>
+    .  using namespace std;
+    .  
+    .  bool hasSlot(movie curr, movie prev) {
+    .    return curr.start >= prev.end;
+    .  }
+    .  
+   13  void select_movies(vector<movie> &movies, vector<movie> &selected, map<int, int> &lim_cats, int n_cat) {
+    1    int time_end = 0;
+    1    int min_time = 100;
+    1    bool has_selected = false;
+    1    int times_filed = 0;
+    1    movie last_selected = {0, 0, 0, 0};
+    .    movie selected_movie;
+2,976    for(auto& mov: movies) {
+    .      
+3,000      if(n_cat <= 0) return;
+2,000      if(times_filed > 24) return;
+    .  
+3,000      if(mov.end > time_end) {
+    .        time_end = mov.end;
+    .  
+   84        if (has_selected) {
+   23          min_time = 100;
+   96          include_movie(selected_movie, selected, times_filed);
+3,668  => /home/user/supercomp/project/helpers/helpers.cpp:include_movie(movie&, std::vector<movie, std::allocator<movie> >&, int&) (23x)
+   92          set_cats_limit(lim_cats, selected_movie.cat, n_cat);
+1,691  => /home/user/supercomp/project/helpers/helpers.cpp:set_cats_limit(std::map<int, int, std::less<int>, std::allocator<std::pair<int const, int> > >&, int, int&) (23x)
+   46          last_selected = selected_movie;
+   46          has_selected = false;
+    .        };
+    .      }
+7,034      if(mov.start < min_time && lim_cats[mov.cat] > 0 && hasSlot(mov, last_selected))  {
+   78        selected_movie = mov;
+   26        min_time = mov.start;
+   26        has_selected = true;
+    .      }
+    .    }
+   11  }
+    .  
+   12  int main(int argc, char *argv[]) {
+    .    int n_mov, n_cat;
+    .  
+    .    map<int, int> lim_cats;
+    .    vector<movie> movies, selected;
+    .  
+    7    cin >> n_mov >> n_cat;
+8,358  => ???:0x0000000000109200 (2x)
+    .  
+    1    movies.reserve(n_mov);
+    .  
+    4    set_cats_limit(lim_cats, n_cat);
+9,254  => /home/user/supercomp/project/helpers/helpers.cpp:set_cats_limit(std::map<int, int, std::less<int>, std::allocator<std::pair<int const, int> > >&, int) (1x)
+    .  
+    4    read_movies_data(movies, n_mov);
+3,294,712  => /home/user/supercomp/project/helpers/helpers.cpp:read_movies_data(std::vector<movie, std::allocator<movie> >&, int) (1x)
+    .  
+    .    sort(movies.begin(), movies.end(), [](auto& i, auto& j){return i.end < j.end;});
+    .  
+    2    chrono::steady_clock::time_point begin = chrono::steady_clock::now();
+  950  => ???:0x00000000001092d0 (1x)
+    .  
+    5    select_movies(movies, selected, lim_cats, n_cat);
+50,528  => guloso.cpp:select_movies(std::vector<movie, std::allocator<movie> >&, std::vector<movie, std::allocator<movie> >&, std::map<int, int, std::less<int>, std::allocator<std::pair<int const, int> > >&, int) (1x)
+    .  
+    1    chrono::steady_clock::time_point end = chrono::steady_clock::now();
+   40  => ???:0x00000000001092d0 (1x)
+    .  
+    .    cout << chrono::duration_cast<chrono::microseconds>(end - begin).count();
+    .  
+    2    if(argc > 1) return 0;
+    .  
+    .    cout << endl;
+    .  
+    2    print_agenda(selected);
+250,112  => /home/user/supercomp/project/helpers/helpers.cpp:print_agenda(std::vector<movie, std::allocator<movie> >) (1x)
+    .  
+    1    return 0;
+    .  
+   15  }

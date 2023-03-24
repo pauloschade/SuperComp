@@ -3,6 +3,7 @@
 #include <map>
 #include <vector>
 #include<iostream>
+#include <algorithm>
 
 struct movie {
   int id;

@@ -3,7 +3,7 @@
 #include <fstream>
 #include <boost/random.hpp>
 
-#define DIR "../in/"
+//#define DIR "../in/"
 
 using namespace std;
 
@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
     string filename = argv[3];
 
     ofstream inputFile;
-    inputFile.open(DIR + filename);
+    inputFile.open(filename);
     inputFile << n << " " << m << endl;
 
     unsigned seed = chrono::system_clock::now().time_since_epoch().count();
