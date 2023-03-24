@@ -1,8 +1,9 @@
 #include "helpers.h"
 
-void include_movie(movie &curr_movie, std::vector<movie> &movies, std::map<int, int> &lim_cats) {
+void include_movie(movie &curr_movie, std::vector<movie> &movies, int &times_filed) {
   movies.push_back(curr_movie);
-  lim_cats[curr_movie.cat] --;
+  if(curr_movie.end == curr_movie.start) times_filed ++;
+  else times_filed += curr_movie.end - curr_movie.start;
 }
 
 void print_agenda(std::vector<movie> selected) {
@@ -43,4 +44,9 @@ void read_movies_data(std::vector<movie> &movies, int n_mov) {
     if(new_movie.end < new_movie.start) new_movie.end += 24;
     movies.push_back(new_movie);
   }
+}
+
+void set_cats_limit(std::map<int, int> &lim_cats, int mov_cat, int &cats_n) {
+  lim_cats[mov_cat] --;
+  if(lim_cats[mov_cat] == 0) cats_n --;
 }

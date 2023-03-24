@@ -17,6 +17,11 @@ aleatorio: build
 build:
 	$(CC) $(CFLAGS) -c helpers/*.cpp
 
+.PHONY: generator
+generator:
+	$(CC) $(CFLAGS) -o gen generator/generator.cpp
+
 .PHONY: clean
 clean:
 	rm -f *.o *.gch *.out guloso aleatorio
+	rm -rf generator/*.dSYM *.dSYM

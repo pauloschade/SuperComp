@@ -1,6 +1,7 @@
 #include "helpers/helpers.h"
 #include <cassert>
 #include <random>
+#include <chrono>
 
 #define SEED 42
 #define PROB 0.75
@@ -25,23 +26,27 @@ void fill_slot(map<int, bool> &filled_slots, movie curr) {
   }
 }
 
-void select_movies(vector<movie> movies, vector<movie> &selected, map<int, int> &lim_cats, map<int, bool> &filled_slots) {
+void select_movies(vector<movie> &movies, vector<movie> &selected, map<int, int> &lim_cats, map<int, bool> &filled_slots, int n_cat) {
   uniform_real_distribution<double> distribution(0.0, 1.0);
   default_random_engine generator;
   generator.seed(SEED + time(0));
 
   int time_end = 0;
   int min_time = 100;
+  int times_filed = 0;
   bool has_selected = false;
 
   //movie last_selected = {0, 0, 0, 0};
   movie selected_movie;
   for(int i = 0; i < movies.size(); i++) {
+    if(n_cat <= 0) return;
+    if(times_filed > 24) return;
     if(movies[i].end > time_end) {
       time_end = movies[i].end;
 
       if (has_selected) {
-        include_movie(selected_movie, selected, lim_cats);
+        include_movie(selected_movie, selected, times_filed);
+        set_cats_limit(lim_cats, selected_movie.cat, n_cat);
         fill_slot(filled_slots, selected_movie);
 
         min_time = 100;
@@ -51,12 +56,12 @@ void select_movies(vector<movie> movies, vector<movie> &selected, map<int, int> 
     if(distribution(generator) > PROB) {
       uniform_int_distribution<int> distribution(i, movies.size()-1);
       int p = distribution(generator);
-      if(hasSlot(movies[p], filled_slots) && lim_cats[movies[i].cat] > 0) {
-        include_movie(movies[p], selected, lim_cats);
+      if(hasSlot(movies[p], filled_slots) && lim_cats[movies[p].cat] > 0) {
+        include_movie(movies[p], selected, times_filed);
+        set_cats_limit(lim_cats, movies[p].cat, n_cat);
         fill_slot(filled_slots, movies[p]);
         
         if(!(hasSlot(selected_movie, filled_slots) && lim_cats[selected_movie.cat] > 0)) {
-
           min_time = 100;
           has_selected = false;
         }
@@ -70,7 +75,7 @@ void select_movies(vector<movie> movies, vector<movie> &selected, map<int, int> 
   }
 }
 
-int main() {
+int main(int argc, char *argv[]) {
   int n_mov, n_cat;
   // int id, n, w, weigth, val;
 
@@ -88,7 +93,17 @@ int main() {
 
   sort(movies.begin(), movies.end(), [](auto& i, auto& j){return i.end < j.end;});
 
-  select_movies(movies, selected, lim_cats, filled_slots);
+  chrono::steady_clock::time_point begin = chrono::steady_clock::now();
+
+  select_movies(movies, selected, lim_cats, filled_slots, n_cat);
+
+  chrono::steady_clock::time_point end = chrono::steady_clock::now();
+
+  cout << chrono::duration_cast<chrono::microseconds>(end - begin).count();
+
+  if(argc > 1) return 0;
+
+  cout << endl;
 
   sort(selected.begin(), selected.end(), [](auto& i, auto& j){return i.start < j.start;});
 

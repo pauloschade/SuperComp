@@ -2,12 +2,12 @@
 import numpy as np
 import subprocess
 
-FILE_NAME = 'generator'
+FILE_NAME = '../gen'
 
 #subprocess input
 
 def run_generator(rows, cats):
-  proc = subprocess.run([f'./{FILE_NAME}', str(rows), str(cats), f'input_{rows}_{cats}.txt'],text=True, capture_output=True)
+  proc = subprocess.run([f'{FILE_NAME}', str(rows), str(cats), f'../in/input_{rows}_{cats}.txt'],text=True, capture_output=True)
   if proc.returncode != 0:
     print(f'Error: {proc.stderr}')
     return None
