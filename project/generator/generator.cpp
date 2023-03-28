@@ -25,9 +25,11 @@ int main(int argc, char *argv[]) {
     uniform_int_distribution<int> distribution_hr(0, 23);
     uniform_int_distribution<int> distribution_cat(1, m);
 
+    uniform_int_distribution<int> rand(0, 3);
+
     vector<int> maxFilmes(m); // Vetor para armazenar o máximo de filmes por categoria
     for (int i = 0; i < m; i++) {
-        maxFilmes[i] = distribution_cat(generator); // Gerando o máximo de filmes para cada categoria
+        maxFilmes[i] = distribution_cat(generator) + rand(generator); // Gerando o máximo de filmes para cada categoria
         inputFile << maxFilmes[i] << " "; // Escrevendo o valor no arquivo de entrada
     }
     inputFile << endl;

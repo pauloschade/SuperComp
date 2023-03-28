@@ -16,7 +16,7 @@ def run_generator(rows, cats):
 #function to generate many args for generator.cpp
 def generate_args():
   rows = np.arange(10, 10001, 90)
-  cats = np.arange(1, 21, 1)
+  cats = np.arange(1, 51, 1)
   return rows, cats
 
 if __name__ == '__main__':
