@@ -57,3 +57,6 @@
 in/
 /in
 in/*
+
+# ignore pycache
+__pycache__/
