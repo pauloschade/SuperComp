@@ -61,3 +61,7 @@ in/*
 # ignore pycache
 __pycache__/
 env/
+
+# site-packages
+site/
+
