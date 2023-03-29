@@ -36,11 +36,12 @@ void select_movies(vector<movie> &movies, vector<movie> &selected, map<int, int>
   int times_filed = 0;
   bool has_selected = false;
 
-  //movie last_selected = {0, 0, 0, 0};
   movie selected_movie;
   for(int i = 0; i < n_mov; i++) {
+
     if(n_cat <= 0) return;
-    if(times_filed > 24) return;
+    if(times_filed >= 24) return;
+    
     if(movies[i].end > time_end) {
       time_end = movies[i].end;
 
@@ -87,7 +88,7 @@ int main(int argc, char *argv[]) {
 
   movies.reserve(n_mov);
 
-  set_cats_limit(lim_cats, n_cat);
+  read_cats_limit(lim_cats, n_cat);
 
   read_movies_data(movies, n_mov);
 

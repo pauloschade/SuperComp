@@ -60,3 +60,4 @@ in/*
 
 # ignore pycache
 __pycache__/
+env/

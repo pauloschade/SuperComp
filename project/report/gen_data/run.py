@@ -2,7 +2,7 @@ import subprocess
 import time
 import os
 def run_program(name, input):
-  proc = subprocess.run([f'../{name} -python < ../in/{input}'],text=True, capture_output=True, shell=True)
+  proc = subprocess.run([f'../../{name} -python < ../../in/{input}'],text=True, capture_output=True, shell=True)
   if proc.returncode < 0:
     print(f'Error: {proc.stderr}')
     exit(1)

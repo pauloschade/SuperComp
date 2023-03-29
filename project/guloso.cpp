@@ -3,7 +3,7 @@
 #include <chrono>
 using namespace std;
 
-bool hasSlot(movie curr, movie prev) {
+bool has_slot(movie curr, movie prev) {
   return curr.start >= prev.end;
 }
 
@@ -17,7 +17,7 @@ void select_movies(vector<movie> &movies, vector<movie> &selected, map<int, int>
   for(auto& mov: movies) {
     
     if(n_cat <= 0) return;
-    if(times_filed > 24) return;
+    if(times_filed >= 24) return;
 
     if(mov.end > time_end) {
       time_end = mov.end;
@@ -30,7 +30,7 @@ void select_movies(vector<movie> &movies, vector<movie> &selected, map<int, int>
         has_selected = false;
       };
     }
-    if(mov.start < min_time && lim_cats[mov.cat] > 0 && hasSlot(mov, last_selected))  {
+    if(mov.start < min_time && lim_cats[mov.cat] > 0 && has_slot(mov, last_selected))  {
       selected_movie = mov;
       min_time = mov.start;
       has_selected = true;
@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
 
   movies.reserve(n_mov);
 
-  set_cats_limit(lim_cats, n_cat);
+  read_cats_limit(lim_cats, n_cat);
 
   read_movies_data(movies, n_mov);
 

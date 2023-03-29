@@ -1,5 +1,6 @@
 from aux import get_data, plot
 if __name__ == '__main__':
-    data = get_data('../data/run_time.txt')
-    plot(data['guloso'], 'guloso')
-    plot(data['aleatorio'], 'aleatorio')
+    guloso = get_data('data/guloso_time.json')
+    aleatorio = get_data('data/aleatorio_time.json')
+    plot(guloso, 'guloso')
+    plot(aleatorio, 'aleatorio')

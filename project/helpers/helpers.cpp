@@ -3,7 +3,11 @@
 void include_movie(movie &curr_movie, std::vector<movie> &movies, int &times_filed) {
   movies.push_back(curr_movie);
   if(curr_movie.end == curr_movie.start) times_filed ++;
-  else times_filed += curr_movie.end - curr_movie.start;
+  else {
+     if(curr_movie.end > 23) times_filed += 24 - curr_movie.start;
+     else
+     times_filed += curr_movie.end - curr_movie.start;
+  }
 }
 
 void print_agenda(std::vector<movie> selected) {
@@ -30,7 +34,7 @@ void print_agenda(std::vector<movie> selected) {
   }
 }
 
-void set_cats_limit(std::map<int, int> &lim_cats, int n_cat) {
+void read_cats_limit(std::map<int, int> &lim_cats, int n_cat) {
   for(int i=0; i<n_cat; i++) {
     std::cin >> lim_cats[i+1];
   }
