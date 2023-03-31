@@ -254,6 +254,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -268,22 +275,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    Overview
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#funcao-principal" class="md-nav__link">
-    Função principal
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#exemplos" class="md-nav__link">
-    Exemplos
+  <a href="#funcao-de-selecao-de-filmes" class="md-nav__link">
+    Funcao de selecão de filmes
   </a>
   
 </li>
@@ -309,8 +302,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#overview_1" class="md-nav__link">
-    Overview
+  <a href="#funcao-de-selecao-de-filmes_1" class="md-nav__link">
+    Funcao de selecão de filmes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valgrind_1" class="md-nav__link">
+    Valgrind
   </a>
   
 </li>
@@ -328,6 +328,33 @@
         <li class="md-nav__item">
   <a href="#resultados" class="md-nav__link">
     Resultados
+  </a>
+  
+    <nav class="md-nav" aria-label="Resultados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview-graficos-3d" class="md-nav__link">
+    Overview (Gráficos 3D)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aprofundando-graficos-2d" class="md-nav__link">
+    Aprofundando (Gráficos 2D)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusoes" class="md-nav__link">
+    Conclusões
   </a>
   
 </li>
@@ -403,6 +430,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -417,22 +451,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    Overview
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#funcao-principal" class="md-nav__link">
-    Função principal
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#exemplos" class="md-nav__link">
-    Exemplos
+  <a href="#funcao-de-selecao-de-filmes" class="md-nav__link">
+    Funcao de selecão de filmes
   </a>
   
 </li>
@@ -458,8 +478,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#overview_1" class="md-nav__link">
-    Overview
+  <a href="#funcao-de-selecao-de-filmes_1" class="md-nav__link">
+    Funcao de selecão de filmes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valgrind_1" class="md-nav__link">
+    Valgrind
   </a>
   
 </li>
@@ -477,6 +504,33 @@
         <li class="md-nav__item">
   <a href="#resultados" class="md-nav__link">
     Resultados
+  </a>
+  
+    <nav class="md-nav" aria-label="Resultados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview-graficos-3d" class="md-nav__link">
+    Overview (Gráficos 3D)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aprofundando-graficos-2d" class="md-nav__link">
+    Aprofundando (Gráficos 2D)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusoes" class="md-nav__link">
+    Conclusões
   </a>
   
 </li>
@@ -523,196 +577,417 @@
 </ul>
 <p><em>Output handle:</em></p>
 <ul>
-<li><code>print_agenda</code>: imprime a agenda de filmes selecionados.</li>
+<li><code>print_agenda</code>: imprime a agenda de filmes selecionados - funcão para verificacão visual.</li>
 </ul>
 <h4 id="otimizacoes">Otimizações</h4>
 <ul>
 <li>Caso já tenha extinguido todos os filmes de todas as categorias, a funcão para (<code>cats_limit</code> ser 0).</li>
 <li>Caso já tenha preenchido 24hrs, a função para (<code>times_filed</code> ser 24).</li>
+<li>obs: se o filme passa das 24hrs, ele não incrementa times_filed, a ideia é liberar assistir na madrugada e apenas parar quando o dia todo foi preenchido.</li>
 </ul>
-<h3 id="guloso">Guloso</h3>
 <h4 id="overview">Overview</h4>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">n_mov</span><span class="p">,</span><span class="w"> </span><span class="n">n_cat</span><span class="p">;</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lim_cats</span><span class="p">;</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">movie</span><span class="o">&gt;</span><span class="w"> </span><span class="n">movies</span><span class="p">,</span><span class="w"> </span><span class="n">selected</span><span class="p">;</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">n_mov</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">n_cat</span><span class="p">;</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="n">movies</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="n">n_mov</span><span class="p">);</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="n">read_cats_limit</span><span class="p">(</span><span class="n">lim_cats</span><span class="p">,</span><span class="w"> </span><span class="n">n_cat</span><span class="p">);</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">  </span><span class="n">read_movies_data</span><span class="p">(</span><span class="n">movies</span><span class="p">,</span><span class="w"> </span><span class="n">n_mov</span><span class="p">);</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">  </span><span class="n">sort</span><span class="p">(</span><span class="n">movies</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">movies</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="p">[](</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">j</span><span class="p">){</span><span class="k">return</span><span class="w"> </span><span class="n">i</span><span class="p">.</span><span class="n">end</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">j</span><span class="p">.</span><span class="n">end</span><span class="p">;});</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">  </span><span class="n">chrono</span><span class="o">::</span><span class="n">steady_clock</span><span class="o">::</span><span class="n">time_point</span><span class="w"> </span><span class="n">begin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">chrono</span><span class="o">::</span><span class="n">steady_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">  </span><span class="n">select_movies</span><span class="p">(</span><span class="n">movies</span><span class="p">,</span><span class="w"> </span><span class="n">selected</span><span class="p">,</span><span class="w"> </span><span class="n">lim_cats</span><span class="p">,</span><span class="w"> </span><span class="n">n_cat</span><span class="p">);</span>
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
-</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">  </span><span class="n">chrono</span><span class="o">::</span><span class="n">steady_clock</span><span class="o">::</span><span class="n">time_point</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">chrono</span><span class="o">::</span><span class="n">steady_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
-</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
-</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">  </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">chrono</span><span class="o">::</span><span class="n">duration_cast</span><span class="o">&lt;</span><span class="n">chrono</span><span class="o">::</span><span class="n">microseconds</span><span class="o">&gt;</span><span class="p">(</span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">begin</span><span class="p">).</span><span class="n">count</span><span class="p">();</span>
-</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>
-</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>
-</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">  </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
-</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>
-</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="w">  </span><span class="n">print_agenda</span><span class="p">(</span><span class="n">selected</span><span class="p">);</span>
-</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>
-</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>
-</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="p">}</span>
+<p>Em todas as implementacoes, a função <code>main</code> é responsável por ler os dados de input, ordenar os filmes por horário de término (a implementacão guloso selecionada) e chamar a função <code>select_movies</code> que é responsável por selecionar os filmes. A função <code>main</code> também é responsável por imprimir o tempo de execução do algoritmo.</p>
+<h3 id="guloso">Guloso</h3>
+<h4 id="funcao-de-selecao-de-filmes">Funcao de selecão de filmes</h4>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">select_movies</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">movie</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">movies</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">movie</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">selected</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">lim_cats</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n_cat</span><span class="p">);</span>
 </span></code></pre></div>
-<p>Como pode-se ver, a função <code>main</code> é responsável por ler os dados de input, ordenar os filmes por horário de término (a implementacão guloso selecionada) e chamar a função <code>select_movies</code> que é responsável por selecionar os filmes. A função <code>main</code> também é responsável por imprimir o tempo de execução do algoritmo.</p>
-<h4 id="funcao-principal">Função principal</h4>
-<p><div class="language-cpp highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">select_movies</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">movie</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">movies</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">movie</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">selected</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">lim_cats</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n_cat</span><span class="p">);</span>
-</span></code></pre></div>
-A lógica da escolha é feita da seguinte forma:</p>
+<p>argumentos:</p>
+<ul>
+<li><code>movies</code>: vetor de filmes a serem selecionados.</li>
+<li><code>selected</code>: vetor de filmes selecionados.</li>
+<li><code>lim_cats</code>: mapa de limites de filmes por categoria.</li>
+<li><code>n_cat</code>: número de categorias - utilizado para otimizacão, cada vez que uma categoria é preenchida (limite atingido), esse contador é subtraído, se o mesmo chega em zero (todas categorias atingiram o limite) o código para.</li>
+<li><code>retorno</code>: tempo de tela total dos filmes selecionados.</li>
+</ul>
+<p>A lógica da escolha é feita da seguinte forma:</p>
 <ul>
 <li>Para cada filme, verifica se o horário de término é maior que o horário de término do filme anterior.</li>
 <li>Caso seja maior:<ul>
-<li>Atualiza o horário de término dos filmes (para ser igual o do filme na iteracão).</li>
+<li>Atualiza o horário de término dos filmes (para ser igual o do filme na iteracão) - isso significa que certo horário não tem nenhum filme, ou todos filmes do horário já foram considerados.</li>
 <li>Verifica se algum novo filme foi selecionado (desde a última inclusão)</li>
 <li>Caso foi, adiciona o filme selecionado na agenda.</li>
 </ul>
 </li>
 <li>Continua a iteração.<ul>
 <li>Compara se o filme atual cabe na agenda (checando horários e filmes por categoria).</li>
-<li>Compara o inicio do filme, com o início do antigo filme selecionado.</li>
+<li>Compara o inicio do filme, com o início do antigo filme selecionado - dos filmes que terminam neste horário, qual comeca mais cedo?.</li>
 <li>Caso o filme atual seja mais cedo, substitui o antigo filme selecionado.</li>
 </ul>
 </li>
 </ul>
-<h4 id="exemplos">Exemplos</h4>
-<ul>
-<li><a href="">Exemplo 1</a></li>
-</ul>
 <h4 id="valgrind">Valgrind</h4>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>--<span class="w"> </span>line<span class="w"> </span><span class="m">2</span><span class="w"> </span>----------------------------------------
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span>.<span class="w">  </span><span class="c1">#include &lt;cassert&gt;</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span>.<span class="w">  </span><span class="c1">#include &lt;chrono&gt;</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span>.<span class="w">  </span>using<span class="w"> </span>namespace<span class="w"> </span>std<span class="p">;</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span>.<span class="w">  </span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span>.<span class="w">  </span>bool<span class="w"> </span>hasSlot<span class="o">(</span>movie<span class="w"> </span>curr,<span class="w"> </span>movie<span class="w"> </span>prev<span class="o">)</span><span class="w"> </span><span class="o">{</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span>.<span class="w">    </span><span class="k">return</span><span class="w"> </span>curr.start<span class="w"> </span>&gt;<span class="o">=</span><span class="w"> </span>prev.end<span class="p">;</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span>.<span class="w">  </span><span class="o">}</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span>.<span class="w">  </span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">   </span><span class="m">13</span><span class="w">  </span>void<span class="w"> </span>select_movies<span class="o">(</span>vector&lt;movie&gt;<span class="w"> </span><span class="p">&amp;</span>movies,<span class="w"> </span>vector&lt;movie&gt;<span class="w"> </span><span class="p">&amp;</span>selected,<span class="w"> </span>map&lt;int,<span class="w"> </span>int&gt;<span class="w"> </span><span class="p">&amp;</span>lim_cats,<span class="w"> </span>int<span class="w"> </span>n_cat<span class="o">)</span><span class="w"> </span><span class="o">{</span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="m">1</span><span class="w">    </span>int<span class="w"> </span><span class="nv">time_end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="m">1</span><span class="w">    </span>int<span class="w"> </span><span class="nv">min_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">;</span>
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="m">1</span><span class="w">    </span>bool<span class="w"> </span><span class="nv">has_selected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>false<span class="p">;</span>
-</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="m">1</span><span class="w">    </span>int<span class="w"> </span><span class="nv">times_filed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
-</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">    </span><span class="m">1</span><span class="w">    </span>movie<span class="w"> </span><span class="nv">last_selected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span><span class="o">}</span><span class="p">;</span>
-</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">    </span>.<span class="w">    </span>movie<span class="w"> </span>selected_movie<span class="p">;</span>
-</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="m">2</span>,976<span class="w">    </span><span class="k">for</span><span class="o">(</span>auto<span class="p">&amp;</span><span class="w"> </span>mov:<span class="w"> </span>movies<span class="o">)</span><span class="w"> </span><span class="o">{</span>
-</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">    </span>.<span class="w">      </span>
-</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="m">3</span>,000<span class="w">      </span><span class="k">if</span><span class="o">(</span>n_cat<span class="w"> </span>&lt;<span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
-</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="m">2</span>,000<span class="w">      </span><span class="k">if</span><span class="o">(</span>times_filed<span class="w"> </span>&gt;<span class="w"> </span><span class="m">24</span><span class="o">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
-</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">    </span>.<span class="w">  </span>
-</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="m">3</span>,000<span class="w">      </span><span class="k">if</span><span class="o">(</span>mov.end<span class="w"> </span>&gt;<span class="w"> </span>time_end<span class="o">)</span><span class="w"> </span><span class="o">{</span>
-</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">    </span>.<span class="w">        </span><span class="nv">time_end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>mov.end<span class="p">;</span>
-</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">    </span>.<span class="w">  </span>
-</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">   </span><span class="m">84</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">(</span>has_selected<span class="o">)</span><span class="w"> </span><span class="o">{</span>
-</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">   </span><span class="m">23</span><span class="w">          </span><span class="nv">min_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">;</span>
-</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="w">   </span><span class="m">96</span><span class="w">          </span>include_movie<span class="o">(</span>selected_movie,<span class="w"> </span>selected,<span class="w"> </span>times_filed<span class="o">)</span><span class="p">;</span>
-</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="m">3</span>,668<span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>/home/user/supercomp/project/helpers/helpers.cpp:include_movie<span class="o">(</span>movie<span class="p">&amp;</span>,<span class="w"> </span>std::vector&lt;movie,<span class="w"> </span>std::allocator&lt;movie&gt;<span class="w"> </span>&gt;<span class="p">&amp;</span>,<span class="w"> </span>int<span class="p">&amp;</span><span class="o">)</span><span class="w"> </span><span class="o">(</span>23x<span class="o">)</span>
-</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="w">   </span><span class="m">92</span><span class="w">          </span>set_cats_limit<span class="o">(</span>lim_cats,<span class="w"> </span>selected_movie.cat,<span class="w"> </span>n_cat<span class="o">)</span><span class="p">;</span>
-</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="m">1</span>,691<span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>/home/user/supercomp/project/helpers/helpers.cpp:set_cats_limit<span class="o">(</span>std::map&lt;int,<span class="w"> </span>int,<span class="w"> </span>std::less&lt;int&gt;,<span class="w"> </span>std::allocator&lt;std::pair&lt;int<span class="w"> </span>const,<span class="w"> </span>int&gt;<span class="w"> </span>&gt;<span class="w"> </span>&gt;<span class="p">&amp;</span>,<span class="w"> </span>int,<span class="w"> </span>int<span class="p">&amp;</span><span class="o">)</span><span class="w"> </span><span class="o">(</span>23x<span class="o">)</span>
-</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="w">   </span><span class="m">46</span><span class="w">          </span><span class="nv">last_selected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>selected_movie<span class="p">;</span>
-</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="w">   </span><span class="m">46</span><span class="w">          </span><span class="nv">has_selected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>false<span class="p">;</span>
-</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="w">    </span>.<span class="w">        </span><span class="o">}</span><span class="p">;</span>
-</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="w">    </span>.<span class="w">      </span><span class="o">}</span>
-</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="m">7</span>,034<span class="w">      </span><span class="k">if</span><span class="o">(</span>mov.start<span class="w"> </span>&lt;<span class="w"> </span>min_time<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>lim_cats<span class="o">[</span>mov.cat<span class="o">]</span><span class="w"> </span>&gt;<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>hasSlot<span class="o">(</span>mov,<span class="w"> </span>last_selected<span class="o">))</span><span class="w">  </span><span class="o">{</span>
-</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a><span class="w">   </span><span class="m">78</span><span class="w">        </span><span class="nv">selected_movie</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>mov<span class="p">;</span>
-</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="w">   </span><span class="m">26</span><span class="w">        </span><span class="nv">min_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>mov.start<span class="p">;</span>
-</span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="w">   </span><span class="m">26</span><span class="w">        </span><span class="nv">has_selected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>true<span class="p">;</span>
-</span><span id="__span-3-39"><a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a><span class="w">    </span>.<span class="w">      </span><span class="o">}</span>
-</span><span id="__span-3-40"><a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a><span class="w">    </span>.<span class="w">    </span><span class="o">}</span>
-</span><span id="__span-3-41"><a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a><span class="w">   </span><span class="m">11</span><span class="w">  </span><span class="o">}</span>
-</span><span id="__span-3-42"><a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a><span class="w">    </span>.<span class="w">  </span>
-</span><span id="__span-3-43"><a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a><span class="w">   </span><span class="m">12</span><span class="w">  </span>int<span class="w"> </span>main<span class="o">(</span>int<span class="w"> </span>argc,<span class="w"> </span>char<span class="w"> </span>*argv<span class="o">[])</span><span class="w"> </span><span class="o">{</span>
-</span><span id="__span-3-44"><a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a><span class="w">    </span>.<span class="w">    </span>int<span class="w"> </span>n_mov,<span class="w"> </span>n_cat<span class="p">;</span>
-</span><span id="__span-3-45"><a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a><span class="w">    </span>.<span class="w">  </span>
-</span><span id="__span-3-46"><a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a><span class="w">    </span>.<span class="w">    </span>map&lt;int,<span class="w"> </span>int&gt;<span class="w"> </span>lim_cats<span class="p">;</span>
-</span><span id="__span-3-47"><a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a><span class="w">    </span>.<span class="w">    </span>vector&lt;movie&gt;<span class="w"> </span>movies,<span class="w"> </span>selected<span class="p">;</span>
-</span><span id="__span-3-48"><a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a><span class="w">    </span>.<span class="w">  </span>
-</span><span id="__span-3-49"><a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a><span class="w">    </span><span class="m">7</span><span class="w">    </span>cin<span class="w"> </span>&gt;&gt;<span class="w"> </span>n_mov<span class="w"> </span>&gt;&gt;<span class="w"> </span>n_cat<span class="p">;</span>
-</span><span id="__span-3-50"><a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a><span class="m">8</span>,358<span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>???:0x0000000000109200<span class="w"> </span><span class="o">(</span>2x<span class="o">)</span>
-</span><span id="__span-3-51"><a id="__codelineno-3-51" name="__codelineno-3-51" href="#__codelineno-3-51"></a><span class="w">    </span>.<span class="w">  </span>
-</span><span id="__span-3-52"><a id="__codelineno-3-52" name="__codelineno-3-52" href="#__codelineno-3-52"></a><span class="w">    </span><span class="m">1</span><span class="w">    </span>movies.reserve<span class="o">(</span>n_mov<span class="o">)</span><span class="p">;</span>
-</span><span id="__span-3-53"><a id="__codelineno-3-53" name="__codelineno-3-53" href="#__codelineno-3-53"></a><span class="w">    </span>.<span class="w">  </span>
-</span><span id="__span-3-54"><a id="__codelineno-3-54" name="__codelineno-3-54" href="#__codelineno-3-54"></a><span class="w">    </span><span class="m">4</span><span class="w">    </span>set_cats_limit<span class="o">(</span>lim_cats,<span class="w"> </span>n_cat<span class="o">)</span><span class="p">;</span>
-</span><span id="__span-3-55"><a id="__codelineno-3-55" name="__codelineno-3-55" href="#__codelineno-3-55"></a><span class="m">9</span>,254<span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>/home/user/supercomp/project/helpers/helpers.cpp:set_cats_limit<span class="o">(</span>std::map&lt;int,<span class="w"> </span>int,<span class="w"> </span>std::less&lt;int&gt;,<span class="w"> </span>std::allocator&lt;std::pair&lt;int<span class="w"> </span>const,<span class="w"> </span>int&gt;<span class="w"> </span>&gt;<span class="w"> </span>&gt;<span class="p">&amp;</span>,<span class="w"> </span>int<span class="o">)</span><span class="w"> </span><span class="o">(</span>1x<span class="o">)</span>
-</span><span id="__span-3-56"><a id="__codelineno-3-56" name="__codelineno-3-56" href="#__codelineno-3-56"></a><span class="w">    </span>.<span class="w">  </span>
-</span><span id="__span-3-57"><a id="__codelineno-3-57" name="__codelineno-3-57" href="#__codelineno-3-57"></a><span class="w">    </span><span class="m">4</span><span class="w">    </span>read_movies_data<span class="o">(</span>movies,<span class="w"> </span>n_mov<span class="o">)</span><span class="p">;</span>
-</span><span id="__span-3-58"><a id="__codelineno-3-58" name="__codelineno-3-58" href="#__codelineno-3-58"></a><span class="m">3</span>,294,712<span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>/home/user/supercomp/project/helpers/helpers.cpp:read_movies_data<span class="o">(</span>std::vector&lt;movie,<span class="w"> </span>std::allocator&lt;movie&gt;<span class="w"> </span>&gt;<span class="p">&amp;</span>,<span class="w"> </span>int<span class="o">)</span><span class="w"> </span><span class="o">(</span>1x<span class="o">)</span>
-</span><span id="__span-3-59"><a id="__codelineno-3-59" name="__codelineno-3-59" href="#__codelineno-3-59"></a><span class="w">    </span>.<span class="w">  </span>
-</span><span id="__span-3-60"><a id="__codelineno-3-60" name="__codelineno-3-60" href="#__codelineno-3-60"></a><span class="w">    </span>.<span class="w">    </span>sort<span class="o">(</span>movies.begin<span class="o">()</span>,<span class="w"> </span>movies.end<span class="o">()</span>,<span class="w"> </span><span class="o">[](</span>auto<span class="p">&amp;</span><span class="w"> </span>i,<span class="w"> </span>auto<span class="p">&amp;</span><span class="w"> </span>j<span class="o">){</span><span class="k">return</span><span class="w"> </span>i.end<span class="w"> </span>&lt;<span class="w"> </span>j.end<span class="p">;</span><span class="o">})</span><span class="p">;</span>
-</span><span id="__span-3-61"><a id="__codelineno-3-61" name="__codelineno-3-61" href="#__codelineno-3-61"></a><span class="w">    </span>.<span class="w">  </span>
-</span><span id="__span-3-62"><a id="__codelineno-3-62" name="__codelineno-3-62" href="#__codelineno-3-62"></a><span class="w">    </span><span class="m">2</span><span class="w">    </span>chrono::steady_clock::time_point<span class="w"> </span><span class="nv">begin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>chrono::steady_clock::now<span class="o">()</span><span class="p">;</span>
-</span><span id="__span-3-63"><a id="__codelineno-3-63" name="__codelineno-3-63" href="#__codelineno-3-63"></a><span class="w">  </span><span class="nv">950</span><span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>???:0x00000000001092d0<span class="w"> </span><span class="o">(</span>1x<span class="o">)</span>
-</span><span id="__span-3-64"><a id="__codelineno-3-64" name="__codelineno-3-64" href="#__codelineno-3-64"></a><span class="w">    </span>.<span class="w">  </span>
-</span><span id="__span-3-65"><a id="__codelineno-3-65" name="__codelineno-3-65" href="#__codelineno-3-65"></a><span class="w">    </span><span class="m">5</span><span class="w">    </span>select_movies<span class="o">(</span>movies,<span class="w"> </span>selected,<span class="w"> </span>lim_cats,<span class="w"> </span>n_cat<span class="o">)</span><span class="p">;</span>
-</span><span id="__span-3-66"><a id="__codelineno-3-66" name="__codelineno-3-66" href="#__codelineno-3-66"></a><span class="m">50</span>,528<span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>guloso.cpp:select_movies<span class="o">(</span>std::vector&lt;movie,<span class="w"> </span>std::allocator&lt;movie&gt;<span class="w"> </span>&gt;<span class="p">&amp;</span>,<span class="w"> </span>std::vector&lt;movie,<span class="w"> </span>std::allocator&lt;movie&gt;<span class="w"> </span>&gt;<span class="p">&amp;</span>,<span class="w"> </span>std::map&lt;int,<span class="w"> </span>int,<span class="w"> </span>std::less&lt;int&gt;,<span class="w"> </span>std::allocator&lt;std::pair&lt;int<span class="w"> </span>const,<span class="w"> </span>int&gt;<span class="w"> </span>&gt;<span class="w"> </span>&gt;<span class="p">&amp;</span>,<span class="w"> </span>int<span class="o">)</span><span class="w"> </span><span class="o">(</span>1x<span class="o">)</span>
-</span><span id="__span-3-67"><a id="__codelineno-3-67" name="__codelineno-3-67" href="#__codelineno-3-67"></a><span class="w">    </span>.<span class="w">  </span>
-</span><span id="__span-3-68"><a id="__codelineno-3-68" name="__codelineno-3-68" href="#__codelineno-3-68"></a><span class="w">    </span><span class="m">1</span><span class="w">    </span>chrono::steady_clock::time_point<span class="w"> </span><span class="nv">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>chrono::steady_clock::now<span class="o">()</span><span class="p">;</span>
-</span><span id="__span-3-69"><a id="__codelineno-3-69" name="__codelineno-3-69" href="#__codelineno-3-69"></a><span class="w">   </span><span class="nv">40</span><span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>???:0x00000000001092d0<span class="w"> </span><span class="o">(</span>1x<span class="o">)</span>
-</span><span id="__span-3-70"><a id="__codelineno-3-70" name="__codelineno-3-70" href="#__codelineno-3-70"></a><span class="w">    </span>.<span class="w">  </span>
-</span><span id="__span-3-71"><a id="__codelineno-3-71" name="__codelineno-3-71" href="#__codelineno-3-71"></a><span class="w">    </span>.<span class="w">    </span>cout<span class="w"> </span><span class="s">&lt;&lt; chrono::duration_cast&lt;chrono</span>::microseconds&gt;<span class="o">(</span>end<span class="w"> </span>-<span class="w"> </span>begin<span class="o">)</span>.count<span class="o">()</span><span class="p">;</span>
-</span><span id="__span-3-72"><a id="__codelineno-3-72" name="__codelineno-3-72" href="#__codelineno-3-72"></a><span class="w">    </span>.<span class="w">  </span>
-</span><span id="__span-3-73"><a id="__codelineno-3-73" name="__codelineno-3-73" href="#__codelineno-3-73"></a><span class="w">    </span><span class="m">2</span><span class="w">    </span><span class="k">if</span><span class="o">(</span>argc<span class="w"> </span>&gt;<span class="w"> </span><span class="m">1</span><span class="o">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
-</span><span id="__span-3-74"><a id="__codelineno-3-74" name="__codelineno-3-74" href="#__codelineno-3-74"></a><span class="w">    </span>.<span class="w">  </span>
-</span><span id="__span-3-75"><a id="__codelineno-3-75" name="__codelineno-3-75" href="#__codelineno-3-75"></a><span class="w">    </span>.<span class="w">    </span>cout<span class="w"> </span><span class="s">&lt;&lt; endl;</span>
-</span><span id="__span-3-76"><a id="__codelineno-3-76" name="__codelineno-3-76" href="#__codelineno-3-76"></a><span class="s">    .  </span>
-</span><span id="__span-3-77"><a id="__codelineno-3-77" name="__codelineno-3-77" href="#__codelineno-3-77"></a><span class="s">    2    print_agend</span>a<span class="o">(</span>selected<span class="o">)</span><span class="p">;</span>
-</span><span id="__span-3-78"><a id="__codelineno-3-78" name="__codelineno-3-78" href="#__codelineno-3-78"></a><span class="m">250</span>,112<span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>/home/user/supercomp/project/helpers/helpers.cpp:print_agenda<span class="o">(</span>std::vector&lt;movie,<span class="w"> </span>std::allocator&lt;movie&gt;<span class="w"> </span>&gt;<span class="o">)</span><span class="w"> </span><span class="o">(</span>1x<span class="o">)</span>
-</span><span id="__span-3-79"><a id="__codelineno-3-79" name="__codelineno-3-79" href="#__codelineno-3-79"></a><span class="w">    </span>.<span class="w">  </span>
-</span><span id="__span-3-80"><a id="__codelineno-3-80" name="__codelineno-3-80" href="#__codelineno-3-80"></a><span class="w">    </span><span class="m">1</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
-</span><span id="__span-3-81"><a id="__codelineno-3-81" name="__codelineno-3-81" href="#__codelineno-3-81"></a><span class="w">    </span>.<span class="w">  </span>
-</span><span id="__span-3-82"><a id="__codelineno-3-82" name="__codelineno-3-82" href="#__codelineno-3-82"></a><span class="w">   </span><span class="m">15</span><span class="w">  </span><span class="o">}</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>--<span class="w"> </span>line<span class="w"> </span><span class="m">2</span><span class="w"> </span>----------------------------------------
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span>.<span class="w">  </span><span class="c1">#include &lt;cassert&gt;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span>.<span class="w">  </span><span class="c1">#include &lt;chrono&gt;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span>.<span class="w">  </span>using<span class="w"> </span>namespace<span class="w"> </span>std<span class="p">;</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span>.<span class="w">  </span>bool<span class="w"> </span>hasSlot<span class="o">(</span>movie<span class="w"> </span>curr,<span class="w"> </span>movie<span class="w"> </span>prev<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span>.<span class="w">    </span><span class="k">return</span><span class="w"> </span>curr.start<span class="w"> </span>&gt;<span class="o">=</span><span class="w"> </span>prev.end<span class="p">;</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span>.<span class="w">  </span><span class="o">}</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">   </span><span class="m">13</span><span class="w">  </span>void<span class="w"> </span>select_movies<span class="o">(</span>vector&lt;movie&gt;<span class="w"> </span><span class="p">&amp;</span>movies,<span class="w"> </span>vector&lt;movie&gt;<span class="w"> </span><span class="p">&amp;</span>selected,<span class="w"> </span>map&lt;int,<span class="w"> </span>int&gt;<span class="w"> </span><span class="p">&amp;</span>lim_cats,<span class="w"> </span>int<span class="w"> </span>n_cat<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="m">1</span><span class="w">    </span>int<span class="w"> </span><span class="nv">time_end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="m">1</span><span class="w">    </span>int<span class="w"> </span><span class="nv">min_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">;</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="m">1</span><span class="w">    </span>bool<span class="w"> </span><span class="nv">has_selected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>false<span class="p">;</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">    </span><span class="m">1</span><span class="w">    </span>int<span class="w"> </span><span class="nv">times_filed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">    </span><span class="m">1</span><span class="w">    </span>movie<span class="w"> </span><span class="nv">last_selected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span><span class="o">}</span><span class="p">;</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">    </span>.<span class="w">    </span>movie<span class="w"> </span>selected_movie<span class="p">;</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="m">2</span>,976<span class="w">    </span><span class="k">for</span><span class="o">(</span>auto<span class="p">&amp;</span><span class="w"> </span>mov:<span class="w"> </span>movies<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">    </span>.<span class="w">      </span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="m">3</span>,000<span class="w">      </span><span class="k">if</span><span class="o">(</span>n_cat<span class="w"> </span>&lt;<span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="m">2</span>,000<span class="w">      </span><span class="k">if</span><span class="o">(</span>times_filed<span class="w"> </span>&gt;<span class="w"> </span><span class="m">24</span><span class="o">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="m">3</span>,000<span class="w">      </span><span class="k">if</span><span class="o">(</span>mov.end<span class="w"> </span>&gt;<span class="w"> </span>time_end<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">    </span>.<span class="w">        </span><span class="nv">time_end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>mov.end<span class="p">;</span>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">   </span><span class="m">84</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">(</span>has_selected<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">   </span><span class="m">23</span><span class="w">          </span><span class="nv">min_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">;</span>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="w">   </span><span class="m">96</span><span class="w">          </span>include_movie<span class="o">(</span>selected_movie,<span class="w"> </span>selected,<span class="w"> </span>times_filed<span class="o">)</span><span class="p">;</span>
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="m">3</span>,668<span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>/home/user/supercomp/project/helpers/helpers.cpp:include_movie<span class="o">(</span>movie<span class="p">&amp;</span>,<span class="w"> </span>std::vector&lt;movie,<span class="w"> </span>std::allocator&lt;movie&gt;<span class="w"> </span>&gt;<span class="p">&amp;</span>,<span class="w"> </span>int<span class="p">&amp;</span><span class="o">)</span><span class="w"> </span><span class="o">(</span>23x<span class="o">)</span>
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="w">   </span><span class="m">92</span><span class="w">          </span>set_cats_limit<span class="o">(</span>lim_cats,<span class="w"> </span>selected_movie.cat,<span class="w"> </span>n_cat<span class="o">)</span><span class="p">;</span>
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="m">1</span>,691<span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>/home/user/supercomp/project/helpers/helpers.cpp:set_cats_limit<span class="o">(</span>std::map&lt;int,<span class="w"> </span>int,<span class="w"> </span>std::less&lt;int&gt;,<span class="w"> </span>std::allocator&lt;std::pair&lt;int<span class="w"> </span>const,<span class="w"> </span>int&gt;<span class="w"> </span>&gt;<span class="w"> </span>&gt;<span class="p">&amp;</span>,<span class="w"> </span>int,<span class="w"> </span>int<span class="p">&amp;</span><span class="o">)</span><span class="w"> </span><span class="o">(</span>23x<span class="o">)</span>
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="w">   </span><span class="m">46</span><span class="w">          </span><span class="nv">last_selected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>selected_movie<span class="p">;</span>
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="w">   </span><span class="m">46</span><span class="w">          </span><span class="nv">has_selected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>false<span class="p">;</span>
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="w">    </span>.<span class="w">        </span><span class="o">}</span><span class="p">;</span>
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="w">    </span>.<span class="w">      </span><span class="o">}</span>
+</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a><span class="m">7</span>,034<span class="w">      </span><span class="k">if</span><span class="o">(</span>mov.start<span class="w"> </span>&lt;<span class="w"> </span>min_time<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>lim_cats<span class="o">[</span>mov.cat<span class="o">]</span><span class="w"> </span>&gt;<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>hasSlot<span class="o">(</span>mov,<span class="w"> </span>last_selected<span class="o">))</span><span class="w">  </span><span class="o">{</span>
+</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a><span class="w">   </span><span class="m">78</span><span class="w">        </span><span class="nv">selected_movie</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>mov<span class="p">;</span>
+</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a><span class="w">   </span><span class="m">26</span><span class="w">        </span><span class="nv">min_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>mov.start<span class="p">;</span>
+</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a><span class="w">   </span><span class="m">26</span><span class="w">        </span><span class="nv">has_selected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>true<span class="p">;</span>
+</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a><span class="w">    </span>.<span class="w">      </span><span class="o">}</span>
+</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a><span class="w">    </span>.<span class="w">    </span><span class="o">}</span>
+</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a><span class="w">   </span><span class="m">11</span><span class="w">  </span><span class="o">}</span>
+</span><span id="__span-2-42"><a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-2-43"><a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a><span class="w">   </span><span class="m">12</span><span class="w">  </span>int<span class="w"> </span>main<span class="o">(</span>int<span class="w"> </span>argc,<span class="w"> </span>char<span class="w"> </span>*argv<span class="o">[])</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-2-44"><a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a><span class="w">    </span>.<span class="w">    </span>int<span class="w"> </span>n_mov,<span class="w"> </span>n_cat<span class="p">;</span>
+</span><span id="__span-2-45"><a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-2-46"><a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a><span class="w">    </span>.<span class="w">    </span>map&lt;int,<span class="w"> </span>int&gt;<span class="w"> </span>lim_cats<span class="p">;</span>
+</span><span id="__span-2-47"><a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a><span class="w">    </span>.<span class="w">    </span>vector&lt;movie&gt;<span class="w"> </span>movies,<span class="w"> </span>selected<span class="p">;</span>
+</span><span id="__span-2-48"><a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-2-49"><a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a><span class="w">    </span><span class="m">7</span><span class="w">    </span>cin<span class="w"> </span>&gt;&gt;<span class="w"> </span>n_mov<span class="w"> </span>&gt;&gt;<span class="w"> </span>n_cat<span class="p">;</span>
+</span><span id="__span-2-50"><a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a><span class="m">8</span>,358<span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>???:0x0000000000109200<span class="w"> </span><span class="o">(</span>2x<span class="o">)</span>
+</span><span id="__span-2-51"><a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-2-52"><a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a><span class="w">    </span><span class="m">1</span><span class="w">    </span>movies.reserve<span class="o">(</span>n_mov<span class="o">)</span><span class="p">;</span>
+</span><span id="__span-2-53"><a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-2-54"><a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a><span class="w">    </span><span class="m">4</span><span class="w">    </span>set_cats_limit<span class="o">(</span>lim_cats,<span class="w"> </span>n_cat<span class="o">)</span><span class="p">;</span>
+</span><span id="__span-2-55"><a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a><span class="m">9</span>,254<span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>/home/user/supercomp/project/helpers/helpers.cpp:set_cats_limit<span class="o">(</span>std::map&lt;int,<span class="w"> </span>int,<span class="w"> </span>std::less&lt;int&gt;,<span class="w"> </span>std::allocator&lt;std::pair&lt;int<span class="w"> </span>const,<span class="w"> </span>int&gt;<span class="w"> </span>&gt;<span class="w"> </span>&gt;<span class="p">&amp;</span>,<span class="w"> </span>int<span class="o">)</span><span class="w"> </span><span class="o">(</span>1x<span class="o">)</span>
+</span><span id="__span-2-56"><a id="__codelineno-2-56" name="__codelineno-2-56" href="#__codelineno-2-56"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-2-57"><a id="__codelineno-2-57" name="__codelineno-2-57" href="#__codelineno-2-57"></a><span class="w">    </span><span class="m">4</span><span class="w">    </span>read_movies_data<span class="o">(</span>movies,<span class="w"> </span>n_mov<span class="o">)</span><span class="p">;</span>
+</span><span id="__span-2-58"><a id="__codelineno-2-58" name="__codelineno-2-58" href="#__codelineno-2-58"></a><span class="m">3</span>,294,712<span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>/home/user/supercomp/project/helpers/helpers.cpp:read_movies_data<span class="o">(</span>std::vector&lt;movie,<span class="w"> </span>std::allocator&lt;movie&gt;<span class="w"> </span>&gt;<span class="p">&amp;</span>,<span class="w"> </span>int<span class="o">)</span><span class="w"> </span><span class="o">(</span>1x<span class="o">)</span>
+</span><span id="__span-2-59"><a id="__codelineno-2-59" name="__codelineno-2-59" href="#__codelineno-2-59"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-2-60"><a id="__codelineno-2-60" name="__codelineno-2-60" href="#__codelineno-2-60"></a><span class="w">    </span>.<span class="w">    </span>sort<span class="o">(</span>movies.begin<span class="o">()</span>,<span class="w"> </span>movies.end<span class="o">()</span>,<span class="w"> </span><span class="o">[](</span>auto<span class="p">&amp;</span><span class="w"> </span>i,<span class="w"> </span>auto<span class="p">&amp;</span><span class="w"> </span>j<span class="o">){</span><span class="k">return</span><span class="w"> </span>i.end<span class="w"> </span>&lt;<span class="w"> </span>j.end<span class="p">;</span><span class="o">})</span><span class="p">;</span>
+</span><span id="__span-2-61"><a id="__codelineno-2-61" name="__codelineno-2-61" href="#__codelineno-2-61"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-2-62"><a id="__codelineno-2-62" name="__codelineno-2-62" href="#__codelineno-2-62"></a><span class="w">    </span><span class="m">2</span><span class="w">    </span>chrono::steady_clock::time_point<span class="w"> </span><span class="nv">begin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>chrono::steady_clock::now<span class="o">()</span><span class="p">;</span>
+</span><span id="__span-2-63"><a id="__codelineno-2-63" name="__codelineno-2-63" href="#__codelineno-2-63"></a><span class="w">  </span><span class="nv">950</span><span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>???:0x00000000001092d0<span class="w"> </span><span class="o">(</span>1x<span class="o">)</span>
+</span><span id="__span-2-64"><a id="__codelineno-2-64" name="__codelineno-2-64" href="#__codelineno-2-64"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-2-65"><a id="__codelineno-2-65" name="__codelineno-2-65" href="#__codelineno-2-65"></a><span class="w">    </span><span class="m">5</span><span class="w">    </span>select_movies<span class="o">(</span>movies,<span class="w"> </span>selected,<span class="w"> </span>lim_cats,<span class="w"> </span>n_cat<span class="o">)</span><span class="p">;</span>
+</span><span id="__span-2-66"><a id="__codelineno-2-66" name="__codelineno-2-66" href="#__codelineno-2-66"></a><span class="m">50</span>,528<span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>guloso.cpp:select_movies<span class="o">(</span>std::vector&lt;movie,<span class="w"> </span>std::allocator&lt;movie&gt;<span class="w"> </span>&gt;<span class="p">&amp;</span>,<span class="w"> </span>std::vector&lt;movie,<span class="w"> </span>std::allocator&lt;movie&gt;<span class="w"> </span>&gt;<span class="p">&amp;</span>,<span class="w"> </span>std::map&lt;int,<span class="w"> </span>int,<span class="w"> </span>std::less&lt;int&gt;,<span class="w"> </span>std::allocator&lt;std::pair&lt;int<span class="w"> </span>const,<span class="w"> </span>int&gt;<span class="w"> </span>&gt;<span class="w"> </span>&gt;<span class="p">&amp;</span>,<span class="w"> </span>int<span class="o">)</span><span class="w"> </span><span class="o">(</span>1x<span class="o">)</span>
+</span><span id="__span-2-67"><a id="__codelineno-2-67" name="__codelineno-2-67" href="#__codelineno-2-67"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-2-68"><a id="__codelineno-2-68" name="__codelineno-2-68" href="#__codelineno-2-68"></a><span class="w">    </span><span class="m">1</span><span class="w">    </span>chrono::steady_clock::time_point<span class="w"> </span><span class="nv">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>chrono::steady_clock::now<span class="o">()</span><span class="p">;</span>
+</span><span id="__span-2-69"><a id="__codelineno-2-69" name="__codelineno-2-69" href="#__codelineno-2-69"></a><span class="w">   </span><span class="nv">40</span><span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>???:0x00000000001092d0<span class="w"> </span><span class="o">(</span>1x<span class="o">)</span>
+</span><span id="__span-2-70"><a id="__codelineno-2-70" name="__codelineno-2-70" href="#__codelineno-2-70"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-2-71"><a id="__codelineno-2-71" name="__codelineno-2-71" href="#__codelineno-2-71"></a><span class="w">    </span>.<span class="w">    </span>cout<span class="w"> </span><span class="s">&lt;&lt; chrono::duration_cast&lt;chrono</span>::microseconds&gt;<span class="o">(</span>end<span class="w"> </span>-<span class="w"> </span>begin<span class="o">)</span>.count<span class="o">()</span><span class="p">;</span>
+</span><span id="__span-2-72"><a id="__codelineno-2-72" name="__codelineno-2-72" href="#__codelineno-2-72"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-2-73"><a id="__codelineno-2-73" name="__codelineno-2-73" href="#__codelineno-2-73"></a><span class="w">    </span><span class="m">2</span><span class="w">    </span><span class="k">if</span><span class="o">(</span>argc<span class="w"> </span>&gt;<span class="w"> </span><span class="m">1</span><span class="o">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+</span><span id="__span-2-74"><a id="__codelineno-2-74" name="__codelineno-2-74" href="#__codelineno-2-74"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-2-75"><a id="__codelineno-2-75" name="__codelineno-2-75" href="#__codelineno-2-75"></a><span class="w">    </span>.<span class="w">    </span>cout<span class="w"> </span><span class="s">&lt;&lt; endl;</span>
+</span><span id="__span-2-76"><a id="__codelineno-2-76" name="__codelineno-2-76" href="#__codelineno-2-76"></a><span class="s">    .  </span>
+</span><span id="__span-2-77"><a id="__codelineno-2-77" name="__codelineno-2-77" href="#__codelineno-2-77"></a><span class="s">    2    print_agend</span>a<span class="o">(</span>selected<span class="o">)</span><span class="p">;</span>
+</span><span id="__span-2-78"><a id="__codelineno-2-78" name="__codelineno-2-78" href="#__codelineno-2-78"></a><span class="m">250</span>,112<span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>/home/user/supercomp/project/helpers/helpers.cpp:print_agenda<span class="o">(</span>std::vector&lt;movie,<span class="w"> </span>std::allocator&lt;movie&gt;<span class="w"> </span>&gt;<span class="o">)</span><span class="w"> </span><span class="o">(</span>1x<span class="o">)</span>
+</span><span id="__span-2-79"><a id="__codelineno-2-79" name="__codelineno-2-79" href="#__codelineno-2-79"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-2-80"><a id="__codelineno-2-80" name="__codelineno-2-80" href="#__codelineno-2-80"></a><span class="w">    </span><span class="m">1</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+</span><span id="__span-2-81"><a id="__codelineno-2-81" name="__codelineno-2-81" href="#__codelineno-2-81"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-2-82"><a id="__codelineno-2-82" name="__codelineno-2-82" href="#__codelineno-2-82"></a><span class="w">   </span><span class="m">15</span><span class="w">  </span><span class="o">}</span>
 </span></code></pre></div>
+<p>Como pode-se observar na análise do valgrind, as únicas funcões que tem pior desempenho são as de leitura dos inputs, e as de print da agenda - contudo as mesmas são chamadas apenas uma vez. As outras funcões são chamadas muitas vezes, mas não consomem tanto tempo, e a maior parte do tempo é gasto em comparações e atribuições.</p>
 <h3 id="aleatorio">Aleatório</h3>
-<h4 id="overview_1">Overview</h4>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">n_mov</span><span class="p">,</span><span class="w"> </span><span class="n">n_cat</span><span class="p">;</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="c1">// int id, n, w, weigth, val;</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">filled_slots</span><span class="p">;</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lim_cats</span><span class="p">;</span>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">movie</span><span class="o">&gt;</span><span class="w"> </span><span class="n">movies</span><span class="p">,</span><span class="w"> </span><span class="n">selected</span><span class="p">;</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">  </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">n_mov</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">n_cat</span><span class="p">;</span>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">  </span><span class="n">movies</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="n">n_mov</span><span class="p">);</span>
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
-</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">  </span><span class="n">read_cats_limit</span><span class="p">(</span><span class="n">lim_cats</span><span class="p">,</span><span class="w"> </span><span class="n">n_cat</span><span class="p">);</span>
-</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
-</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">  </span><span class="n">read_movies_data</span><span class="p">(</span><span class="n">movies</span><span class="p">,</span><span class="w"> </span><span class="n">n_mov</span><span class="p">);</span>
-</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>
-</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">  </span><span class="n">sort</span><span class="p">(</span><span class="n">movies</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">movies</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="p">[](</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">j</span><span class="p">){</span><span class="k">return</span><span class="w"> </span><span class="n">i</span><span class="p">.</span><span class="n">end</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">j</span><span class="p">.</span><span class="n">end</span><span class="p">;});</span>
-</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>
-</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">  </span><span class="n">chrono</span><span class="o">::</span><span class="n">steady_clock</span><span class="o">::</span><span class="n">time_point</span><span class="w"> </span><span class="n">begin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">chrono</span><span class="o">::</span><span class="n">steady_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
-</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>
-</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="w">  </span><span class="n">select_movies</span><span class="p">(</span><span class="n">movies</span><span class="p">,</span><span class="w"> </span><span class="n">selected</span><span class="p">,</span><span class="w"> </span><span class="n">lim_cats</span><span class="p">,</span><span class="w"> </span><span class="n">filled_slots</span><span class="p">,</span><span class="w"> </span><span class="n">n_cat</span><span class="p">,</span><span class="w"> </span><span class="n">n_mov</span><span class="p">);</span>
-</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>
-</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="w">  </span><span class="n">chrono</span><span class="o">::</span><span class="n">steady_clock</span><span class="o">::</span><span class="n">time_point</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">chrono</span><span class="o">::</span><span class="n">steady_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
-</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>
-</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="w">  </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">chrono</span><span class="o">::</span><span class="n">duration_cast</span><span class="o">&lt;</span><span class="n">chrono</span><span class="o">::</span><span class="n">microseconds</span><span class="o">&gt;</span><span class="p">(</span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">begin</span><span class="p">).</span><span class="n">count</span><span class="p">();</span>
-</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>
-</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a><span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>
-</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a><span class="w">  </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
-</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a>
-</span><span id="__span-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a><span class="w">  </span><span class="n">sort</span><span class="p">(</span><span class="n">selected</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">selected</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="p">[](</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">j</span><span class="p">){</span><span class="k">return</span><span class="w"> </span><span class="n">i</span><span class="p">.</span><span class="n">start</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">j</span><span class="p">.</span><span class="n">start</span><span class="p">;});</span>
-</span><span id="__span-4-32"><a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a>
-</span><span id="__span-4-33"><a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a><span class="w">  </span><span class="n">print_agenda</span><span class="p">(</span><span class="n">selected</span><span class="p">);</span>
-</span><span id="__span-4-34"><a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a>
-</span><span id="__span-4-35"><a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a><span class="p">}</span>
+<h4 id="funcao-de-selecao-de-filmes_1">Funcao de selecão de filmes</h4>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">select_movies</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">movie</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">movies</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">movie</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">selected</span><span class="p">,</span><span class="w"> </span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">lim_cats</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">filled_slots</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n_cat</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n_mov</span><span class="p">);</span>
 </span></code></pre></div>
+<p>argumentos:</p>
+<ul>
+<li><code>movies</code>: vetor de filmes a serem selecionados.</li>
+<li><code>selected</code>: vetor de filmes selecionados.</li>
+<li><code>lim_cats</code>: mapa de limites de filmes por categoria.</li>
+<li><code>filled_slots</code>: mapa de slots preenchidos - cada vez que um filme é adicionado, ele preenche seus horários no mapa.</li>
+<li><code>n_cat</code>: número de categorias - utilizado para otimizacão, cada vez que uma categoria é preenchida (limite atingido), esse contador é subtraído, se o mesmo chega em zero (todas categorias atingiram o limite) o código para.</li>
+<li><code>n_mov</code>: número de filmes lido</li>
+<li><code>retorno</code>: tempo de tela total dos filmes selecionados.</li>
+</ul>
+<p>A lógica da escolha é feita da seguinte forma:</p>
+<ul>
+<li>Implementa a mesma lógica descrita na gulosa</li>
+<li>Dentro do loop principal, checa se um filme aleatório pode ser adiconado - com 25% de chance</li>
+<li>Caso positivo:<ul>
+<li>Checa o limite de categorias e se o slot está disponível (cabe no horário)</li>
+<li>Caso o filme seja adicionado, é realizado um check para ver se o filme selecionado pela gulosa ainda cabe (categoria e slot)</li>
+</ul>
+</li>
+</ul>
+<h4 id="valgrind_1">Valgrind</h4>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>--<span class="w"> </span>line<span class="w"> </span><span class="m">3</span><span class="w"> </span>----------------------------------------
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span>.<span class="w">  </span><span class="c1">#include &lt;random&gt;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span>.<span class="w">  </span><span class="c1">#include &lt;chrono&gt;</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span>.<span class="w">  </span><span class="c1">#define SEED 42</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span>.<span class="w">  </span><span class="c1">#define PROB 0.75</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span>.<span class="w">  </span>using<span class="w"> </span>namespace<span class="w"> </span>std<span class="p">;</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="m">2</span>,618<span class="w">  </span>bool<span class="w"> </span>hasSlot<span class="o">(</span>movie<span class="w"> </span>curr,<span class="w"> </span>map&lt;int,<span class="w"> </span>bool&gt;<span class="w"> </span><span class="p">&amp;</span>filled_slots<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">  </span><span class="m">724</span><span class="w">    </span><span class="k">if</span><span class="o">(</span>curr.end<span class="w"> </span><span class="o">==</span><span class="w"> </span>curr.start<span class="o">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span>!filled_slots<span class="o">[</span>curr.start<span class="o">]</span><span class="p">;</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="m">1</span>,164<span class="w">    </span><span class="k">for</span><span class="o">(</span>int<span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>curr.start<span class="p">;</span><span class="w"> </span>i<span class="w"> </span>&lt;<span class="w"> </span>curr.end<span class="p">;</span><span class="w"> </span>i++<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">  </span><span class="m">976</span><span class="w">      </span><span class="k">if</span><span class="o">(</span>filled_slots<span class="o">[</span>i<span class="o">])</span><span class="w"> </span><span class="k">return</span><span class="w"> </span>false<span class="p">;</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">    </span>.<span class="w">    </span><span class="o">}</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">   </span><span class="m">14</span><span class="w">    </span><span class="k">return</span><span class="w"> </span>true<span class="p">;</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="m">1</span>,904<span class="w">  </span><span class="o">}</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">  </span><span class="m">121</span><span class="w">  </span>void<span class="w"> </span>fill_slot<span class="o">(</span>map&lt;int,<span class="w"> </span>bool&gt;<span class="w"> </span><span class="p">&amp;</span>filled_slots,<span class="w"> </span>movie<span class="w"> </span>curr<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">   </span><span class="m">33</span><span class="w">    </span><span class="k">if</span><span class="o">(</span>curr.end<span class="w"> </span><span class="o">==</span><span class="w"> </span>curr.start<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">    </span><span class="m">1</span><span class="w">      </span>filled_slots<span class="o">[</span>curr.start<span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>true<span class="p">;</span>
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="w">    </span><span class="m">1</span><span class="w">      </span><span class="k">return</span><span class="p">;</span>
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="w">    </span>.<span class="w">    </span><span class="o">}</span>
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="w">  </span><span class="m">136</span><span class="w">    </span><span class="k">for</span><span class="o">(</span>int<span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>curr.start<span class="p">;</span><span class="w"> </span>i<span class="w"> </span>&lt;<span class="w"> </span>curr.end<span class="p">;</span><span class="w"> </span>i++<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="w">   </span><span class="m">24</span><span class="w">      </span>filled_slots<span class="o">[</span>i<span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>true<span class="p">;</span>
+</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="w">    </span>.<span class="w">    </span><span class="o">}</span>
+</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="w">   </span><span class="m">88</span><span class="w">  </span><span class="o">}</span>
+</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a><span class="w">   </span><span class="m">17</span><span class="w">  </span>void<span class="w"> </span>select_movies<span class="o">(</span>vector&lt;movie&gt;<span class="w"> </span><span class="p">&amp;</span>movies,<span class="w"> </span>vector&lt;movie&gt;<span class="w"> </span><span class="p">&amp;</span>selected,<span class="w"> </span>map&lt;int,<span class="w"> </span>int&gt;<span class="w"> </span><span class="p">&amp;</span>lim_cats,<span class="w"> </span>map&lt;int,<span class="w"> </span>bool&gt;<span class="w"> </span><span class="p">&amp;</span>filled_slots,<span class="w"> </span>int<span class="w"> </span>n_cat,<span class="w"> </span>int<span class="w"> </span>n_mov<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a><span class="w">    </span>.<span class="w">    </span>uniform_real_distribution&lt;double&gt;<span class="w"> </span>distribution<span class="o">(</span><span class="m">0</span>.0,<span class="w"> </span><span class="m">1</span>.0<span class="o">)</span><span class="p">;</span>
+</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a><span class="w">    </span>.<span class="w">    </span>default_random_engine<span class="w"> </span>generator<span class="p">;</span>
+</span><span id="__span-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a><span class="w">    </span><span class="m">3</span><span class="w">    </span>generator.seed<span class="o">(</span>SEED<span class="w"> </span>+<span class="w"> </span>time<span class="o">(</span><span class="m">0</span><span class="o">))</span><span class="p">;</span>
+</span><span id="__span-4-32"><a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a><span class="w">    </span><span class="nv">8</span><span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>???:0x0000000000109260<span class="w"> </span><span class="o">(</span>1x<span class="o">)</span>
+</span><span id="__span-4-33"><a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-4-34"><a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a><span class="w">    </span><span class="m">2</span><span class="w">    </span>int<span class="w"> </span><span class="nv">time_end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+</span><span id="__span-4-35"><a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a><span class="w">    </span><span class="m">1</span><span class="w">    </span>int<span class="w"> </span><span class="nv">min_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">;</span>
+</span><span id="__span-4-36"><a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a><span class="w">    </span><span class="m">1</span><span class="w">    </span>int<span class="w"> </span><span class="nv">times_filed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+</span><span id="__span-4-37"><a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a><span class="w">    </span><span class="m">1</span><span class="w">    </span>bool<span class="w"> </span><span class="nv">has_selected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>false<span class="p">;</span>
+</span><span id="__span-4-38"><a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-4-39"><a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a><span class="w">    </span>.<span class="w">    </span>//movie<span class="w"> </span><span class="nv">last_selected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span><span class="o">}</span><span class="p">;</span>
+</span><span id="__span-4-40"><a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a><span class="w">    </span>.<span class="w">    </span>movie<span class="w"> </span>selected_movie<span class="p">;</span>
+</span><span id="__span-4-41"><a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a><span class="w">  </span><span class="m">844</span><span class="w">    </span><span class="k">for</span><span class="o">(</span>int<span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span>&lt;<span class="w"> </span>n_mov<span class="p">;</span><span class="w"> </span>i++<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-4-42"><a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a><span class="w">  </span><span class="m">848</span><span class="w">      </span><span class="k">if</span><span class="o">(</span>n_cat<span class="w"> </span>&lt;<span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+</span><span id="__span-4-43"><a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a><span class="w">  </span><span class="m">424</span><span class="w">      </span><span class="k">if</span><span class="o">(</span>times_filed<span class="w"> </span>&gt;<span class="w"> </span><span class="m">24</span><span class="o">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+</span><span id="__span-4-44"><a id="__codelineno-4-44" name="__codelineno-4-44" href="#__codelineno-4-44"></a><span class="w">  </span><span class="m">844</span><span class="w">      </span><span class="k">if</span><span class="o">(</span>movies<span class="o">[</span>i<span class="o">]</span>.end<span class="w"> </span>&gt;<span class="w"> </span>time_end<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-4-45"><a id="__codelineno-4-45" name="__codelineno-4-45" href="#__codelineno-4-45"></a><span class="w">    </span>.<span class="w">        </span><span class="nv">time_end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>movies<span class="o">[</span>i<span class="o">]</span>.end<span class="p">;</span>
+</span><span id="__span-4-46"><a id="__codelineno-4-46" name="__codelineno-4-46" href="#__codelineno-4-46"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-4-47"><a id="__codelineno-4-47" name="__codelineno-4-47" href="#__codelineno-4-47"></a><span class="w">   </span><span class="m">24</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">(</span>has_selected<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-4-48"><a id="__codelineno-4-48" name="__codelineno-4-48" href="#__codelineno-4-48"></a><span class="w">   </span><span class="m">15</span><span class="w">          </span>include_movie<span class="o">(</span>selected_movie,<span class="w"> </span>selected,<span class="w"> </span>times_filed<span class="o">)</span><span class="p">;</span>
+</span><span id="__span-4-49"><a id="__codelineno-4-49" name="__codelineno-4-49" href="#__codelineno-4-49"></a><span class="w">  </span><span class="nv">344</span><span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>/home/user/supercomp/project/helpers/helpers.cpp:include_movie<span class="o">(</span>movie<span class="p">&amp;</span>,<span class="w"> </span>std::vector&lt;movie,<span class="w"> </span>std::allocator&lt;movie&gt;<span class="w"> </span>&gt;<span class="p">&amp;</span>,<span class="w"> </span>int<span class="p">&amp;</span><span class="o">)</span><span class="w"> </span><span class="o">(</span>3x<span class="o">)</span>
+</span><span id="__span-4-50"><a id="__codelineno-4-50" name="__codelineno-4-50" href="#__codelineno-4-50"></a><span class="w">   </span><span class="m">12</span><span class="w">          </span>set_cats_limit<span class="o">(</span>lim_cats,<span class="w"> </span>selected_movie.cat,<span class="w"> </span>n_cat<span class="o">)</span><span class="p">;</span>
+</span><span id="__span-4-51"><a id="__codelineno-4-51" name="__codelineno-4-51" href="#__codelineno-4-51"></a><span class="w">  </span><span class="nv">220</span><span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>/home/user/supercomp/project/helpers/helpers.cpp:set_cats_limit<span class="o">(</span>std::map&lt;int,<span class="w"> </span>int,<span class="w"> </span>std::less&lt;int&gt;,<span class="w"> </span>std::allocator&lt;std::pair&lt;int<span class="w"> </span>const,<span class="w"> </span>int&gt;<span class="w"> </span>&gt;<span class="w"> </span>&gt;<span class="p">&amp;</span>,<span class="w"> </span>int,<span class="w"> </span>int<span class="p">&amp;</span><span class="o">)</span><span class="w"> </span><span class="o">(</span>3x<span class="o">)</span>
+</span><span id="__span-4-52"><a id="__codelineno-4-52" name="__codelineno-4-52" href="#__codelineno-4-52"></a><span class="w">   </span><span class="m">12</span><span class="w">          </span>fill_slot<span class="o">(</span>filled_slots,<span class="w"> </span>selected_movie<span class="o">)</span><span class="p">;</span>
+</span><span id="__span-4-53"><a id="__codelineno-4-53" name="__codelineno-4-53" href="#__codelineno-4-53"></a><span class="w">  </span><span class="nv">182</span><span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>aleatorio.cpp:fill_slot<span class="o">(</span>std::map&lt;int,<span class="w"> </span>bool,<span class="w"> </span>std::less&lt;int&gt;,<span class="w"> </span>std::allocator&lt;std::pair&lt;int<span class="w"> </span>const,<span class="w"> </span>bool&gt;<span class="w"> </span>&gt;<span class="w"> </span>&gt;<span class="p">&amp;</span>,<span class="w"> </span>movie<span class="o">)</span><span class="w"> </span><span class="o">(</span>3x<span class="o">)</span>
+</span><span id="__span-4-54"><a id="__codelineno-4-54" name="__codelineno-4-54" href="#__codelineno-4-54"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-4-55"><a id="__codelineno-4-55" name="__codelineno-4-55" href="#__codelineno-4-55"></a><span class="w">    </span><span class="m">9</span><span class="w">          </span><span class="nv">min_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">;</span>
+</span><span id="__span-4-56"><a id="__codelineno-4-56" name="__codelineno-4-56" href="#__codelineno-4-56"></a><span class="w">    </span><span class="m">6</span><span class="w">          </span><span class="nv">has_selected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>false<span class="p">;</span>
+</span><span id="__span-4-57"><a id="__codelineno-4-57" name="__codelineno-4-57" href="#__codelineno-4-57"></a><span class="w">    </span>.<span class="w">        </span><span class="o">}</span><span class="p">;</span>
+</span><span id="__span-4-58"><a id="__codelineno-4-58" name="__codelineno-4-58" href="#__codelineno-4-58"></a><span class="w">    </span>.<span class="w">      </span><span class="o">}</span>
+</span><span id="__span-4-59"><a id="__codelineno-4-59" name="__codelineno-4-59" href="#__codelineno-4-59"></a><span class="w">  </span><span class="m">422</span><span class="w">      </span><span class="k">if</span><span class="o">(</span>distribution<span class="o">(</span>generator<span class="o">)</span><span class="w"> </span>&gt;<span class="w"> </span>PROB<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-4-60"><a id="__codelineno-4-60" name="__codelineno-4-60" href="#__codelineno-4-60"></a><span class="w">   </span><span class="m">48</span><span class="w">        </span>uniform_int_distribution&lt;int&gt;<span class="w"> </span>distribution<span class="o">(</span>i,<span class="w"> </span>movies.size<span class="o">()</span>-1<span class="o">)</span><span class="p">;</span>
+</span><span id="__span-4-61"><a id="__codelineno-4-61" name="__codelineno-4-61" href="#__codelineno-4-61"></a><span class="w">    </span>.<span class="w">        </span>int<span class="w"> </span><span class="nv">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>distribution<span class="o">(</span>generator<span class="o">)</span><span class="p">;</span>
+</span><span id="__span-4-62"><a id="__codelineno-4-62" name="__codelineno-4-62" href="#__codelineno-4-62"></a><span class="w">  </span><span class="m">561</span><span class="w">        </span><span class="k">if</span><span class="o">(</span>hasSlot<span class="o">(</span>movies<span class="o">[</span>p<span class="o">]</span>,<span class="w"> </span>filled_slots<span class="o">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>lim_cats<span class="o">[</span>movies<span class="o">[</span>p<span class="o">]</span>.cat<span class="o">]</span><span class="w"> </span>&gt;<span class="w"> </span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-4-63"><a id="__codelineno-4-63" name="__codelineno-4-63" href="#__codelineno-4-63"></a><span class="m">12</span>,009<span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>aleatorio.cpp:hasSlot<span class="o">(</span>movie,<span class="w"> </span>std::map&lt;int,<span class="w"> </span>bool,<span class="w"> </span>std::less&lt;int&gt;,<span class="w"> </span>std::allocator&lt;std::pair&lt;int<span class="w"> </span>const,<span class="w"> </span>bool&gt;<span class="w"> </span>&gt;<span class="w"> </span>&gt;<span class="p">&amp;</span><span class="o">)</span><span class="w"> </span><span class="o">(</span>48x<span class="o">)</span>
+</span><span id="__span-4-64"><a id="__codelineno-4-64" name="__codelineno-4-64" href="#__codelineno-4-64"></a><span class="w">   </span><span class="m">24</span><span class="w">          </span>include_movie<span class="o">(</span>movies<span class="o">[</span>p<span class="o">]</span>,<span class="w"> </span>selected,<span class="w"> </span>times_filed<span class="o">)</span><span class="p">;</span>
+</span><span id="__span-4-65"><a id="__codelineno-4-65" name="__codelineno-4-65" href="#__codelineno-4-65"></a><span class="m">2</span>,601<span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>/home/user/supercomp/project/helpers/helpers.cpp:include_movie<span class="o">(</span>movie<span class="p">&amp;</span>,<span class="w"> </span>std::vector&lt;movie,<span class="w"> </span>std::allocator&lt;movie&gt;<span class="w"> </span>&gt;<span class="p">&amp;</span>,<span class="w"> </span>int<span class="p">&amp;</span><span class="o">)</span><span class="w"> </span><span class="o">(</span>8x<span class="o">)</span>
+</span><span id="__span-4-66"><a id="__codelineno-4-66" name="__codelineno-4-66" href="#__codelineno-4-66"></a><span class="w">   </span><span class="m">48</span><span class="w">          </span>set_cats_limit<span class="o">(</span>lim_cats,<span class="w"> </span>movies<span class="o">[</span>p<span class="o">]</span>.cat,<span class="w"> </span>n_cat<span class="o">)</span><span class="p">;</span>
+</span><span id="__span-4-67"><a id="__codelineno-4-67" name="__codelineno-4-67" href="#__codelineno-4-67"></a><span class="w">  </span><span class="nv">549</span><span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>/home/user/supercomp/project/helpers/helpers.cpp:set_cats_limit<span class="o">(</span>std::map&lt;int,<span class="w"> </span>int,<span class="w"> </span>std::less&lt;int&gt;,<span class="w"> </span>std::allocator&lt;std::pair&lt;int<span class="w"> </span>const,<span class="w"> </span>int&gt;<span class="w"> </span>&gt;<span class="w"> </span>&gt;<span class="p">&amp;</span>,<span class="w"> </span>int,<span class="w"> </span>int<span class="p">&amp;</span><span class="o">)</span><span class="w"> </span><span class="o">(</span>8x<span class="o">)</span>
+</span><span id="__span-4-68"><a id="__codelineno-4-68" name="__codelineno-4-68" href="#__codelineno-4-68"></a><span class="w">   </span><span class="m">48</span><span class="w">          </span>fill_slot<span class="o">(</span>filled_slots,<span class="w"> </span>movies<span class="o">[</span>p<span class="o">])</span><span class="p">;</span>
+</span><span id="__span-4-69"><a id="__codelineno-4-69" name="__codelineno-4-69" href="#__codelineno-4-69"></a><span class="m">1</span>,064<span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>aleatorio.cpp:fill_slot<span class="o">(</span>std::map&lt;int,<span class="w"> </span>bool,<span class="w"> </span>std::less&lt;int&gt;,<span class="w"> </span>std::allocator&lt;std::pair&lt;int<span class="w"> </span>const,<span class="w"> </span>bool&gt;<span class="w"> </span>&gt;<span class="w"> </span>&gt;<span class="p">&amp;</span>,<span class="w"> </span>movie<span class="o">)</span><span class="w"> </span><span class="o">(</span>8x<span class="o">)</span>
+</span><span id="__span-4-70"><a id="__codelineno-4-70" name="__codelineno-4-70" href="#__codelineno-4-70"></a><span class="w">    </span>.<span class="w">          </span>
+</span><span id="__span-4-71"><a id="__codelineno-4-71" name="__codelineno-4-71" href="#__codelineno-4-71"></a><span class="w">   </span><span class="m">48</span><span class="w">          </span><span class="k">if</span><span class="o">(</span>!<span class="o">(</span>hasSlot<span class="o">(</span>selected_movie,<span class="w"> </span>filled_slots<span class="o">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>lim_cats<span class="o">[</span>selected_movie.cat<span class="o">]</span><span class="w"> </span>&gt;<span class="w"> </span><span class="m">0</span><span class="o">))</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-4-72"><a id="__codelineno-4-72" name="__codelineno-4-72" href="#__codelineno-4-72"></a><span class="w">  </span><span class="nv">460</span><span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>aleatorio.cpp:hasSlot<span class="o">(</span>movie,<span class="w"> </span>std::map&lt;int,<span class="w"> </span>bool,<span class="w"> </span>std::less&lt;int&gt;,<span class="w"> </span>std::allocator&lt;std::pair&lt;int<span class="w"> </span>const,<span class="w"> </span>bool&gt;<span class="w"> </span>&gt;<span class="w"> </span>&gt;<span class="p">&amp;</span><span class="o">)</span><span class="w"> </span><span class="o">(</span>8x<span class="o">)</span>
+</span><span id="__span-4-73"><a id="__codelineno-4-73" name="__codelineno-4-73" href="#__codelineno-4-73"></a><span class="w">   </span><span class="m">16</span><span class="w">            </span><span class="nv">min_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">;</span>
+</span><span id="__span-4-74"><a id="__codelineno-4-74" name="__codelineno-4-74" href="#__codelineno-4-74"></a><span class="w">   </span><span class="m">16</span><span class="w">            </span><span class="nv">has_selected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>false<span class="p">;</span>
+</span><span id="__span-4-75"><a id="__codelineno-4-75" name="__codelineno-4-75" href="#__codelineno-4-75"></a><span class="w">    </span>.<span class="w">          </span><span class="o">}</span>
+</span><span id="__span-4-76"><a id="__codelineno-4-76" name="__codelineno-4-76" href="#__codelineno-4-76"></a><span class="w">    </span>.<span class="w">        </span><span class="o">}</span>
+</span><span id="__span-4-77"><a id="__codelineno-4-77" name="__codelineno-4-77" href="#__codelineno-4-77"></a><span class="w">    </span>.<span class="w">      </span><span class="o">}</span>
+</span><span id="__span-4-78"><a id="__codelineno-4-78" name="__codelineno-4-78" href="#__codelineno-4-78"></a><span class="m">2</span>,534<span class="w">      </span><span class="k">if</span><span class="o">(</span>movies<span class="o">[</span>i<span class="o">]</span>.start<span class="w"> </span>&lt;<span class="w"> </span>min_time<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>lim_cats<span class="o">[</span>movies<span class="o">[</span>i<span class="o">]</span>.cat<span class="o">]</span><span class="w"> </span>&gt;<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>hasSlot<span class="o">(</span>movies<span class="o">[</span>i<span class="o">]</span>,<span class="w"> </span>filled_slots<span class="o">))</span><span class="w">  </span><span class="o">{</span>
+</span><span id="__span-4-79"><a id="__codelineno-4-79" name="__codelineno-4-79" href="#__codelineno-4-79"></a><span class="m">11</span>,881<span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>aleatorio.cpp:hasSlot<span class="o">(</span>movie,<span class="w"> </span>std::map&lt;int,<span class="w"> </span>bool,<span class="w"> </span>std::less&lt;int&gt;,<span class="w"> </span>std::allocator&lt;std::pair&lt;int<span class="w"> </span>const,<span class="w"> </span>bool&gt;<span class="w"> </span>&gt;<span class="w"> </span>&gt;<span class="p">&amp;</span><span class="o">)</span><span class="w"> </span><span class="o">(</span>182x<span class="o">)</span>
+</span><span id="__span-4-80"><a id="__codelineno-4-80" name="__codelineno-4-80" href="#__codelineno-4-80"></a><span class="w">    </span><span class="m">8</span><span class="w">        </span><span class="nv">selected_movie</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>movies<span class="o">[</span>i<span class="o">]</span><span class="p">;</span>
+</span><span id="__span-4-81"><a id="__codelineno-4-81" name="__codelineno-4-81" href="#__codelineno-4-81"></a><span class="w">    </span><span class="m">8</span><span class="w">        </span><span class="nv">min_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>movies<span class="o">[</span>i<span class="o">]</span>.start<span class="p">;</span>
+</span><span id="__span-4-82"><a id="__codelineno-4-82" name="__codelineno-4-82" href="#__codelineno-4-82"></a><span class="w">    </span><span class="m">8</span><span class="w">        </span><span class="nv">has_selected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>true<span class="p">;</span>
+</span><span id="__span-4-83"><a id="__codelineno-4-83" name="__codelineno-4-83" href="#__codelineno-4-83"></a><span class="w">    </span>.<span class="w">      </span><span class="o">}</span>
+</span><span id="__span-4-84"><a id="__codelineno-4-84" name="__codelineno-4-84" href="#__codelineno-4-84"></a><span class="w">    </span>.<span class="w">    </span><span class="o">}</span>
+</span><span id="__span-4-85"><a id="__codelineno-4-85" name="__codelineno-4-85" href="#__codelineno-4-85"></a><span class="w">   </span><span class="m">11</span><span class="w">  </span><span class="o">}</span>
+</span><span id="__span-4-86"><a id="__codelineno-4-86" name="__codelineno-4-86" href="#__codelineno-4-86"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-4-87"><a id="__codelineno-4-87" name="__codelineno-4-87" href="#__codelineno-4-87"></a><span class="w">   </span><span class="m">12</span><span class="w">  </span>int<span class="w"> </span>main<span class="o">(</span>int<span class="w"> </span>argc,<span class="w"> </span>char<span class="w"> </span>*argv<span class="o">[])</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-4-88"><a id="__codelineno-4-88" name="__codelineno-4-88" href="#__codelineno-4-88"></a><span class="w">    </span>.<span class="w">    </span>int<span class="w"> </span>n_mov,<span class="w"> </span>n_cat<span class="p">;</span>
+</span><span id="__span-4-89"><a id="__codelineno-4-89" name="__codelineno-4-89" href="#__codelineno-4-89"></a><span class="w">    </span>.<span class="w">    </span>//<span class="w"> </span>int<span class="w"> </span>id,<span class="w"> </span>n,<span class="w"> </span>w,<span class="w"> </span>weigth,<span class="w"> </span>val<span class="p">;</span>
+</span><span id="__span-4-90"><a id="__codelineno-4-90" name="__codelineno-4-90" href="#__codelineno-4-90"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-4-91"><a id="__codelineno-4-91" name="__codelineno-4-91" href="#__codelineno-4-91"></a><span class="w">    </span>.<span class="w">    </span>map&lt;int,<span class="w"> </span>bool&gt;<span class="w"> </span>filled_slots<span class="p">;</span>
+</span><span id="__span-4-92"><a id="__codelineno-4-92" name="__codelineno-4-92" href="#__codelineno-4-92"></a><span class="w">    </span>.<span class="w">    </span>map&lt;int,<span class="w"> </span>int&gt;<span class="w"> </span>lim_cats<span class="p">;</span>
+</span><span id="__span-4-93"><a id="__codelineno-4-93" name="__codelineno-4-93" href="#__codelineno-4-93"></a><span class="w">    </span>.<span class="w">    </span>vector&lt;movie&gt;<span class="w"> </span>movies,<span class="w"> </span>selected<span class="p">;</span>
+</span><span id="__span-4-94"><a id="__codelineno-4-94" name="__codelineno-4-94" href="#__codelineno-4-94"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-4-95"><a id="__codelineno-4-95" name="__codelineno-4-95" href="#__codelineno-4-95"></a><span class="w">    </span><span class="m">8</span><span class="w">    </span>cin<span class="w"> </span>&gt;&gt;<span class="w"> </span>n_mov<span class="w"> </span>&gt;&gt;<span class="w"> </span>n_cat<span class="p">;</span>
+</span><span id="__span-4-96"><a id="__codelineno-4-96" name="__codelineno-4-96" href="#__codelineno-4-96"></a><span class="m">8</span>,358<span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>???:0x0000000000109210<span class="w"> </span><span class="o">(</span>2x<span class="o">)</span>
+</span><span id="__span-4-97"><a id="__codelineno-4-97" name="__codelineno-4-97" href="#__codelineno-4-97"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-4-98"><a id="__codelineno-4-98" name="__codelineno-4-98" href="#__codelineno-4-98"></a><span class="w">    </span><span class="m">1</span><span class="w">    </span>movies.reserve<span class="o">(</span>n_mov<span class="o">)</span><span class="p">;</span>
+</span><span id="__span-4-99"><a id="__codelineno-4-99" name="__codelineno-4-99" href="#__codelineno-4-99"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-4-100"><a id="__codelineno-4-100" name="__codelineno-4-100" href="#__codelineno-4-100"></a><span class="w">    </span><span class="m">5</span><span class="w">    </span>set_cats_limit<span class="o">(</span>lim_cats,<span class="w"> </span>n_cat<span class="o">)</span><span class="p">;</span>
+</span><span id="__span-4-101"><a id="__codelineno-4-101" name="__codelineno-4-101" href="#__codelineno-4-101"></a><span class="m">9</span>,254<span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>/home/user/supercomp/project/helpers/helpers.cpp:set_cats_limit<span class="o">(</span>std::map&lt;int,<span class="w"> </span>int,<span class="w"> </span>std::less&lt;int&gt;,<span class="w"> </span>std::allocator&lt;std::pair&lt;int<span class="w"> </span>const,<span class="w"> </span>int&gt;<span class="w"> </span>&gt;<span class="w"> </span>&gt;<span class="p">&amp;</span>,<span class="w"> </span>int<span class="o">)</span><span class="w"> </span><span class="o">(</span>1x<span class="o">)</span>
+</span><span id="__span-4-102"><a id="__codelineno-4-102" name="__codelineno-4-102" href="#__codelineno-4-102"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-4-103"><a id="__codelineno-4-103" name="__codelineno-4-103" href="#__codelineno-4-103"></a><span class="w">    </span><span class="m">5</span><span class="w">    </span>read_movies_data<span class="o">(</span>movies,<span class="w"> </span>n_mov<span class="o">)</span><span class="p">;</span>
+</span><span id="__span-4-104"><a id="__codelineno-4-104" name="__codelineno-4-104" href="#__codelineno-4-104"></a><span class="m">3</span>,294,712<span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>/home/user/supercomp/project/helpers/helpers.cpp:read_movies_data<span class="o">(</span>std::vector&lt;movie,<span class="w"> </span>std::allocator&lt;movie&gt;<span class="w"> </span>&gt;<span class="p">&amp;</span>,<span class="w"> </span>int<span class="o">)</span><span class="w"> </span><span class="o">(</span>1x<span class="o">)</span>
+</span><span id="__span-4-105"><a id="__codelineno-4-105" name="__codelineno-4-105" href="#__codelineno-4-105"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-4-106"><a id="__codelineno-4-106" name="__codelineno-4-106" href="#__codelineno-4-106"></a><span class="w">    </span>.<span class="w">    </span>sort<span class="o">(</span>movies.begin<span class="o">()</span>,<span class="w"> </span>movies.end<span class="o">()</span>,<span class="w"> </span><span class="o">[](</span>auto<span class="p">&amp;</span><span class="w"> </span>i,<span class="w"> </span>auto<span class="p">&amp;</span><span class="w"> </span>j<span class="o">){</span><span class="k">return</span><span class="w"> </span>i.end<span class="w"> </span>&lt;<span class="w"> </span>j.end<span class="p">;</span><span class="o">})</span><span class="p">;</span>
+</span><span id="__span-4-107"><a id="__codelineno-4-107" name="__codelineno-4-107" href="#__codelineno-4-107"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-4-108"><a id="__codelineno-4-108" name="__codelineno-4-108" href="#__codelineno-4-108"></a><span class="w">    </span><span class="m">2</span><span class="w">    </span>chrono::steady_clock::time_point<span class="w"> </span><span class="nv">begin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>chrono::steady_clock::now<span class="o">()</span><span class="p">;</span>
+</span><span id="__span-4-109"><a id="__codelineno-4-109" name="__codelineno-4-109" href="#__codelineno-4-109"></a><span class="w">  </span><span class="nv">950</span><span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>???:0x00000000001092f0<span class="w"> </span><span class="o">(</span>1x<span class="o">)</span>
+</span><span id="__span-4-110"><a id="__codelineno-4-110" name="__codelineno-4-110" href="#__codelineno-4-110"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-4-111"><a id="__codelineno-4-111" name="__codelineno-4-111" href="#__codelineno-4-111"></a><span class="w">    </span><span class="m">8</span><span class="w">    </span>select_movies<span class="o">(</span>movies,<span class="w"> </span>selected,<span class="w"> </span>lim_cats,<span class="w"> </span>filled_slots,<span class="w"> </span>n_cat,<span class="w"> </span>n_mov<span class="o">)</span><span class="p">;</span>
+</span><span id="__span-4-112"><a id="__codelineno-4-112" name="__codelineno-4-112" href="#__codelineno-4-112"></a><span class="m">55</span>,592<span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>aleatorio.cpp:select_movies<span class="o">(</span>std::vector&lt;movie,<span class="w"> </span>std::allocator&lt;movie&gt;<span class="w"> </span>&gt;<span class="p">&amp;</span>,<span class="w"> </span>std::vector&lt;movie,<span class="w"> </span>std::allocator&lt;movie&gt;<span class="w"> </span>&gt;<span class="p">&amp;</span>,<span class="w"> </span>std::map&lt;int,<span class="w"> </span>int,<span class="w"> </span>std::less&lt;int&gt;,<span class="w"> </span>std::allocator&lt;std::pair&lt;int<span class="w"> </span>const,<span class="w"> </span>int&gt;<span class="w"> </span>&gt;<span class="w"> </span>&gt;<span class="p">&amp;</span>,<span class="w"> </span>std::map&lt;int,<span class="w"> </span>bool,<span class="w"> </span>std::less&lt;int&gt;,<span class="w"> </span>std::allocator&lt;std::pair&lt;int<span class="w"> </span>const,<span class="w"> </span>bool&gt;<span class="w"> </span>&gt;<span class="w"> </span>&gt;<span class="p">&amp;</span>,<span class="w"> </span>int,<span class="w"> </span>int<span class="o">)</span><span class="w"> </span><span class="o">(</span>1x<span class="o">)</span>
+</span><span id="__span-4-113"><a id="__codelineno-4-113" name="__codelineno-4-113" href="#__codelineno-4-113"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-4-114"><a id="__codelineno-4-114" name="__codelineno-4-114" href="#__codelineno-4-114"></a><span class="w">    </span><span class="m">1</span><span class="w">    </span>chrono::steady_clock::time_point<span class="w"> </span><span class="nv">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>chrono::steady_clock::now<span class="o">()</span><span class="p">;</span>
+</span><span id="__span-4-115"><a id="__codelineno-4-115" name="__codelineno-4-115" href="#__codelineno-4-115"></a><span class="w">   </span><span class="nv">40</span><span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>???:0x00000000001092f0<span class="w"> </span><span class="o">(</span>1x<span class="o">)</span>
+</span><span id="__span-4-116"><a id="__codelineno-4-116" name="__codelineno-4-116" href="#__codelineno-4-116"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-4-117"><a id="__codelineno-4-117" name="__codelineno-4-117" href="#__codelineno-4-117"></a><span class="w">    </span>.<span class="w">    </span>cout<span class="w"> </span><span class="s">&lt;&lt; chrono::duration_cast&lt;chrono</span>::microseconds&gt;<span class="o">(</span>end<span class="w"> </span>-<span class="w"> </span>begin<span class="o">)</span>.count<span class="o">()</span><span class="p">;</span>
+</span><span id="__span-4-118"><a id="__codelineno-4-118" name="__codelineno-4-118" href="#__codelineno-4-118"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-4-119"><a id="__codelineno-4-119" name="__codelineno-4-119" href="#__codelineno-4-119"></a><span class="w">    </span><span class="m">2</span><span class="w">    </span><span class="k">if</span><span class="o">(</span>argc<span class="w"> </span>&gt;<span class="w"> </span><span class="m">1</span><span class="o">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+</span><span id="__span-4-120"><a id="__codelineno-4-120" name="__codelineno-4-120" href="#__codelineno-4-120"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-4-121"><a id="__codelineno-4-121" name="__codelineno-4-121" href="#__codelineno-4-121"></a><span class="w">    </span>.<span class="w">    </span>cout<span class="w"> </span><span class="s">&lt;&lt; endl;</span>
+</span><span id="__span-4-122"><a id="__codelineno-4-122" name="__codelineno-4-122" href="#__codelineno-4-122"></a><span class="s">    .  </span>
+</span><span id="__span-4-123"><a id="__codelineno-4-123" name="__codelineno-4-123" href="#__codelineno-4-123"></a><span class="s">    .    sort(selected.begin(), selected.end</span><span class="o">()</span>,<span class="w"> </span><span class="o">[](</span>auto<span class="p">&amp;</span><span class="w"> </span>i,<span class="w"> </span>auto<span class="p">&amp;</span><span class="w"> </span>j<span class="o">){</span><span class="k">return</span><span class="w"> </span>i.start<span class="w"> </span>&lt;<span class="w"> </span>j.start<span class="p">;</span><span class="o">})</span><span class="p">;</span>
+</span><span id="__span-4-124"><a id="__codelineno-4-124" name="__codelineno-4-124" href="#__codelineno-4-124"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-4-125"><a id="__codelineno-4-125" name="__codelineno-4-125" href="#__codelineno-4-125"></a><span class="w">    </span><span class="m">2</span><span class="w">    </span>print_agenda<span class="o">(</span>selected<span class="o">)</span><span class="p">;</span>
+</span><span id="__span-4-126"><a id="__codelineno-4-126" name="__codelineno-4-126" href="#__codelineno-4-126"></a><span class="m">134</span>,776<span class="w">  </span><span class="o">=</span>&gt;<span class="w"> </span>/home/user/supercomp/project/helpers/helpers.cpp:print_agenda<span class="o">(</span>std::vector&lt;movie,<span class="w"> </span>std::allocator&lt;movie&gt;<span class="w"> </span>&gt;<span class="o">)</span><span class="w"> </span><span class="o">(</span>1x<span class="o">)</span>
+</span><span id="__span-4-127"><a id="__codelineno-4-127" name="__codelineno-4-127" href="#__codelineno-4-127"></a><span class="w">    </span>.<span class="w">  </span>
+</span><span id="__span-4-128"><a id="__codelineno-4-128" name="__codelineno-4-128" href="#__codelineno-4-128"></a><span class="w">   </span><span class="m">15</span><span class="w">  </span><span class="o">}</span>
+</span><span id="__span-4-129"><a id="__codelineno-4-129" name="__codelineno-4-129" href="#__codelineno-4-129"></a>
+</span><span id="__span-4-130"><a id="__codelineno-4-130" name="__codelineno-4-130" href="#__codelineno-4-130"></a>--------------------------------------------------------------------------------
+</span></code></pre></div>
+Como pode-se observar na análise do valgrind, as únicas funcões que consomem mais tempo são as de leitura dos inputs, e as de print da agenda - contudo as mesmas são chamadas apenas uma vez. As outras funcões são chamadas muitas vezes, mas não consomem tanto tempo, e a maior parte do tempo é gasto em comparações e atribuições. Se comparado ao guloso, a funcão <code>select_movies</code> do aleatório tem desempenho pior, pois a lógica de validacão para incluir um filme é mais complexa - usa um dicionário, equanto na gulosa, como é sequencial, apenas compara com o filme anterior.</p>
 <h2 id="resultados">Resultados</h2>
+<h3 id="overview-graficos-3d">Overview (Gráficos 3D)</h3>
+<p><em>Tempo de execucão</em></p>
+<table>
+<thead>
+<tr>
+<th align="center"><strong>Guloso</strong></th>
+<th align="center"><strong>Aleatório</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img alt="run_time_guloso" src="charts/3d/guloso-run_time.png" /></td>
+<td align="center"><img alt="run_time_aleatorio" src="charts/3d/aleatorio-run_time.png" /></td>
+</tr>
+</tbody>
+</table>
+<p><em>Tempo de tela</em></p>
+<table>
+<thead>
+<tr>
+<th align="center"><strong>Guloso</strong></th>
+<th align="center"><strong>Aleatório</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img alt="run_time_guloso" src="charts/3d/guloso-screen_time.png" /></td>
+<td align="center"><img alt="run_time_aleatorio" src="charts/3d/aleatorio-screen_time.png" /></td>
+</tr>
+</tbody>
+</table>
+<p><em>Tempo de execucão</em></p>
+<table>
+<thead>
+<tr>
+<th align="center"><strong>Guloso</strong></th>
+<th align="center"><strong>Aleatório</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img alt="run_time_guloso" src="charts/3d/guloso-selected_movies.png" /></td>
+<td align="center"><img alt="run_time_aleatorio" src="charts/3d/aleatorio-selected_movies.png" /></td>
+</tr>
+</tbody>
+</table>
+<h3 id="aprofundando-graficos-2d">Aprofundando (Gráficos 2D)</h3>
+<p><em>Tempo de execucão</em></p>
+<table>
+<thead>
+<tr>
+<th align="center"><strong>1 category</strong></th>
+<th align="center"><strong>2 categories</strong></th>
+<th align="center"><strong>3 categories</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img alt="run_time_01_cat" src="charts/2d/run_time/cat_01.png" /></td>
+<td align="center"><img alt="run_time_02_cat" src="charts/2d/run_time/cat_02.png" /></td>
+<td align="center"><img alt="run_time_03_cat" src="charts/2d/run_time/cat_03.png" /></td>
+</tr>
+<tr>
+<td align="center"><strong>5 categories</strong></td>
+<td align="center"><strong>10 categories</strong></td>
+<td align="center"><strong>20 categories</strong></td>
+</tr>
+<tr>
+<td align="center"><img alt="run_time_05_cat" src="charts/2d/run_time/cat_05.png" /></td>
+<td align="center"><img alt="run_time_10_cat" src="charts/2d/run_time/cat_10.png" /></td>
+<td align="center"><img alt="run_time_20_cat" src="charts/2d/run_time/cat_20.png" /></td>
+</tr>
+</tbody>
+</table>
+<p><em>Tempo de tela</em></p>
+<table>
+<thead>
+<tr>
+<th align="center"><strong>1 category</strong></th>
+<th align="center"><strong>2 categories</strong></th>
+<th align="center"><strong>3 categories</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img alt="run_time_01_cat" src="charts/2d/screen_time/cat_01.png" /></td>
+<td align="center"><img alt="run_time_02_cat" src="charts/2d/screen_time/cat_02.png" /></td>
+<td align="center"><img alt="run_time_03_cat" src="charts/2d/screen_time/cat_03.png" /></td>
+</tr>
+<tr>
+<td align="center"><strong>5 categories</strong></td>
+<td align="center"><strong>10 categories</strong></td>
+<td align="center"><strong>20 categories</strong></td>
+</tr>
+<tr>
+<td align="center"><img alt="run_time_05_cat" src="charts/2d/screen_time/cat_05.png" /></td>
+<td align="center"><img alt="run_time_10_cat" src="charts/2d/screen_time/cat_10.png" /></td>
+<td align="center"><img alt="run_time_20_cat" src="charts/2d/screen_time/cat_20.png" /></td>
+</tr>
+</tbody>
+</table>
+<p><em>Tempo de execucão</em></p>
+<table>
+<thead>
+<tr>
+<th align="center"><strong>1 category</strong></th>
+<th align="center"><strong>2 categories</strong></th>
+<th align="center"><strong>3 categories</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img alt="run_time_01_cat" src="charts/2d/selected_movies/cat_01.png" /></td>
+<td align="center"><img alt="run_time_02_cat" src="charts/2d/selected_movies/cat_02.png" /></td>
+<td align="center"><img alt="run_time_03_cat" src="charts/2d/selected_movies/cat_03.png" /></td>
+</tr>
+<tr>
+<td align="center"><strong>5 categories</strong></td>
+<td align="center"><strong>10 categories</strong></td>
+<td align="center"><strong>20 categories</strong></td>
+</tr>
+<tr>
+<td align="center"><img alt="run_time_05_cat" src="charts/2d/selected_movies/cat_05.png" /></td>
+<td align="center"><img alt="run_time_10_cat" src="charts/2d/selected_movies/cat_10.png" /></td>
+<td align="center"><img alt="run_time_20_cat" src="charts/2d/selected_movies/cat_20.png" /></td>
+</tr>
+</tbody>
+</table>
+<h2 id="conclusoes">Conclusões</h2>
 
 
 
