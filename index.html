@@ -338,12 +338,66 @@
     Overview (Gráficos 3D)
   </a>
   
+    <nav class="md-nav" aria-label="Overview (Gráficos 3D)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tempo-de-execucao" class="md-nav__link">
+    Tempo de execucão
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tempo-de-tela" class="md-nav__link">
+    Tempo de tela
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quantidade-de-filmes-selecionados" class="md-nav__link">
+    Quantidade de filmes selecionados
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
   <a href="#aprofundando-graficos-2d" class="md-nav__link">
     Aprofundando (Gráficos 2D)
   </a>
+  
+    <nav class="md-nav" aria-label="Aprofundando (Gráficos 2D)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tempo-de-execucao_1" class="md-nav__link">
+    Tempo de execucão
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tempo-de-tela_1" class="md-nav__link">
+    Tempo de tela
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quantidade-de-filmes-selecionados_1" class="md-nav__link">
+    Quantidade de filmes selecionados
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -353,8 +407,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conclusoes" class="md-nav__link">
-    Conclusões
+  <a href="#conclusao" class="md-nav__link">
+    Conclusão
   </a>
   
 </li>
@@ -514,12 +568,66 @@
     Overview (Gráficos 3D)
   </a>
   
+    <nav class="md-nav" aria-label="Overview (Gráficos 3D)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tempo-de-execucao" class="md-nav__link">
+    Tempo de execucão
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tempo-de-tela" class="md-nav__link">
+    Tempo de tela
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quantidade-de-filmes-selecionados" class="md-nav__link">
+    Quantidade de filmes selecionados
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
   <a href="#aprofundando-graficos-2d" class="md-nav__link">
     Aprofundando (Gráficos 2D)
   </a>
+  
+    <nav class="md-nav" aria-label="Aprofundando (Gráficos 2D)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tempo-de-execucao_1" class="md-nav__link">
+    Tempo de execucão
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tempo-de-tela_1" class="md-nav__link">
+    Tempo de tela
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quantidade-de-filmes-selecionados_1" class="md-nav__link">
+    Quantidade de filmes selecionados
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -529,8 +637,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conclusoes" class="md-nav__link">
-    Conclusões
+  <a href="#conclusao" class="md-nav__link">
+    Conclusão
   </a>
   
 </li>
@@ -587,6 +695,11 @@
 </ul>
 <h4 id="overview">Overview</h4>
 <p>Em todas as implementacoes, a função <code>main</code> é responsável por ler os dados de input, ordenar os filmes por horário de término (a implementacão guloso selecionada) e chamar a função <code>select_movies</code> que é responsável por selecionar os filmes. A função <code>main</code> também é responsável por imprimir o tempo de execução do algoritmo.</p>
+<p>Detalhes:</p>
+<ul>
+<li>Filmes que acabam e terminam no mesmo horário são tratados igual filmes que tem 2 horas (comecam em t e acabam em t+1)</li>
+<li>É permitido comecar a ver um filme antes da meia noite, e virar a madrugada</li>
+</ul>
 <h3 id="guloso">Guloso</h3>
 <h4 id="funcao-de-selecao-de-filmes">Funcao de selecão de filmes</h4>
 <div class="language-cpp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">select_movies</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">movie</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">movies</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">movie</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">selected</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">lim_cats</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n_cat</span><span class="p">);</span>
@@ -860,7 +973,13 @@
 Como pode-se observar na análise do valgrind, as únicas funcões que consomem mais tempo são as de leitura dos inputs, e as de print da agenda - contudo as mesmas são chamadas apenas uma vez. As outras funcões são chamadas muitas vezes, mas não consomem tanto tempo, e a maior parte do tempo é gasto em comparações e atribuições. Se comparado ao guloso, a funcão <code>select_movies</code> do aleatório tem desempenho pior, pois a lógica de validacão para incluir um filme é mais complexa - usa um dicionário, equanto na gulosa, como é sequencial, apenas compara com o filme anterior.</p>
 <h2 id="resultados">Resultados</h2>
 <h3 id="overview-graficos-3d">Overview (Gráficos 3D)</h3>
-<p><em>Tempo de execucão</em></p>
+<p>Para o aleatório, cada entrada foi rodada 10 vezes (para ver diferenca entre os outputs) já para o guloso, apenas uma (output determinístico).</p>
+<p>Assim no gráfico do aleatório foram plotadas 2 superfícies (considerando as 10 iteracoes):</p>
+<ul>
+<li>O mínimo atingido - curva vermelha</li>
+<li>E o máximo - curva azul</li>
+</ul>
+<h4 id="tempo-de-execucao">Tempo de execucão</h4>
 <table>
 <thead>
 <tr>
@@ -875,7 +994,20 @@ Como pode-se observar na análise do valgrind, as únicas funcões que consomem 
 </tr>
 </tbody>
 </table>
-<p><em>Tempo de tela</em></p>
+<p>Podemos ver que o tempo de execucão do guloso claramente aumenta conforme tem mais categorias e mais filmes. Uma maior quantidade de filmes o faz aumentar pois ele vai recusar uma grande quantidade de filmes inválidos (vai checando os do mesmo horário até achar o que comeca mais cedo). Um maior numero de categorias faz com que seja muito dificil do limite ser atingido (vai ter mais categoria que filmes selecionados), portanto a parte que para o código caso nenhuma categoria tenha mais espaco, nunca é ativada.</p>
+<p>No gráfico do aleatório, se comparado ao guloso temos as seguintes situacões</p>
+<ul>
+<li>No geral parece ser parecido</li>
+<li>A curva máxima é mais demorada em alguns casos</li>
+<li>A curva minima aparenta ser quase sempre - principalmente em casos com muitos filmes</li>
+</ul>
+<p><strong>curva máxima</strong></p>
+<p>Como o loop principal da aleatório (gerar valores aleatorios, ver se cabe, a agenda é um dicionário) é mais complexo que o da gulosa (apenas verifica se o filme comeca depois que o anterior termina), caso eles tivessem a mesma quantidade de iteracões, é de se esperar que o aleatório demore mais.</p>
+<p>Dito isso, o motivo da demora a mais deve se dar o fato de que várias solucões aleatórias fossem escolhidas (p &lt; 25), mas poucas tivessem espaco para serem incluidas. Assim o algorítimo deve ter iteracões similares ao do guloso, mas com verificacões mais demoradas.</p>
+<p><strong>curva minima</strong></p>
+<p>Se as verificacões do aleatório são mais complexas, como ele é mais rápido?</p>
+<p>Simples, ambos os códigos tem otimizacões que param quando as 24hrs do dia enchem. O aleatório, nesses casos mais rápidos, faz a inclusão de filmes mais longos que ocupam mais a agenda. Dessa forma, enquanto o guloso está recusando vários filmes que não cabem, o aleatório, além de fazer isso, inclui filmes no meio/no final da agenda para enchê-la.</p>
+<h4 id="tempo-de-tela">Tempo de tela</h4>
 <table>
 <thead>
 <tr>
@@ -885,12 +1017,22 @@ Como pode-se observar na análise do valgrind, as únicas funcões que consomem 
 </thead>
 <tbody>
 <tr>
-<td align="center"><img alt="run_time_guloso" src="charts/3d/guloso-screen_time.png" /></td>
-<td align="center"><img alt="run_time_aleatorio" src="charts/3d/aleatorio-screen_time.png" /></td>
+<td align="center"><img alt="screen_time_guloso" src="charts/3d/guloso-screen_time.png" /></td>
+<td align="center"><img alt="screen_time_aleatorio" src="charts/3d/aleatorio-screen_time.png" /></td>
 </tr>
 </tbody>
 </table>
-<p><em>Tempo de execucão</em></p>
+<p>Com esses dois gráficos, não se pode concluir muito. Os resultados mais aparentes são que:</p>
+<ul>
+<li>Ambos chegam a um tempo de 24hrs (ou perto), quando se atinge mais ou menos 10 categorias<ul>
+<li>quando há poucos filmes, parece variar mais.</li>
+</ul>
+</li>
+<li>O aleatório varia em torno de 24hrs - isso se dá pois ele consegue colocar filmes mais longos que viram na madrugada</li>
+<li>O guloso <strong>para</strong> em 24 conforme a quantidade de filmes aumenta (diminui a chance de sobrar um slot para virar a madrugada, quando se atinge os filmes finais)</li>
+</ul>
+<p>Vamos analizar mais a fundo na sessão 2D, para ver o comportamento com uma menor quantidade de filmes e categorias.</p>
+<h4 id="quantidade-de-filmes-selecionados">Quantidade de filmes selecionados</h4>
 <table>
 <thead>
 <tr>
@@ -900,13 +1042,16 @@ Como pode-se observar na análise do valgrind, as únicas funcões que consomem 
 </thead>
 <tbody>
 <tr>
-<td align="center"><img alt="run_time_guloso" src="charts/3d/guloso-selected_movies.png" /></td>
-<td align="center"><img alt="run_time_aleatorio" src="charts/3d/aleatorio-selected_movies.png" /></td>
+<td align="center"><img alt="selected_movies_guloso" src="charts/3d/guloso-selected_movies.png" /></td>
+<td align="center"><img alt="selected_movies_aleatorio" src="charts/3d/aleatorio-selected_movies.png" /></td>
 </tr>
 </tbody>
 </table>
+<p>Ao observar o gráfico do guloso, pode-se concluir que em torno de 10 categorias, ele passa a sempre (ou quase sempre), ter 24 filmes - isso porque fica quase impossível atingir o limite de categoria, portanto sempre terá um filme para ser encaixado no slot. Como os filmes são percorridos em ordem de término crescente, com uma grande quantidade de filme é certo que terá algum filme de duracão 1 que possa ser incluido.</p>
+<p>Por outro lado o guloso varia em torno de 12. Isso pois ele pode, ao acaso, escolher algum filme longo (e na maioria das vezes vai) que ocupa mais tempo na agenda.</p>
+<p>Como no caso anterior, será feita uma análise mais completa nos gráficos 2D.</p>
 <h3 id="aprofundando-graficos-2d">Aprofundando (Gráficos 2D)</h3>
-<p><em>Tempo de execucão</em></p>
+<h4 id="tempo-de-execucao_1">Tempo de execucão</h4>
 <table>
 <thead>
 <tr>
@@ -933,7 +1078,33 @@ Como pode-se observar na análise do valgrind, as únicas funcões que consomem 
 </tr>
 </tbody>
 </table>
-<p><em>Tempo de tela</em></p>
+<p>Os gráficos com categoria fixadas mostram como o comportamento do aleatório muda bastante - realmente depende se os filmes escolhidos podem ser incluidos ou não.</p>
+<p>Com categorias fixadas é dificil escolher um vencedor. Vamos declarar um empate, pois, mesmo que o aleatório ganhe em varias vezes, perde em algumas.</p>
+<table>
+<thead>
+<tr>
+<th align="center"><strong>10 movies</strong></th>
+<th align="center"><strong>100 movies</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img alt="run_time_10_mov" src="charts/2d/run_time/mov_10.png" /></td>
+<td align="center"><img alt="run_time_100_mov" src="charts/2d/run_time/mov_100.png" /></td>
+</tr>
+<tr>
+<td align="center"><strong>1000 movies</strong></td>
+<td align="center"><strong>10000 movies</strong></td>
+</tr>
+<tr>
+<td align="center"><img alt="run_time_1000_mov" src="charts/2d/run_time/mov_1000.png" /></td>
+<td align="center"><img alt="run_time_10000_mov" src="charts/2d/run_time/mov_10000.png" /></td>
+</tr>
+</tbody>
+</table>
+<p>Com esses gráficos de filmes fixados fica claro que com poucos filmes o guloso leva vantagem - isso porque ele não verifica tantos filmes inválidos, e com menos iteracões, a chance de filmes ocuparem a agenda toda é menor.</p>
+<p>Contudo com muitos filmes, o aleatório claramente é superior - motivo já explicado.</p>
+<h4 id="tempo-de-tela_1">Tempo de tela</h4>
 <table>
 <thead>
 <tr>
@@ -960,7 +1131,39 @@ Como pode-se observar na análise do valgrind, as únicas funcões que consomem 
 </tr>
 </tbody>
 </table>
-<p><em>Tempo de execucão</em></p>
+<p>Observando os gráficos com categorias fixadas, pode-se tomar as seguintes conclusões:</p>
+<ul>
+<li>De fato, ao chegar em 10 categorias, o guloso não passa de 24hrs de tempo de tela</li>
+<li>Independentemente do número de categorias, o tempo de tela do aleatório é maior. Isso se da pelo fato de ter mais chances de escolher filmes longos do que o guloso. O guloso tende a encher as 24 horas com filmes curtos, enquanto no aleatório, a escolha de filmes que viram a madrugada (ainda mais quando são longos) traz uma vantagem enorme.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center"><strong>10 movies</strong></th>
+<th align="center"><strong>100 movies</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img alt="run_time_10_mov" src="charts/2d/screen_time/mov_10.png" /></td>
+<td align="center"><img alt="screen_time_100_mov" src="charts/2d/screen_time/mov_100.png" /></td>
+</tr>
+<tr>
+<td align="center"><strong>1000 movies</strong></td>
+<td align="center"><strong>10000 movies</strong></td>
+</tr>
+<tr>
+<td align="center"><img alt="screen_time_1000_mov" src="charts/2d/screen_time/mov_1000.png" /></td>
+<td align="center"><img alt="screen_time_10000_mov" src="charts/2d/screen_time/mov_10000.png" /></td>
+</tr>
+</tbody>
+</table>
+<p>Observando os gráficos com filmes fixados, pode-se tomar as seguintes conclusões:</p>
+<ul>
+<li>Com poucos filmes, o desempenho das duas heurísticas é parecido - pode-se até argumentar que o guloso é melhor, pois o aleatório é menos consistente.</li>
+<li>Com muitos filmes, o aleatório é melhor - justamente pelo motivo, já explicado, dos filmes que viram a madrugada</li>
+</ul>
+<h4 id="quantidade-de-filmes-selecionados_1">Quantidade de filmes selecionados</h4>
 <table>
 <thead>
 <tr>
@@ -971,9 +1174,9 @@ Como pode-se observar na análise do valgrind, as únicas funcões que consomem 
 </thead>
 <tbody>
 <tr>
-<td align="center"><img alt="run_time_01_cat" src="charts/2d/selected_movies/cat_01.png" /></td>
-<td align="center"><img alt="run_time_02_cat" src="charts/2d/selected_movies/cat_02.png" /></td>
-<td align="center"><img alt="run_time_03_cat" src="charts/2d/selected_movies/cat_03.png" /></td>
+<td align="center"><img alt="selected_movies_01_cat" src="charts/2d/selected_movies/cat_01.png" /></td>
+<td align="center"><img alt="selected_movies_02_cat" src="charts/2d/selected_movies/cat_02.png" /></td>
+<td align="center"><img alt="selected_movies_03_cat" src="charts/2d/selected_movies/cat_03.png" /></td>
 </tr>
 <tr>
 <td align="center"><strong>5 categories</strong></td>
@@ -981,13 +1184,48 @@ Como pode-se observar na análise do valgrind, as únicas funcões que consomem 
 <td align="center"><strong>20 categories</strong></td>
 </tr>
 <tr>
-<td align="center"><img alt="run_time_05_cat" src="charts/2d/selected_movies/cat_05.png" /></td>
-<td align="center"><img alt="run_time_10_cat" src="charts/2d/selected_movies/cat_10.png" /></td>
-<td align="center"><img alt="run_time_20_cat" src="charts/2d/selected_movies/cat_20.png" /></td>
+<td align="center"><img alt="selected_movies_05_cat" src="charts/2d/selected_movies/cat_05.png" /></td>
+<td align="center"><img alt="selected_movies_10_cat" src="charts/2d/selected_movies/cat_10.png" /></td>
+<td align="center"><img alt="selected_movies_20_cat" src="charts/2d/selected_movies/cat_20.png" /></td>
 </tr>
 </tbody>
 </table>
-<h2 id="conclusoes">Conclusões</h2>
+<p>Observando os gráficos com categorias fixadas, pode-se tomar as seguintes conclusões:</p>
+<ul>
+<li>com uma ou duas, o número de filmes é igual (ou praticamente igual)</li>
+<li>A partir de 3 categorias o guloso comeca a selecionar mais filmes</li>
+<li>Com muitas categorias, quando se tem mais de 1000 filmes, o guloso sempre seleciona mais, fica fixado em 24 filmes.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center"><strong>10 movies</strong></th>
+<th align="center"><strong>100 movies</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img alt="selected_movies_10_mov" src="charts/2d/selected_movies/mov_10.png" /></td>
+<td align="center"><img alt="selected_movies_100_mov" src="charts/2d/selected_movies/mov_100.png" /></td>
+</tr>
+<tr>
+<td align="center"><strong>1000 movies</strong></td>
+<td align="center"><strong>10000 movies</strong></td>
+</tr>
+<tr>
+<td align="center"><img alt="selected_movies_1000_mov" src="charts/2d/selected_movies/mov_1000.png" /></td>
+<td align="center"><img alt="selected_movies_10000_mov" src="charts/2d/selected_movies/mov_10000.png" /></td>
+</tr>
+</tbody>
+</table>
+<p>Observando os gráficos com filmes fixados, pode-se tomar as seguintes conclusões:</p>
+<ul>
+<li>Logo de cara - 100 filmes - o guloso já comeca a se destacar, ou seja, seleciona mais filmes</li>
+<li>Com uma quantidade muito grande, as categorias não influenciam muito, o guloso fixa em 24 filmes</li>
+</ul>
+<h2 id="conclusao">Conclusão</h2>
+<p>O aleatório traz uma funcionalidade que o guloso não tem: exploration. O mesmo consegue sair do estado atual e gerar novos valores sem relacão a tal estado. Por esse motivo o mesmo ganha um destaque em tempo de tela, a maior chance de selecionar filmes mais longos, ainda mais quando viram a madrugada, é um game-changer. Por fazer tais escolhas de filmes longos, o seu run-time também tende a ser menor. </p>
+<p>Contudo, quando se opta por filmes mais longos, uma métrica é sacrificada: a quantidade de filmes. Nesta métrica, por tender a sempre escolher filmes que caibam nos menores slots, ou seja, filmes curtos, o guloso leva uma grande vantagem.</p>
 
 
 
