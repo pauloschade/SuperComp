@@ -42,6 +42,11 @@ void print_agenda(std::vector<movie> selected);
 
 Em todas as implementacoes, a função `main` é responsável por ler os dados de input, ordenar os filmes por horário de término (a implementacão guloso selecionada) e chamar a função `select_movies` que é responsável por selecionar os filmes. A função `main` também é responsável por imprimir o tempo de execução do algoritmo.
 
+Detalhes:
+
+* Filmes que acabam e terminam no mesmo horário são tratados igual filmes que tem 2 horas (comecam em t e acabam em t+1)
+* É permitido comecar a ver um filme antes da meia noite, e virar a madrugada
+
 ### Guloso
 
 #### Funcao de selecão de filmes
@@ -322,27 +327,73 @@ Como pode-se observar na análise do valgrind, as únicas funcões que consomem 
 
 ### Overview (Gráficos 3D)
 
-*Tempo de execucão*
+Para o aleatório, cada entrada foi rodada 10 vezes (para ver diferenca entre os outputs) já para o guloso, apenas uma (output determinístico).
+
+Assim no gráfico do aleatório foram plotadas 2 superfícies (considerando as 10 iteracoes):
+
+* O mínimo atingido - curva vermelha
+* E o máximo - curva azul
+
+#### Tempo de execucão
 
 **Guloso**            |  **Aleatório**
 :-------------------------:|:-------------------------:
 ![run_time_guloso](charts/3d/guloso-run_time.png)  |  ![run_time_aleatorio](charts/3d/aleatorio-run_time.png)
 
-*Tempo de tela*
+Podemos ver que o tempo de execucão do guloso claramente aumenta conforme tem mais categorias e mais filmes. Uma maior quantidade de filmes o faz aumentar pois ele vai recusar uma grande quantidade de filmes inválidos (vai checando os do mesmo horário até achar o que comeca mais cedo). Um maior numero de categorias faz com que seja muito dificil do limite ser atingido (vai ter mais categoria que filmes selecionados), portanto a parte que para o código caso nenhuma categoria tenha mais espaco, nunca é ativada.
+
+No gráfico do aleatório, se comparado ao guloso temos as seguintes situacões
+
+* No geral parece ser parecido
+* A curva máxima é mais demorada em alguns casos
+* A curva minima aparenta ser quase sempre - principalmente em casos com muitos filmes
+
+**curva máxima**
+
+Como o loop principal da aleatório (gerar valores aleatorios, ver se cabe, a agenda é um dicionário) é mais complexo que o da gulosa (apenas verifica se o filme comeca depois que o anterior termina), caso eles tivessem a mesma quantidade de iteracões, é de se esperar que o aleatório demore mais.
+
+Dito isso, o motivo da demora a mais deve se dar o fato de que várias solucões aleatórias fossem escolhidas (p < 25), mas poucas tivessem espaco para serem incluidas. Assim o algorítimo deve ter iteracões similares ao do guloso, mas com verificacões mais demoradas.
+
+**curva minima**
+
+Se as verificacões do aleatório são mais complexas, como ele é mais rápido?
+
+Simples, ambos os códigos tem otimizacões que param quando as 24hrs do dia enchem. O aleatório, nesses casos mais rápidos, faz a inclusão de filmes mais longos que ocupam mais a agenda. Dessa forma, enquanto o guloso está recusando vários filmes que não cabem, o aleatório, além de fazer isso, inclui filmes no meio/no final da agenda para enchê-la.
+
+
+
+
+
+#### Tempo de tela
 
 **Guloso**            |  **Aleatório**
 :-------------------------:|:-------------------------:
-![run_time_guloso](charts/3d/guloso-screen_time.png)  |  ![run_time_aleatorio](charts/3d/aleatorio-screen_time.png)
+![screen_time_guloso](charts/3d/guloso-screen_time.png)  |  ![screen_time_aleatorio](charts/3d/aleatorio-screen_time.png)
 
-*Tempo de execucão*
+
+Com esses dois gráficos, não se pode concluir muito. Os resultados mais aparentes são que:
+
+* Ambos chegam a um tempo de 24hrs (ou perto), quando se atinge mais ou menos 10 categorias
+    * quando há poucos filmes, parece variar mais.
+* O aleatório varia em torno de 24hrs - isso se dá pois ele consegue colocar filmes mais longos que viram na madrugada
+* O guloso **para** em 24 conforme a quantidade de filmes aumenta (diminui a chance de sobrar um slot para virar a madrugada, quando se atinge os filmes finais)
+
+Vamos analizar mais a fundo na sessão 2D, para ver o comportamento com uma menor quantidade de filmes e categorias.
+#### Quantidade de filmes selecionados
 
 **Guloso**            |  **Aleatório**
 :-------------------------:|:-------------------------:
-![run_time_guloso](charts/3d/guloso-selected_movies.png)  |  ![run_time_aleatorio](charts/3d/aleatorio-selected_movies.png)
+![selected_movies_guloso](charts/3d/guloso-selected_movies.png)  |  ![selected_movies_aleatorio](charts/3d/aleatorio-selected_movies.png)
+
+Ao observar o gráfico do guloso, pode-se concluir que em torno de 10 categorias, ele passa a sempre (ou quase sempre), ter 24 filmes - isso porque fica quase impossível atingir o limite de categoria, portanto sempre terá um filme para ser encaixado no slot. Como os filmes são percorridos em ordem de término crescente, com uma grande quantidade de filme é certo que terá algum filme de duracão 1 que possa ser incluido.
+
+Por outro lado o guloso varia em torno de 12. Isso pois ele pode, ao acaso, escolher algum filme longo (e na maioria das vezes vai) que ocupa mais tempo na agenda.
+
+Como no caso anterior, será feita uma análise mais completa nos gráficos 2D.
 
 ### Aprofundando (Gráficos 2D)
 
-*Tempo de execucão*
+#### Tempo de execucão
 
 **1 category**            |  **2 categories**           |  **3 categories**
 :-------------------------:|:-------------------------: |:-------------------------:
@@ -350,7 +401,21 @@ Como pode-se observar na análise do valgrind, as únicas funcões que consomem 
 **5 categories**            |  **10 categories**          |  **20 categories**
 ![run_time_05_cat](charts/2d/run_time/cat_05.png)  |  ![run_time_10_cat](charts/2d/run_time/cat_10.png) |  ![run_time_20_cat](charts/2d/run_time/cat_20.png)
 
-*Tempo de tela*
+Os gráficos com categoria fixadas mostram como o comportamento do aleatório muda bastante - realmente depende se os filmes escolhidos podem ser incluidos ou não.
+
+Com categorias fixadas é dificil escolher um vencedor. Vamos declarar um empate, pois, mesmo que o aleatório ganhe em varias vezes, perde em algumas.
+
+**10 movies** | **100 movies**
+:-------------------------:|:-------------------------:
+![run_time_10_mov](charts/2d/run_time/mov_10.png) | ![run_time_100_mov](charts/2d/run_time/mov_100.png)
+**1000 movies** | **10000 movies**
+![run_time_1000_mov](charts/2d/run_time/mov_1000.png) | ![run_time_10000_mov](charts/2d/run_time/mov_10000.png)
+
+Com esses gráficos de filmes fixados fica claro que com poucos filmes o guloso leva vantagem - isso porque ele não verifica tantos filmes inválidos, e com menos iteracões, a chance de filmes ocuparem a agenda toda é menor.
+
+Contudo com muitos filmes, o aleatório claramente é superior - motivo já explicado.
+
+#### Tempo de tela
 
 **1 category**            |  **2 categories**           |  **3 categories**
 :-------------------------:|:-------------------------: |:-------------------------:
@@ -358,12 +423,49 @@ Como pode-se observar na análise do valgrind, as únicas funcões que consomem 
 **5 categories**            |  **10 categories**          |  **20 categories**
 ![run_time_05_cat](charts/2d/screen_time/cat_05.png)  |  ![run_time_10_cat](charts/2d/screen_time/cat_10.png) |  ![run_time_20_cat](charts/2d/screen_time/cat_20.png)
 
-*Tempo de execucão*
+Observando os gráficos com categorias fixadas, pode-se tomar as seguintes conclusões:
+
+* De fato, ao chegar em 10 categorias, o guloso não passa de 24hrs de tempo de tela
+* Independentemente do número de categorias, o tempo de tela do aleatório é maior. Isso se da pelo fato de ter mais chances de escolher filmes longos do que o guloso. O guloso tende a encher as 24 horas com filmes curtos, enquanto no aleatório, a escolha de filmes que viram a madrugada (ainda mais quando são longos) traz uma vantagem enorme.
+
+**10 movies** | **100 movies**
+:-------------------------:|:-------------------------:
+![run_time_10_mov](charts/2d/screen_time/mov_10.png) | ![screen_time_100_mov](charts/2d/screen_time/mov_100.png)
+**1000 movies** | **10000 movies**
+![screen_time_1000_mov](charts/2d/screen_time/mov_1000.png) | ![screen_time_10000_mov](charts/2d/screen_time/mov_10000.png)
+
+Observando os gráficos com filmes fixados, pode-se tomar as seguintes conclusões:
+
+* Com poucos filmes, o desempenho das duas heurísticas é parecido - pode-se até argumentar que o guloso é melhor, pois o aleatório é menos consistente.
+* Com muitos filmes, o aleatório é melhor - justamente pelo motivo, já explicado, dos filmes que viram a madrugada
+
+#### Quantidade de filmes selecionados
 
 **1 category**            |  **2 categories**           |  **3 categories**
 :-------------------------:|:-------------------------: |:-------------------------:
-![run_time_01_cat](charts/2d/selected_movies/cat_01.png)  |  ![run_time_02_cat](charts/2d/selected_movies/cat_02.png)  |  ![run_time_03_cat](charts/2d/selected_movies/cat_03.png)
+![selected_movies_01_cat](charts/2d/selected_movies/cat_01.png)  |  ![selected_movies_02_cat](charts/2d/selected_movies/cat_02.png)  |  ![selected_movies_03_cat](charts/2d/selected_movies/cat_03.png)
 **5 categories**            |  **10 categories**          |  **20 categories**
-![run_time_05_cat](charts/2d/selected_movies/cat_05.png)  |  ![run_time_10_cat](charts/2d/selected_movies/cat_10.png) |  ![run_time_20_cat](charts/2d/selected_movies/cat_20.png)
+![selected_movies_05_cat](charts/2d/selected_movies/cat_05.png)  |  ![selected_movies_10_cat](charts/2d/selected_movies/cat_10.png) |  ![selected_movies_20_cat](charts/2d/selected_movies/cat_20.png)
 
-## Conclusões
+Observando os gráficos com categorias fixadas, pode-se tomar as seguintes conclusões:
+
+* com uma ou duas, o número de filmes é igual (ou praticamente igual)
+* A partir de 3 categorias o guloso comeca a selecionar mais filmes
+* Com muitas categorias, quando se tem mais de 1000 filmes, o guloso sempre seleciona mais, fica fixado em 24 filmes.
+
+**10 movies** | **100 movies**
+:-------------------------:|:-------------------------:
+![selected_movies_10_mov](charts/2d/selected_movies/mov_10.png) | ![selected_movies_100_mov](charts/2d/selected_movies/mov_100.png)
+**1000 movies** | **10000 movies**
+![selected_movies_1000_mov](charts/2d/selected_movies/mov_1000.png) | ![selected_movies_10000_mov](charts/2d/selected_movies/mov_10000.png)
+
+Observando os gráficos com filmes fixados, pode-se tomar as seguintes conclusões:
+
+* Logo de cara - 100 filmes - o guloso já comeca a se destacar, ou seja, seleciona mais filmes
+* Com uma quantidade muito grande, as categorias não influenciam muito, o guloso fixa em 24 filmes
+
+## Conclusão
+
+O aleatório traz uma funcionalidade que o guloso não tem: exploration. O mesmo consegue sair do estado atual e gerar novos valores sem relacão a tal estado. Por esse motivo o mesmo ganha um destaque em tempo de tela, a maior chance de selecionar filmes mais longos, ainda mais quando viram a madrugada, é um game-changer. Por fazer tais escolhas de filmes longos, o seu run-time também tende a ser menor. 
+
+Contudo, quando se opta por filmes mais longos, uma métrica é sacrificada: a quantidade de filmes. Nesta métrica, por tender a sempre escolher filmes que caibam nos menores slots, ou seja, filmes curtos, o guloso leva uma grande vantagem.
