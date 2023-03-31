@@ -26,7 +26,7 @@ void fill_slot(map<int, bool> &filled_slots, movie curr) {
   }
 }
 
-void select_movies(vector<movie> &movies, vector<movie> &selected, map<int, int> &lim_cats, map<int, bool> &filled_slots, int n_cat, int n_mov) {
+int select_movies(vector<movie> &movies, vector<movie> &selected, map<int, int> &lim_cats, map<int, bool> &filled_slots, int n_cat, int n_mov) {
   uniform_real_distribution<double> distribution(0.0, 1.0);
   default_random_engine generator;
   generator.seed(SEED + time(0));
@@ -34,19 +34,20 @@ void select_movies(vector<movie> &movies, vector<movie> &selected, map<int, int>
   int time_end = 0;
   int min_time = 100;
   int times_filed = 0;
+  int screen_time = 0;
   bool has_selected = false;
 
   movie selected_movie;
   for(int i = 0; i < n_mov; i++) {
 
-    if(n_cat <= 0) return;
-    if(times_filed >= 24) return;
+    if(n_cat <= 0) break;
+    if(times_filed >= 24) break;
     
     if(movies[i].end > time_end) {
       time_end = movies[i].end;
 
       if (has_selected) {
-        include_movie(selected_movie, selected, times_filed);
+        include_movie(selected_movie, selected, times_filed, screen_time);
         set_cats_limit(lim_cats, selected_movie.cat, n_cat);
         fill_slot(filled_slots, selected_movie);
 
@@ -58,7 +59,7 @@ void select_movies(vector<movie> &movies, vector<movie> &selected, map<int, int>
       uniform_int_distribution<int> distribution(i, movies.size()-1);
       int p = distribution(generator);
       if(hasSlot(movies[p], filled_slots) && lim_cats[movies[p].cat] > 0) {
-        include_movie(movies[p], selected, times_filed);
+        include_movie(movies[p], selected, times_filed, screen_time);
         set_cats_limit(lim_cats, movies[p].cat, n_cat);
         fill_slot(filled_slots, movies[p]);
         
@@ -74,6 +75,8 @@ void select_movies(vector<movie> &movies, vector<movie> &selected, map<int, int>
       has_selected = true;
     }
   }
+
+  return screen_time;
 }
 
 int main(int argc, char *argv[]) {
@@ -96,11 +99,11 @@ int main(int argc, char *argv[]) {
 
   chrono::steady_clock::time_point begin = chrono::steady_clock::now();
 
-  select_movies(movies, selected, lim_cats, filled_slots, n_cat, n_mov);
+  int screen_time = select_movies(movies, selected, lim_cats, filled_slots, n_cat, n_mov);
 
   chrono::steady_clock::time_point end = chrono::steady_clock::now();
 
-  cout << chrono::duration_cast<chrono::microseconds>(end - begin).count();
+  cout << chrono::duration_cast<chrono::microseconds>(end - begin).count() << 'x' << screen_time << 'x' << selected.size();
 
   if(argc > 1) return 0;
 

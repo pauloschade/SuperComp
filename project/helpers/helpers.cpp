@@ -1,9 +1,13 @@
 #include "helpers.h"
 
-void include_movie(movie &curr_movie, std::vector<movie> &movies, int &times_filed) {
+void include_movie(movie &curr_movie, std::vector<movie> &movies, int &times_filed, int &screen_time) {
   movies.push_back(curr_movie);
-  if(curr_movie.end == curr_movie.start) times_filed ++;
+  if(curr_movie.end == curr_movie.start) {
+    times_filed ++;
+    screen_time ++;
+  }
   else {
+     screen_time += curr_movie.end - curr_movie.start;
      if(curr_movie.end > 23) times_filed += 24 - curr_movie.start;
      else
      times_filed += curr_movie.end - curr_movie.start;

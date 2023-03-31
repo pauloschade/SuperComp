@@ -1,12 +1,13 @@
 import subprocess
 import time
 import os
-def run_program(name, input):
-  proc = subprocess.run([f'../../{name} -python < ../../in/{input}'],text=True, capture_output=True, shell=True)
+
+def run_program(name, input, args = '-python'):
+  proc = subprocess.run([f'../../{name} {args} < ../../in/{input}'],text=True, capture_output=True, shell=True)
   if proc.returncode < 0:
     print(f'Error: {proc.stderr}')
     exit(1)
-  return int(proc.stdout)
+  return proc.stdout
   #return time_end - time_start
 
 if __name__ == '__main__':
