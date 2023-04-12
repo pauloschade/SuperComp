@@ -1,16 +1,17 @@
-#include <iostream>
-#include <stdio.h>
 #include <omp.h>
+#include <stdio.h>
+#include <iostream>
+#include <math.h>
 
 double leibniz_pi(int n) {
     int i;
     double sign = 1.0;
-    double sum = 0.0;
+    double pi_sum = 0.0;
+    #pragma omp parallel for reduction(+:pi_sum)
     for (i = 0; i < n; i++) {
-        sum += sign / (2 * i + 1);
-        sign = -sign;
+        pi_sum += pow(-1, i) / (2 * i + 1);
     }
-    return 4.0 * sum;
+    return 4.0 * pi_sum;
 }
 
 int main() {
