@@ -6,7 +6,7 @@
 #include <cassert>
 
 int main() {
-  int N = 100000;
+  int N = 100000000;
   double pi = 0.0;
 
   std::uniform_real_distribution<double> distribution(0.0, 1.0);

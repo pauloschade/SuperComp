@@ -7,15 +7,15 @@
 #include <omp.h>
 
 int main() {
-  int N = 100000;
+  int N = 100000000;
   double pi_sum = 0.0;
   int n_threads= omp_get_max_threads();
 
   std::uniform_real_distribution<double> distribution(0.0, 1.0);
 
   std::vector<std::default_random_engine> generators_vec;
-  for(int i = 0; n_threads; i++)
-  {
+  
+  for(int i = 0; i < n_threads; i++) {
     std::default_random_engine generator;
     generator.seed(42 + 10 * i);
     generators_vec.push_back(generator);
