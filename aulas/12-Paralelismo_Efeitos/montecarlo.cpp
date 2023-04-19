@@ -4,6 +4,7 @@
 #include <random>
 #include <map>
 #include <cassert>
+#include <omp.h>
 
 int main() {
   int N = 100000000;
@@ -14,6 +15,9 @@ int main() {
 
   generator.seed(42);
 
+  double itime, ftime, exec_time;
+  itime = omp_get_wtime();
+
   for(int i = 0; i < N; i++) {
 
     const double x = distribution(generator);
@@ -22,5 +26,10 @@ int main() {
     if (x*x+y*y<=1) pi++;
   }
 
+  ftime = omp_get_wtime();
+  exec_time = ftime - itime;
+
   std::cout << 4.0 * pi/N << std::endl;
+
+  std::cout << "total time (sequencial): " << exec_time << std::endl;
 }

@@ -14,12 +14,15 @@ int main() {
   std::uniform_real_distribution<double> distribution(0.0, 1.0);
 
   std::vector<std::default_random_engine> generators_vec;
-  
+
   for(int i = 0; i < n_threads; i++) {
     std::default_random_engine generator;
     generator.seed(42 + 10 * i);
     generators_vec.push_back(generator);
   }
+
+  double itime, ftime, exec_time;
+  itime = omp_get_wtime();
 
   #pragma omp parallel for reduction(+:pi_sum)
   for(int i = 0; i < N; i++) {
@@ -28,5 +31,10 @@ int main() {
     if (x*x+y*y<=1) pi_sum++;
   }
 
+  ftime = omp_get_wtime();
+  exec_time = ftime - itime;
+
   std::cout << 4.0 * pi_sum/N << std::endl;
+
+  std::cout << "total time (parallel): " << exec_time << std::endl;
 }
