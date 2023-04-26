@@ -18,7 +18,6 @@ int include_bag(vector<item> &items, int index, int capacity) {
     with_i = items[index-1].v + include_bag(items, index-1, capacity - items[index-1].w);
   }
   without_i = include_bag(items, index-1, capacity);
-  //without_i += ((capacity - items[index-1].w >= 0) ? include_bag(items, index-1, capacity - items[index-1].w) : include_bag(items, index-1, capacity));
   return max(with_i, without_i);
 }
 

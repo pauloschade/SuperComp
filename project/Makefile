@@ -13,6 +13,10 @@ guloso: build
 aleatorio: build
 	$(CC) $(CFLAGS) -o aleatorio aleatorio.cpp *.o
 
+.PHONY: exaustivo
+exaustivo: build
+	$(CC) $(CFLAGS) -o exaustivo exaustivo.cpp *.o
+
 .PHONY: build
 build:
 	$(CC) $(CFLAGS) -c helpers/*.cpp
