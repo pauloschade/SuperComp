@@ -1,0 +1,1 @@
+PATH=/usr/local/Cellar/gcc/12.2.0/bin:$PATH

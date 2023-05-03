@@ -1,8 +1,8 @@
 #compile all files in helpers folder
 DFFLAGS = -Wall -O3 -g
 STDFLAG = -std=c++17
-CFLAGS = $(DFFLAGS) $(STDFLAG)
-CC = g++
+CFLAGS = $(DFFLAGS)
+CC = g++-12
 
 #make main.cpp at guloso folder
 .PHONY: guloso
@@ -16,6 +16,13 @@ aleatorio: build
 .PHONY: exaustivo
 exaustivo: build
 	$(CC) $(CFLAGS) -o exaustivo exaustivo.cpp *.o
+
+#make exaustivo_omp
+.PHONY: exaustivo_omp
+exaustivo_omp: build
+	$(CC) $(CFLAGS) -fopenmp -o exaustivo_omp exaustivo_omp.cpp *.o
+
+
 
 .PHONY: build
 build:

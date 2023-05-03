@@ -22,7 +22,7 @@ bool is_valid(vector<movie> &selected) {
 
 //font:
 //https://stackoverflow.com/questions/43241174/javascript-generating-all-combinations-of-elements-in-a-single-array-in-pairs
-void get_combinations(vector<movie> movies)
+void test_combinations(vector<movie> movies)
 {
   int slent = pow(2, movies.size());
   vector<movie> best;
@@ -41,6 +41,7 @@ void get_combinations(vector<movie> movies)
     if (temp.size() > 0)
     {
       sort(temp.begin(), temp.end(), [](auto& i, auto& j){return i.end < j.end;});
+      cout << "testing solution: " << endl;
       if(is_valid(temp)) {
         if (temp.size() > best.size()) {
           best = temp;
@@ -78,7 +79,7 @@ int main(int argc, char *argv[]) {
 
   read_movies_data(movies, n_mov);
 
-  get_combinations(movies);
+  test_combinations(movies);
 
   return 0;
 
