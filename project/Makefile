@@ -19,6 +19,11 @@ aleatorio: build
 exaustivo: build
 	$(CC) $(CFLAGS) -o exaustivo exaustivo.cpp *.o
 
+
+.PHONY: exaust
+exaust: build
+	$(CC) $(CFLAGS) -o exaust exaust.cpp *.o
+
 #make exaustivo_omp
 .PHONY: exaustivo_omp
 exaustivo_omp: build
