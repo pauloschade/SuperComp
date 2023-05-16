@@ -26,13 +26,10 @@ bool is_valid(vector<movie> &selected) {
 void test_combinations(vector<movie> &movies)
 {
   vector<vector<movie>> bests;
-  const long int slent = pow(2, movies.size());
+  const long long unsigned int slent = pow(2, min(int (movies.size()), 20));
   int n_threads= omp_get_max_threads();
 
   bests.resize(n_threads);
-
-
-
   //omp parallel for
 
   #pragma omp parallel
@@ -41,22 +38,22 @@ void test_combinations(vector<movie> &movies)
     #pragma omp critical
     {
       cout << "thread: " << omp_get_thread_num() << endl;
+      cout << slent << endl;
     }
 
     #pragma omp for
-    for (long int i = 0; i < slent; i++) {
+    for (long long unsigned int i = 0; i < slent; i++) {
+      cout << "HEREE" << endl;
       vector<movie> temp;
       for (size_t j = 0; j < movies.size(); j++)
       {
-        if ((i & int(pow(2, j))))
-        {
+        if ((i & int(pow(2, j)))) {
           temp.push_back(movies[j]);
         }
       }
       if (temp.size() > 0 || temp.size() <= 24)
       {
         sort(temp.begin(), temp.end(), [](auto& i, auto& j){return i.end < j.end;});
-        cout << "testing solution: " << endl;
         if(is_valid(temp)) {
           if (temp.size() > best.size()) {
             best = temp;
@@ -64,25 +61,25 @@ void test_combinations(vector<movie> &movies)
         }
       }
     }
-  #pragma omp critical
-  {
-    bests[omp_get_thread_num()] = best;
-  }
-  }
-
-  vector<movie> best;
-  for (size_t i = 0; i < bests.size(); i++)
-  {
-    if(bests[i].size() > best.size()) {
-      best = bests[i];
+    #pragma omp critical
+    {
+      bests[omp_get_thread_num()] = best;
     }
   }
 
-  for (size_t i = 0; i < bests.size(); i++)
-  {
-    cout << best[i].id << " ";
-    cout << endl;
-  }
+  // vector<movie> best;
+  // for (size_t i = 0; i < bests.size(); i++)
+  // {
+  //   if(bests[i].size() > best.size()) {
+  //     best = bests[i];
+  //   }
+  // }
+
+  // for (size_t i = 0; i < bests.size(); i++)
+  // {
+  //   cout << best[i].id << " ";
+  //   cout << endl;
+  // }
   return;             
 }
 

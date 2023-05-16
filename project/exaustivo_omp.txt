@@ -1,0 +1,939 @@
+==236868== Helgrind, a thread error detector
+==236868== Copyright (C) 2007-2017, and GNU GPL'd, by OpenWorks LLP et al.
+==236868== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==236868== Command: ./exaustivo_omp
+==236868== Parent PID: 224199
+==236868== 
+==236868== ---Thread-Announcement------------------------------------------
+==236868== 
+==236868== Thread #1 is the program's root thread
+==236868== 
+==236868== ---Thread-Announcement------------------------------------------
+==236868== 
+==236868== Thread #4 was created
+==236868==    at 0x4D0F122: clone (clone.S:71)
+==236868==    by 0x4DF12EB: create_thread (createthread.c:101)
+==236868==    by 0x4DF2E0F: pthread_create@@GLIBC_2.2.5 (pthread_create.c:817)
+==236868==    by 0x4842917: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4BADDEA: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BA58E0: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during write of size 4 at 0x4E280A0 by thread #1
+==236868== Locks held: none
+==236868==    at 0x4BB019B: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAE470: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BA58E0: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868== 
+==236868== This conflicts with a previous read of size 4 by thread #4
+==236868== Locks held: none
+==236868==    at 0x4BB01EF: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAD75A: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Address 0x4e280a0 is 128 bytes inside a block of size 192 alloc'd
+==236868==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4B9F24C: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAD9A0: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BA58C9: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868==  Block was alloc'd by thread #1
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during write of size 4 at 0x4E28064 by thread #1
+==236868== Locks held: none
+==236868==    at 0x4BB01A4: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAE470: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BA58E0: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868== 
+==236868== This conflicts with a previous read of size 4 by thread #4
+==236868== Locks held: none
+==236868==    at 0x4BB01E4: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAD75A: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Address 0x4e28064 is 68 bytes inside a block of size 192 alloc'd
+==236868==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4B9F24C: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAD9A0: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BA58C9: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868==  Block was alloc'd by thread #1
+==236868== 
+==236868== ---Thread-Announcement------------------------------------------
+==236868== 
+==236868== Thread #2 was created
+==236868==    at 0x4D0F122: clone (clone.S:71)
+==236868==    by 0x4DF12EB: create_thread (createthread.c:101)
+==236868==    by 0x4DF2E0F: pthread_create@@GLIBC_2.2.5 (pthread_create.c:817)
+==236868==    by 0x4842917: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4BADDEA: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BA58E0: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during read of size 4 at 0x4E28064 by thread #2
+==236868== Locks held: none
+==236868==    at 0x4BB013B: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAD75A: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868== 
+==236868== This conflicts with a previous write of size 4 by thread #1
+==236868== Locks held: none
+==236868==    at 0x4BB01A4: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAE470: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BA58E0: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868==  Address 0x4e28064 is 68 bytes inside a block of size 192 alloc'd
+==236868==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4B9F24C: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAD9A0: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BA58C9: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868==  Block was alloc'd by thread #1
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during read of size 8 at 0x10F058 by thread #4
+==236868== Locks held: none
+==236868==    at 0x49956E3: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD85: operator<< <std::char_traits<char> > (ostream:570)
+==236868==    by 0x10AD85: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868== 
+==236868== This conflicts with a previous write of size 8 by thread #2
+==236868== Locks held: none
+==236868==    at 0x4995795: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD85: operator<< <std::char_traits<char> > (ostream:570)
+==236868==    by 0x10AD85: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Address 0x10f058 is 24 bytes inside data symbol "_ZSt4cout@@GLIBCXX_3.4"
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during write of size 1 at 0x4E28EC7 by thread #4
+==236868== Locks held: none
+==236868==    at 0x48488A6: mempcpy (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4C7F631: _IO_new_file_xsputn (fileops.c:1236)
+==236868==    by 0x4C7F631: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==236868==    by 0x4C733C0: fwrite (iofwrite.c:39)
+==236868==    by 0x4995823: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD85: operator<< <std::char_traits<char> > (ostream:570)
+==236868==    by 0x10AD85: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Address 0x4e28ec7 is 7 bytes inside a block of size 1,024 alloc'd
+==236868==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4C71D03: _IO_file_doallocate (filedoalloc.c:101)
+==236868==    by 0x4C81ECF: _IO_doallocbuf (genops.c:347)
+==236868==    by 0x4C80F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==236868==    by 0x4C7F6B4: _IO_new_file_xsputn (fileops.c:1244)
+==236868==    by 0x4C7F6B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==236868==    by 0x4C733C0: fwrite (iofwrite.c:39)
+==236868==    by 0x4995823: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD85: operator<< <std::char_traits<char> > (ostream:570)
+==236868==    by 0x10AD85: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Block was alloc'd by thread #2
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during write of size 8 at 0x10F058 by thread #4
+==236868== Locks held: none
+==236868==    at 0x4995795: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD85: operator<< <std::char_traits<char> > (ostream:570)
+==236868==    by 0x10AD85: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868== 
+==236868== This conflicts with a previous write of size 8 by thread #2
+==236868== Locks held: none
+==236868==    at 0x4995795: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD85: operator<< <std::char_traits<char> > (ostream:570)
+==236868==    by 0x10AD85: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Address 0x10f058 is 24 bytes inside data symbol "_ZSt4cout@@GLIBCXX_3.4"
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during read of size 1 at 0x10F129 by thread #4
+==236868== Locks held: none
+==236868==    at 0x4995D27: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD9A: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868== 
+==236868== This conflicts with a previous write of size 1 by thread #2
+==236868== Locks held: none
+==236868==    at 0x4995E0A: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD9A: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Address 0x10f129 is 233 bytes inside data symbol "_ZSt4cout@@GLIBCXX_3.4"
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during read of size 1 at 0x10F128 by thread #4
+==236868== Locks held: none
+==236868==    at 0x4995D35: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD9A: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868== 
+==236868== This conflicts with a previous write of size 1 by thread #2
+==236868== Locks held: none
+==236868==    at 0x4995DFF: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD9A: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Address 0x10f128 is 232 bytes inside data symbol "_ZSt4cout@@GLIBCXX_3.4"
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during write of size 1 at 0x4E28EC0 by thread #4
+==236868== Locks held: none
+==236868==    at 0x48488CC: mempcpy (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4C7F631: _IO_new_file_xsputn (fileops.c:1236)
+==236868==    by 0x4C7F631: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==236868==    by 0x4C733C0: fwrite (iofwrite.c:39)
+==236868==    by 0x49874A7: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<long>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x4995D5E: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD9A: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Address 0x4e28ec0 is 0 bytes inside a block of size 1,024 alloc'd
+==236868==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4C71D03: _IO_file_doallocate (filedoalloc.c:101)
+==236868==    by 0x4C81ECF: _IO_doallocbuf (genops.c:347)
+==236868==    by 0x4C80F2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==236868==    by 0x4C7F6B4: _IO_new_file_xsputn (fileops.c:1244)
+==236868==    by 0x4C7F6B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==236868==    by 0x4C733C0: fwrite (iofwrite.c:39)
+==236868==    by 0x4995823: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD85: operator<< <std::char_traits<char> > (ostream:570)
+==236868==    by 0x10AD85: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Block was alloc'd by thread #2
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during read of size 1 at 0x4A42738 by thread #4
+==236868== Locks held: none
+==236868==    at 0x10ADB6: widen (locale_facets.h:874)
+==236868==    by 0x10ADB6: widen (basic_ios.h:450)
+==236868==    by 0x10ADB6: endl<char, std::char_traits<char> > (ostream:600)
+==236868==    by 0x10ADB6: operator<< (ostream:113)
+==236868==    by 0x10ADB6: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868== 
+==236868== This conflicts with a previous write of size 1 by thread #2
+==236868== Locks held: none
+==236868==    at 0x4934790: std::ctype<char>::_M_widen_init() const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x4995E27: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD9A: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Address 0x4a42738 is in the BSS segment of /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during read of size 1 at 0x4A42743 by thread #4
+==236868== Locks held: none
+==236868==    at 0x10ADC1: widen (locale_facets.h:875)
+==236868==    by 0x10ADC1: widen (basic_ios.h:450)
+==236868==    by 0x10ADC1: endl<char, std::char_traits<char> > (ostream:600)
+==236868==    by 0x10ADC1: operator<< (ostream:113)
+==236868==    by 0x10ADC1: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868== 
+==236868== This conflicts with a previous write of size 2 by thread #2
+==236868== Locks held: none
+==236868==    at 0x49346DB: std::ctype<char>::_M_widen_init() const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x4995E27: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD9A: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Address 0x4a42743 is in the BSS segment of /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during read of size 8 at 0x10F058 by thread #4
+==236868== Locks held: none
+==236868==    at 0x49956E3: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10ADF9: operator<< <std::char_traits<char> > (ostream:570)
+==236868==    by 0x10ADF9: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:46)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868== 
+==236868== This conflicts with a previous write of size 8 by thread #2
+==236868== Locks held: none
+==236868==    at 0x4995795: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD85: operator<< <std::char_traits<char> > (ostream:570)
+==236868==    by 0x10AD85: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Address 0x10f058 is 24 bytes inside data symbol "_ZSt4cout@@GLIBCXX_3.4"
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during write of size 8 at 0x10F058 by thread #4
+==236868== Locks held: none
+==236868==    at 0x4995795: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10ADF9: operator<< <std::char_traits<char> > (ostream:570)
+==236868==    by 0x10ADF9: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:46)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868== 
+==236868== This conflicts with a previous write of size 8 by thread #2
+==236868== Locks held: none
+==236868==    at 0x4995795: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD85: operator<< <std::char_traits<char> > (ostream:570)
+==236868==    by 0x10AD85: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Address 0x10f058 is 24 bytes inside data symbol "_ZSt4cout@@GLIBCXX_3.4"
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during read of size 1 at 0x4A42738 by thread #4
+==236868== Locks held: none
+==236868==    at 0x10AE16: widen (locale_facets.h:874)
+==236868==    by 0x10AE16: widen (basic_ios.h:450)
+==236868==    by 0x10AE16: endl<char, std::char_traits<char> > (ostream:600)
+==236868==    by 0x10AE16: operator<< (ostream:113)
+==236868==    by 0x10AE16: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:46)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868== 
+==236868== This conflicts with a previous write of size 1 by thread #2
+==236868== Locks held: none
+==236868==    at 0x4934790: std::ctype<char>::_M_widen_init() const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x4995E27: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD9A: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Address 0x4a42738 is in the BSS segment of /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during read of size 1 at 0x4A42743 by thread #4
+==236868== Locks held: none
+==236868==    at 0x10AE22: widen (locale_facets.h:875)
+==236868==    by 0x10AE22: widen (basic_ios.h:450)
+==236868==    by 0x10AE22: endl<char, std::char_traits<char> > (ostream:600)
+==236868==    by 0x10AE22: operator<< (ostream:113)
+==236868==    by 0x10AE22: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:46)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868== 
+==236868== This conflicts with a previous write of size 2 by thread #2
+==236868== Locks held: none
+==236868==    at 0x49346DB: std::ctype<char>::_M_widen_init() const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x4995E27: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD9A: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Address 0x4a42743 is in the BSS segment of /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during read of size 8 at 0x10F058 by thread #1
+==236868== Locks held: none
+==236868==    at 0x49956E3: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD85: operator<< <std::char_traits<char> > (ostream:570)
+==236868==    by 0x10AD85: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BA58E5: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868== 
+==236868== This conflicts with a previous write of size 8 by thread #4
+==236868== Locks held: none
+==236868==    at 0x4995795: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD85: operator<< <std::char_traits<char> > (ostream:570)
+==236868==    by 0x10AD85: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Address 0x10f058 is 24 bytes inside data symbol "_ZSt4cout@@GLIBCXX_3.4"
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during write of size 8 at 0x10F058 by thread #1
+==236868== Locks held: none
+==236868==    at 0x4995795: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD85: operator<< <std::char_traits<char> > (ostream:570)
+==236868==    by 0x10AD85: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BA58E5: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868== 
+==236868== This conflicts with a previous write of size 8 by thread #4
+==236868== Locks held: none
+==236868==    at 0x4995795: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD85: operator<< <std::char_traits<char> > (ostream:570)
+==236868==    by 0x10AD85: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Address 0x10f058 is 24 bytes inside data symbol "_ZSt4cout@@GLIBCXX_3.4"
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during read of size 1 at 0x10F129 by thread #1
+==236868== Locks held: none
+==236868==    at 0x4995D27: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD9A: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BA58E5: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868== 
+==236868== This conflicts with a previous write of size 1 by thread #2
+==236868== Locks held: none
+==236868==    at 0x4995E0A: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD9A: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Address 0x10f129 is 233 bytes inside data symbol "_ZSt4cout@@GLIBCXX_3.4"
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during read of size 1 at 0x10F128 by thread #1
+==236868== Locks held: none
+==236868==    at 0x4995D35: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD9A: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BA58E5: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868== 
+==236868== This conflicts with a previous write of size 1 by thread #2
+==236868== Locks held: none
+==236868==    at 0x4995DFF: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD9A: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Address 0x10f128 is 232 bytes inside data symbol "_ZSt4cout@@GLIBCXX_3.4"
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during read of size 1 at 0x4A42738 by thread #1
+==236868== Locks held: none
+==236868==    at 0x10ADB6: widen (locale_facets.h:874)
+==236868==    by 0x10ADB6: widen (basic_ios.h:450)
+==236868==    by 0x10ADB6: endl<char, std::char_traits<char> > (ostream:600)
+==236868==    by 0x10ADB6: operator<< (ostream:113)
+==236868==    by 0x10ADB6: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BA58E5: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868== 
+==236868== This conflicts with a previous write of size 1 by thread #2
+==236868== Locks held: none
+==236868==    at 0x4934790: std::ctype<char>::_M_widen_init() const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x4995E27: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD9A: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Address 0x4a42738 is in the BSS segment of /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during read of size 1 at 0x4A42743 by thread #1
+==236868== Locks held: none
+==236868==    at 0x10ADC1: widen (locale_facets.h:875)
+==236868==    by 0x10ADC1: widen (basic_ios.h:450)
+==236868==    by 0x10ADC1: endl<char, std::char_traits<char> > (ostream:600)
+==236868==    by 0x10ADC1: operator<< (ostream:113)
+==236868==    by 0x10ADC1: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BA58E5: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868== 
+==236868== This conflicts with a previous write of size 2 by thread #2
+==236868== Locks held: none
+==236868==    at 0x49346DB: std::ctype<char>::_M_widen_init() const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x4995E27: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD9A: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Address 0x4a42743 is in the BSS segment of /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during read of size 8 at 0x10F058 by thread #1
+==236868== Locks held: none
+==236868==    at 0x49956E3: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10ADF9: operator<< <std::char_traits<char> > (ostream:570)
+==236868==    by 0x10ADF9: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:46)
+==236868==    by 0x4BA58E5: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868== 
+==236868== This conflicts with a previous write of size 8 by thread #4
+==236868== Locks held: none
+==236868==    at 0x4995795: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD85: operator<< <std::char_traits<char> > (ostream:570)
+==236868==    by 0x10AD85: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Address 0x10f058 is 24 bytes inside data symbol "_ZSt4cout@@GLIBCXX_3.4"
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during write of size 8 at 0x10F058 by thread #1
+==236868== Locks held: none
+==236868==    at 0x4995795: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10ADF9: operator<< <std::char_traits<char> > (ostream:570)
+==236868==    by 0x10ADF9: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:46)
+==236868==    by 0x4BA58E5: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868== 
+==236868== This conflicts with a previous write of size 8 by thread #4
+==236868== Locks held: none
+==236868==    at 0x4995795: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD85: operator<< <std::char_traits<char> > (ostream:570)
+==236868==    by 0x10AD85: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Address 0x10f058 is 24 bytes inside data symbol "_ZSt4cout@@GLIBCXX_3.4"
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during read of size 1 at 0x4A42738 by thread #1
+==236868== Locks held: none
+==236868==    at 0x10AE16: widen (locale_facets.h:874)
+==236868==    by 0x10AE16: widen (basic_ios.h:450)
+==236868==    by 0x10AE16: endl<char, std::char_traits<char> > (ostream:600)
+==236868==    by 0x10AE16: operator<< (ostream:113)
+==236868==    by 0x10AE16: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:46)
+==236868==    by 0x4BA58E5: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868== 
+==236868== This conflicts with a previous write of size 1 by thread #2
+==236868== Locks held: none
+==236868==    at 0x4934790: std::ctype<char>::_M_widen_init() const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x4995E27: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD9A: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Address 0x4a42738 is in the BSS segment of /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during read of size 1 at 0x4A42743 by thread #1
+==236868== Locks held: none
+==236868==    at 0x10AE22: widen (locale_facets.h:875)
+==236868==    by 0x10AE22: widen (basic_ios.h:450)
+==236868==    by 0x10AE22: endl<char, std::char_traits<char> > (ostream:600)
+==236868==    by 0x10AE22: operator<< (ostream:113)
+==236868==    by 0x10AE22: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:46)
+==236868==    by 0x4BA58E5: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868== 
+==236868== This conflicts with a previous write of size 2 by thread #2
+==236868== Locks held: none
+==236868==    at 0x49346DB: std::ctype<char>::_M_widen_init() const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x4995E27: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==236868==    by 0x10AD9A: test_combinations(std::vector<movie, std::allocator<movie> >&) [clone ._omp_fn.0] (exaustivo_omp.cpp:44)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Address 0x4a42743 is in the BSS segment of /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+==236868== 
+==236868== ---Thread-Announcement------------------------------------------
+==236868== 
+==236868== Thread #3 was created
+==236868==    at 0x4D0F122: clone (clone.S:71)
+==236868==    by 0x4DF12EB: create_thread (createthread.c:101)
+==236868==    by 0x4DF2E0F: pthread_create@@GLIBC_2.2.5 (pthread_create.c:817)
+==236868==    by 0x4842917: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4BADDEA: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BA58E0: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during write of size 4 at 0x4E281E0 by thread #1
+==236868== Locks held: none
+==236868==    at 0x4BB038A: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BA58E5: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868== 
+==236868== This conflicts with a previous read of size 4 by thread #3
+==236868== Locks held: none
+==236868==    at 0x4BB041F: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Address 0x4e281e0 is 192 bytes inside a block of size 2,208 alloc'd
+==236868==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4B9F24C: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAD7FB: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BA58C9: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868==  Block was alloc'd by thread #1
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during write of size 4 at 0x4E281A4 by thread #1
+==236868== Locks held: none
+==236868==    at 0x4BB03B5: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BA58E5: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868== 
+==236868== This conflicts with a previous read of size 4 by thread #3
+==236868== Locks held: none
+==236868==    at 0x4BB0414: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Address 0x4e281a4 is 132 bytes inside a block of size 2,208 alloc'd
+==236868==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4B9F24C: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAD7FB: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BA58C9: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868==  Block was alloc'd by thread #1
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during read of size 4 at 0x4E281A4 by thread #4
+==236868== Locks held: none
+==236868==    at 0x4BB02F3: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAD78D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868== 
+==236868== This conflicts with a previous write of size 4 by thread #1
+==236868== Locks held: none
+==236868==    at 0x4BB03B5: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BA58E5: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868==  Address 0x4e281a4 is 132 bytes inside a block of size 2,208 alloc'd
+==236868==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4B9F24C: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAD7FB: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BA58C9: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868==  Block was alloc'd by thread #1
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during read of size 4 at 0x4E281A4 by thread #4
+==236868== Locks held: none
+==236868==    at 0x4BB02F3: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAD799: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868== 
+==236868== This conflicts with a previous write of size 4 by thread #1
+==236868== Locks held: none
+==236868==    at 0x4BB03B5: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BA58E5: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868==  Address 0x4e281a4 is 132 bytes inside a block of size 2,208 alloc'd
+==236868==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4B9F24C: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAD7FB: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BA58C9: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868==  Block was alloc'd by thread #1
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during write of size 4 at 0x4E281E4 by thread #2
+==236868== Locks held: none
+==236868==    at 0x4BB0456: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAD799: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868== 
+==236868== This conflicts with a previous read of size 4 by thread #3
+==236868== Locks held: none
+==236868==    at 0x4BB044A: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAD799: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Address 0x4e281e4 is 196 bytes inside a block of size 2,208 alloc'd
+==236868==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4B9F24C: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAD7FB: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BA58C9: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868==  Block was alloc'd by thread #1
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during write of size 4 at 0x4E281E0 by thread #2
+==236868== Locks held: none
+==236868==    at 0x4BB038A: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAD799: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868== 
+==236868== This conflicts with a previous write of size 4 by thread #1
+==236868== Locks held: none
+==236868==    at 0x4BB038A: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BA58E5: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868==  Address 0x4e281e0 is 192 bytes inside a block of size 2,208 alloc'd
+==236868==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4B9F24C: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAD7FB: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BA58C9: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868==  Block was alloc'd by thread #1
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during write of size 4 at 0x4E28654 by thread #2
+==236868== Locks held: none
+==236868==    at 0x4BB038D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAD799: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868== 
+==236868== This conflicts with a previous write of size 4 by thread #1
+==236868== Locks held: none
+==236868==    at 0x4BB038D: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BA58E5: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868==  Address 0x4e28654 is 1,332 bytes inside a block of size 2,208 alloc'd
+==236868==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4B9F24C: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAD7FB: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BA58C9: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868==  Block was alloc'd by thread #1
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during write of size 4 at 0x4E281A4 by thread #2
+==236868== Locks held: none
+==236868==    at 0x4BB03B5: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAD799: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868== 
+==236868== This conflicts with a previous write of size 4 by thread #1
+==236868== Locks held: none
+==236868==    at 0x4BB03B5: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BA58E5: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868==  Address 0x4e281a4 is 132 bytes inside a block of size 2,208 alloc'd
+==236868==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4B9F24C: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAD7FB: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BA58C9: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868==  Block was alloc'd by thread #1
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during read of size 4 at 0x4E28064 by thread #4
+==236868== Locks held: none
+==236868==    at 0x4BB01E4: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAD767: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868== 
+==236868== This conflicts with a previous write of size 4 by thread #1
+==236868== Locks held: none
+==236868==    at 0x4BB01A4: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAE470: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BA58E0: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868==  Address 0x4e28064 is 68 bytes inside a block of size 192 alloc'd
+==236868==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4B9F24C: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAD9A0: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BA58C9: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868==  Block was alloc'd by thread #1
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during read of size 4 at 0x4E280A0 by thread #4
+==236868== Locks held: none
+==236868==    at 0x4BB01EF: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAD767: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868== 
+==236868== This conflicts with a previous write of size 4 by thread #1
+==236868== Locks held: none
+==236868==    at 0x4BB019B: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAE470: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BA58E0: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868==  Address 0x4e280a0 is 128 bytes inside a block of size 192 alloc'd
+==236868==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4B9F24C: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAD9A0: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BA58C9: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868==  Block was alloc'd by thread #1
+==236868== 
+==236868== ----------------------------------------------------------------
+==236868== 
+==236868== Possible data race during read of size 4 at 0x4E281A4 by thread #1
+==236868== Locks held: none
+==236868==    at 0x4BB02F3: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAED2C: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868== 
+==236868== This conflicts with a previous write of size 4 by thread #2
+==236868== Locks held: none
+==236868==    at 0x4BB03B5: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAD799: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4DF2608: start_thread (pthread_create.c:477)
+==236868==    by 0x4D0F132: clone (clone.S:95)
+==236868==  Address 0x4e281a4 is 132 bytes inside a block of size 2,208 alloc'd
+==236868==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==236868==    by 0x4B9F24C: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BAD7FB: ??? (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x4BA58C9: GOMP_parallel (in /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0)
+==236868==    by 0x10B47F: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:40)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868==  Block was alloc'd by thread #1
+==236868== 
+==236868== 
+==236868== Process terminating with default action of signal 11 (SIGSEGV)
+==236868==  Access not within mapped region at address 0x0
+==236868==    at 0x10B654: test_combinations(std::vector<movie, std::allocator<movie> >&) (exaustivo_omp.cpp:80)
+==236868==    by 0x10A52D: main (exaustivo_omp.cpp:102)
+==236868==  If you believe this happened as a result of a stack
+==236868==  overflow in your program's main thread (unlikely but
+==236868==  possible), you can try to increase the size of the
+==236868==  main thread stack using the --main-stacksize= flag.
+==236868==  The main thread stack size used in this run was 8388608.
+==236868== 
+==236868== Use --history-level=approx or =none to gain increased speed, at
+==236868== the cost of reduced accuracy of conflicting-access information
+==236868== For lists of detected and suppressed errors, rerun with: -s
+==236868== ERROR SUMMARY: 93 errors from 36 contexts (suppressed: 258 from 104)

@@ -2,7 +2,9 @@
 DFFLAGS = -Wall -O3 -g
 STDFLAG = -std=c++17
 CFLAGS = $(DFFLAGS)
-CC = g++-12
+CC = g++
+#g++-12
+#g++ -Wall -O3 -g file.cpp -o file
 
 #make main.cpp at guloso folder
 .PHONY: guloso
@@ -34,5 +36,5 @@ generator:
 
 .PHONY: clean
 clean:
-	rm -f *.o *.gch *.out guloso aleatorio gen
+	rm -f *.o *.gch *.out guloso aleatorio gen exaustivo exaustivo_omp
 	rm -rf generator/*.dSYM *.dSYM
