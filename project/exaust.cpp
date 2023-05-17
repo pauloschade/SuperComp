@@ -25,31 +25,56 @@ bool is_valid(vector<movie> &selected) {
 void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat)
 {
   // Criar a matriz de programação dinâmica
-  int mat[movies.size()+1][n_cat+1] = {0};
+  int N,M;
+  N = movies.size();
+  M = n_cat;
+  int dp[(movies.size()+1) * (n_cat+1)];
+
+  for(int i=0; i < (movies.size()+1) * (n_cat+1); i++) {
+    dp[i] = 0;
+  }
+
+  // for (int i =0; i <= movies.size()+1; i++) {
+  //   for (int j=0; j<= n_cat+1; j++) {
+  //     mat[i][j] = 0;
+  //   }
+  // }
+
+  int max_count = 0;
 
   // Preencher a matriz com as soluções para subproblemas menores
-  for (int i = 1; i <= movies.size(); i++) {
-    for (int j = 1; j <= n_cat; j++) {
+  for (int i = 1; i <= N; i++) {
+    for (int j = 1; j <= M; j++) {
       // Encontrar o número máximo de filmes que podem ser assistidos até o filme i e categoria j
-      int max_count = 0;
+      max_count = 0;
+      cout << endl;
       for (int k = 0; k < i; k++) {
-        if (movies[k].cat == j && movies[k].end <= movies[i].start && (mat[k*(n_cat+1)][j-1] + 1) <= lim_cats[j-1]) {
-          max_count = max(max_count, mat[k*(n_cat+1)][j-1] + 1);
+        cout << max_count << ' ';
+        if (movies[k].cat == j && movies[k].end <= movies[i].start && dp[(k*(M+1)) + j-1] + 1 <= lim_cats[j-1]) {
+          max_count = max(max_count, dp[(k*(M+1)) + j-1] + 1);
         } else {
-          max_count = max(max_count, mat[k*(n_cat+1)][j]);
+          max_count = max(max_count, dp[(k*(M+1)) + j]);
         }
       }
-      mat[i*(n_cat+1)][j] = max_count;
+      dp[(i*(M+1)) + j] = max_count;
     }
   }
 
+  cout << endl << endl;
+
   // Encontrar o número máximo de filmes que podem ser assistidos
-  int max_count = 0;
-  for (int j = 1; j <= n_cat; j++) {
-    max_count = max(max_count, mat[movies.size()*(n_cat+1)][j]);
+  for(int i = 0; i < (movies.size()+1) * (n_cat+1) ; i ++) {
+    if(i % (n_cat+1) == 0 && i != 0) cout << endl;
+    cout << dp[i] << ' ';
   }
 
-  cout << "max count" << max_count << endl;
+  cout << endl;
+  // int max_count = 0;
+  // for (int j = 1; j <= n_cat; j++) {
+  //   max_count = max(max_count, dp[(N*(M+1)) + j]);
+  // }
+
+  // cout << "max count " << max_count << endl;
            
 }
 
