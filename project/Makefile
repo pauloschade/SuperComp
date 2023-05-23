@@ -1,9 +1,9 @@
 #compile all files in helpers folder
 DFFLAGS = -Wall -O3 -g
 STDFLAG = -std=c++17
-CFLAGS = $(DFFLAGS)
-CC = g++
-#g++-12
+CFLAGS = $(DFFLAGS) $(STDFLAG)
+#CC = g++
+CC = g++-12
 #g++ -Wall -O3 -g file.cpp -o file
 
 #make main.cpp at guloso folder

@@ -15,46 +15,51 @@ bool has_slot(movie curr, movie prev) {
 }
 
 bool is_valid(vector<movie> &selected) {
-  for(int i = 0; i < selected.size() - 1; i++) {
+  for(int i = 0; i < selected.size() - 1; i++)
     if(!has_slot(selected[i + 1], selected[i])) return false;
+  return true;
+}
+
+bool check_limit(vector<movie> &selected, map<int, int> &lim_cats, int n_cat) {
+  map<int, int> cats_count;
+  for(auto& mov: selected) {
+    if(lim_cats[mov.cat] == 0) return false;
+    lim_cats[mov.cat] --;
   }
   return true;
 }
 
 //font:
 //https://stackoverflow.com/questions/43241174/javascript-generating-all-combinations-of-elements-in-a-single-array-in-pairs
-void test_combinations(vector<movie> &movies)
+void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat)
 {
   vector<vector<movie>> bests;
   const long long unsigned int slent = pow(2, min(int (movies.size()), 20));
   int n_threads= omp_get_max_threads();
-
   bests.resize(n_threads);
   //omp parallel for
 
   #pragma omp parallel
   {
     vector<movie> best;
-    #pragma omp critical
-    {
-      cout << "thread: " << omp_get_thread_num() << endl;
-      cout << slent << endl;
-    }
-
+    map<int, int> lim_cats_copy = lim_cats;
     #pragma omp for
     for (long long unsigned int i = 0; i < slent; i++) {
-      cout << "HEREE" << endl;
       vector<movie> temp;
+
       for (size_t j = 0; j < movies.size(); j++)
       {
+        //mascara para testar se o bit j esta ligado
+        //could be changed for biset
+        //same idea
         if ((i & int(pow(2, j)))) {
           temp.push_back(movies[j]);
         }
       }
-      if (temp.size() > 0 || temp.size() <= 24)
+      if (temp.size() > 0 && temp.size() <= 24)
       {
         sort(temp.begin(), temp.end(), [](auto& i, auto& j){return i.end < j.end;});
-        if(is_valid(temp)) {
+        if(is_valid(temp) && check_limit(temp, lim_cats_copy, n_cat)) {
           if (temp.size() > best.size()) {
             best = temp;
           }
@@ -67,19 +72,19 @@ void test_combinations(vector<movie> &movies)
     }
   }
 
-  // vector<movie> best;
-  // for (size_t i = 0; i < bests.size(); i++)
-  // {
-  //   if(bests[i].size() > best.size()) {
-  //     best = bests[i];
-  //   }
-  // }
+  vector<movie> best;
+  for (size_t i = 0; i < n_threads; i++) {
+    cout << "size: " << bests[i].size() << endl;
+    if(bests[i].size() > best.size()) {
+      best = bests[i];
+    }
+  }
 
-  // for (size_t i = 0; i < bests.size(); i++)
-  // {
-  //   cout << best[i].id << " ";
-  //   cout << endl;
-  // }
+  for (size_t i = 0; i < best.size(); i++) {
+    cout << best[i].id << " ";
+    cout << endl;
+  }
+
   return;             
 }
 
@@ -99,6 +104,6 @@ int main(int argc, char *argv[]) {
 
   read_movies_data(movies, n_mov);
 
-  test_combinations(movies);
+  test_combinations(movies, lim_cats, n_cat);
 
 }

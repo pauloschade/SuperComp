@@ -28,7 +28,7 @@ void test_combinations(vector<movie> movies)
   vector<movie> best;
 
   for (int i = 0; i < slent; i++) {
-    if(best.size() == 24) break;
+    //if(best.size() == 24) break;
     vector<movie> temp;
     for (int j = 0; j < movies.size(); j++)
     {
@@ -38,6 +38,7 @@ void test_combinations(vector<movie> movies)
         if(temp.size() > 24) break;
       }
     }
+    cout << endl;
     if (temp.size() > 0)
     {
       sort(temp.begin(), temp.end(), [](auto& i, auto& j){return i.end < j.end;});

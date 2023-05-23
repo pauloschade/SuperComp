@@ -34,12 +34,6 @@ void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat
     dp[i] = 0;
   }
 
-  // for (int i =0; i <= movies.size()+1; i++) {
-  //   for (int j=0; j<= n_cat+1; j++) {
-  //     mat[i][j] = 0;
-  //   }
-  // }
-
   int max_count = 0;
 
   // Preencher a matriz com as soluções para subproblemas menores
@@ -69,12 +63,6 @@ void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat
   }
 
   cout << endl;
-  // int max_count = 0;
-  // for (int j = 1; j <= n_cat; j++) {
-  //   max_count = max(max_count, dp[(N*(M+1)) + j]);
-  // }
-
-  // cout << "max count " << max_count << endl;
            
 }
 
