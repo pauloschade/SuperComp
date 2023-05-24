@@ -14,54 +14,52 @@ bool has_slot(movie curr, movie prev) {
 }
 
 bool is_valid(vector<movie> &selected) {
-  for(int i = 0; i < selected.size() - 1; i++) {
+  for(int i = 0; i < selected.size() - 1; i++)
     if(!has_slot(selected[i + 1], selected[i])) return false;
+  return true;
+}
+
+bool check_limit(vector<movie> &selected, map<int, int> lim_cats, int n_cat) {
+  map<int, int> cats_count;
+  for(auto& mov: selected) {
+    if(lim_cats[mov.cat] == 0) return false;
+    lim_cats[mov.cat] --;
   }
   return true;
 }
 
 //font:
 //https://stackoverflow.com/questions/43241174/javascript-generating-all-combinations-of-elements-in-a-single-array-in-pairs
-void test_combinations(vector<movie> movies)
-{
-  int slent = pow(2, movies.size());
+void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat) {
   vector<movie> best;
-
-  for (int i = 0; i < slent; i++) {
-    //if(best.size() == 24) break;
+  const long long unsigned int slent = pow(2, min(int (movies.size()), 50));
+  for (long long unsigned int i = 0; i < slent; i++) {
     vector<movie> temp;
-    for (int j = 0; j < movies.size(); j++)
-    {
-      if ((i & int(pow(2, j))))
-      {
+    for (size_t j = 0; j < movies.size(); j++) {
+      //mascara para testar se o bit j esta ligado
+      //could be changed for biset
+      //same idea
+      if ((i & int(pow(2, j)))) {
         temp.push_back(movies[j]);
-        if(temp.size() > 24) break;
       }
     }
-    cout << endl;
-    if (temp.size() > 0)
-    {
+    if (temp.size() > 0 && temp.size() <= 24) {
       sort(temp.begin(), temp.end(), [](auto& i, auto& j){return i.end < j.end;});
-      cout << "testing solution: " << endl;
-      if(is_valid(temp)) {
+      if(is_valid(temp) && check_limit(temp, lim_cats, n_cat)) {
         if (temp.size() > best.size()) {
           best = temp;
         }
       }
     }
-
-
   }
-  for (int i = 0; i < best.size(); i++)
-  {
+
+
+  for (size_t i = 0; i < best.size(); i++) {
     cout << best[i].id << " ";
     cout << endl;
   }
+
   return;             
-}
-
-double select_movies(int W, vector<movie> movies, vector<movie>& usados, vector<movie>& melhor){
-
 }
 
 int main(int argc, char *argv[]) {
@@ -80,26 +78,6 @@ int main(int argc, char *argv[]) {
 
   read_movies_data(movies, n_mov);
 
-  test_combinations(movies);
-
-  return 0;
-
-  sort(movies.begin(), movies.end(), [](auto& i, auto& j){return i.end < j.end;});
-
-  chrono::steady_clock::time_point begin = chrono::steady_clock::now();
-
-  //int screen_time = select_movies(movies, selected, lim_cats, filled_slots, n_cat, n_mov);
-
-  chrono::steady_clock::time_point end = chrono::steady_clock::now();
-
-  //cout << chrono::duration_cast<chrono::microseconds>(end - begin).count() << 'x' << screen_time << 'x' << selected.size();
-
-  if(argc > 1) return 0;
-
-  cout << endl;
-
-  sort(selected.begin(), selected.end(), [](auto& i, auto& j){return i.start < j.start;});
-
-  print_agenda(selected);
+  test_combinations(movies, lim_cats, n_cat);
 
 }

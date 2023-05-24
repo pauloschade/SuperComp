@@ -20,7 +20,7 @@ bool is_valid(vector<movie> &selected) {
   return true;
 }
 
-bool check_limit(vector<movie> &selected, map<int, int> &lim_cats, int n_cat) {
+bool check_limit(vector<movie> &selected, map<int, int> lim_cats, int n_cat) {
   map<int, int> cats_count;
   for(auto& mov: selected) {
     if(lim_cats[mov.cat] == 0) return false;
@@ -34,7 +34,7 @@ bool check_limit(vector<movie> &selected, map<int, int> &lim_cats, int n_cat) {
 void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat)
 {
   vector<vector<movie>> bests;
-  const long long unsigned int slent = pow(2, min(int (movies.size()), 20));
+  const long long unsigned int slent = pow(2, min(int (movies.size()), 50));
   int n_threads= omp_get_max_threads();
   bests.resize(n_threads);
   //omp parallel for
@@ -42,13 +42,11 @@ void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat
   #pragma omp parallel
   {
     vector<movie> best;
-    map<int, int> lim_cats_copy = lim_cats;
     #pragma omp for
     for (long long unsigned int i = 0; i < slent; i++) {
       vector<movie> temp;
 
-      for (size_t j = 0; j < movies.size(); j++)
-      {
+      for (size_t j = 0; j < movies.size(); j++) {
         //mascara para testar se o bit j esta ligado
         //could be changed for biset
         //same idea
@@ -56,10 +54,9 @@ void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat
           temp.push_back(movies[j]);
         }
       }
-      if (temp.size() > 0 && temp.size() <= 24)
-      {
+      if (temp.size() > 0 && temp.size() <= 24) {
         sort(temp.begin(), temp.end(), [](auto& i, auto& j){return i.end < j.end;});
-        if(is_valid(temp) && check_limit(temp, lim_cats_copy, n_cat)) {
+        if(is_valid(temp) && check_limit(temp, lim_cats, n_cat)) {
           if (temp.size() > best.size()) {
             best = temp;
           }

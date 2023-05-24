@@ -4,6 +4,7 @@ STDFLAG = -std=c++17
 CFLAGS = $(DFFLAGS) $(STDFLAG)
 #CC = g++
 CC = g++-12
+CCN = g++
 #g++ -Wall -O3 -g file.cpp -o file
 
 #make main.cpp at guloso folder
@@ -20,15 +21,14 @@ exaustivo: build
 	$(CC) $(CFLAGS) -o exaustivo exaustivo.cpp *.o
 
 
-.PHONY: exaust
+.PHONY: exaustivo_gpu
 exaust: build
-	$(CC) $(CFLAGS) -o exaust exaust.cpp *.o
+	$(CC) $(CFLAGS) -o exaustivo_gpu exaustivo_gpu.cpp *.o
 
 #make exaustivo_omp
 .PHONY: exaustivo_omp
 exaustivo_omp: build
 	$(CC) $(CFLAGS) -fopenmp -o exaustivo_omp exaustivo_omp.cpp *.o
-
 
 
 .PHONY: build
@@ -37,9 +37,9 @@ build:
 
 .PHONY: generator
 generator:
-	$(CC) $(CFLAGS) -o gen generator/generator.cpp
+	$(CCN) $(CFLAGS) -o gen generator/generator.cpp
 
 .PHONY: clean
 clean:
-	rm -f *.o *.gch *.out guloso aleatorio gen exaustivo exaustivo_omp
+	rm -f *.o *.gch *.out guloso aleatorio gen exaustivo exaustivo_omp exaustivo_gpu
 	rm -rf generator/*.dSYM *.dSYM
