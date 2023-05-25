@@ -29,6 +29,16 @@ bool check_limit(vector<movie> &selected, map<int, int> lim_cats, int n_cat) {
   return true;
 }
 
+chrono::steady_clock::time_point get_time() {
+  return chrono::steady_clock::now();
+}
+
+//function to get chrono interval in seconds
+double get_interval(chrono::steady_clock::time_point begin) {
+  chrono::steady_clock::time_point end = get_time();
+  return chrono::duration_cast<chrono::seconds>(end - begin).count();
+}
+
 //font:
 //https://stackoverflow.com/questions/43241174/javascript-generating-all-combinations-of-elements-in-a-single-array-in-pairs
 void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat)
@@ -38,6 +48,10 @@ void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat
   int n_threads= omp_get_max_threads();
   bests.resize(n_threads);
   //omp parallel for
+
+  vector<int> tested(n_threads, 0);
+  chrono::steady_clock::time_point begin = get_time();
+
 
   #pragma omp parallel
   {
@@ -52,6 +66,18 @@ void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat
         //same idea
         if ((i & int(pow(2, j)))) {
           temp.push_back(movies[j]);
+        }
+      }
+      tested[omp_get_thread_num()]++;
+      if(get_interval(begin) > 5) {
+        #pragma omp critical
+        {
+          int sum = 0;
+          for (size_t i = 0; i < n_threads; i++) {
+            sum += tested[i];
+          }
+          cout << "tested: " << sum << endl;
+          exit(0);
         }
       }
       if (temp.size() > 0 && temp.size() <= 24) {

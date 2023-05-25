@@ -28,9 +28,21 @@ bool check_limit(vector<movie> &selected, map<int, int> lim_cats, int n_cat) {
   return true;
 }
 
+
+chrono::steady_clock::time_point get_time() {
+  return chrono::steady_clock::now();
+}
+
+//function to get chrono interval in seconds
+double get_interval(chrono::steady_clock::time_point begin) {
+  chrono::steady_clock::time_point end = get_time();
+  return chrono::duration_cast<chrono::seconds>(end - begin).count();
+}
 //font:
 //https://stackoverflow.com/questions/43241174/javascript-generating-all-combinations-of-elements-in-a-single-array-in-pairs
 void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat) {
+  int tested = 0;
+  chrono::steady_clock::time_point begin = get_time();
   vector<movie> best;
   const long long unsigned int slent = pow(2, min(int (movies.size()), 50));
   for (long long unsigned int i = 0; i < slent; i++) {
@@ -42,6 +54,11 @@ void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat
       if ((i & int(pow(2, j)))) {
         temp.push_back(movies[j]);
       }
+    }
+    tested++;
+    if(get_interval(begin) > 5) {
+      cout << " tested samples: " << tested << endl;
+      exit(0);
     }
     if (temp.size() > 0 && temp.size() <= 24) {
       sort(temp.begin(), temp.end(), [](auto& i, auto& j){return i.end < j.end;});

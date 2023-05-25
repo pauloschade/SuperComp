@@ -20,10 +20,22 @@ bool is_valid(vector<movie> &selected) {
   return true;
 }
 
+chrono::steady_clock::time_point get_time() {
+  return chrono::steady_clock::now();
+}
+
+//function to get chrono interval in seconds
+double get_interval(chrono::steady_clock::time_point begin) {
+  chrono::steady_clock::time_point end = get_time();
+  return chrono::duration_cast<chrono::seconds>(end - begin).count();
+}
+
 //font:
 //https://stackoverflow.com/questions/43241174/javascript-generating-all-combinations-of-elements-in-a-single-array-in-pairs
 void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat)
 {
+  int tested = 0;
+  chrono::steady_clock::time_point begin = get_time();
   // Criar a matriz de programação dinâmica
   int N,M;
   N = movies.size();
