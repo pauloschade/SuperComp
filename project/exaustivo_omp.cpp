@@ -39,7 +39,7 @@ double get_interval(chrono::steady_clock::time_point begin) {
   return chrono::duration_cast<chrono::seconds>(end - begin).count();
 }
 
-//font:
+//ref:
 //https://stackoverflow.com/questions/43241174/javascript-generating-all-combinations-of-elements-in-a-single-array-in-pairs
 void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat)
 {
