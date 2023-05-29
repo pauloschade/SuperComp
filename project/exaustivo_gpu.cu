@@ -1,5 +1,6 @@
 #include "helpers/helpers.h"
 #include <thrust/host_vector.h>
+#include <thrust/device_vector.h>
 #include <thrust/functional.h>
 #include <thrust/transform.h>
 #include <iostream>
@@ -31,21 +32,31 @@ void fill_slot(bool filled_slots[], movie curr) {
 struct functor 
 {
    int mov_count;
-   int *movies;
-   functor(int _mov_count, int *_movies) : mov_count(_mov_count), movies(_movies) {};
-   __device__ 
-   void operator() (const int selection_it)
+   movie *movies;
+   functor(int _mov_count, movie *_movies) : mov_count(_mov_count), movies(_movies) {};
+   __device__
+   int operator() (int selection_it)
    {
       bool slots[30];
+      for(int h = 0; h < 30; h++) {
+        slots[h] = false;
+      } 
+
       int added = 0;
       for(int i = 0; i < mov_count; i++)
       {
           if(added > 24) return -1;
           if(selection_it & (1 << i))
           {
-            if(!hasSlot(movies[i], slots)) return -1;
-            fill_slot(movies[i], slots);
-            added++;
+             if(movies[i].end == movies[i].start) return -1;
+              for(int j = movies[i].start; j < movies[i].end; j++) {
+                if(slots[j]) return -1;
+              }
+              for(int j = movies[i].start; j < movies[i].end; j++) {
+                slots[j] = true;
+              }
+              // fill_slot(slots, movies[i]);
+              added++;
           }
       }
       return added;
@@ -77,20 +88,20 @@ void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat
 
   thrust::device_vector<movie> vgpu(movies.size());
 
-  thrust::device_vector<int> mov_count(movies.size() ** 2);
+  thrust::device_vector<int> mov_count(pow(movies.size(), 2));
 
   vgpu = movies;
   
   thrust::counting_iterator<int> comb(0);
 
-  thrust::transform(comb.begin(), comb.end(), mov_count.begin(), functor(movies.size(), thrust::raw_pointer_cast(vgpu.data())));
+  thrust::transform(comb, comb +  pow(movies.size(), 2), mov_count.begin(), functor(movies.size(), thrust::raw_pointer_cast(vgpu.data())));
 
   //get max element of mov_count
   thrust::device_vector<int>::iterator iter = thrust::max_element(mov_count.begin(), mov_count.end());
 
   int max = *iter;
 
-  cout << "MAXXXXX" << max << endl;
+  cout << "MAXXXXX: " << max << endl;
 
 }
 
