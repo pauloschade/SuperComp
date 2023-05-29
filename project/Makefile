@@ -5,6 +5,8 @@ CFLAGS = $(DFFLAGS) $(STDFLAG)
 #CC = g++
 CC = g++-12
 CCN = g++
+
+CGPU = nvcc -arch=sm_70 -std=c++14
 #g++ -Wall -O3 -g file.cpp -o file
 
 #make main.cpp at guloso folder
@@ -29,6 +31,10 @@ exaust: build
 .PHONY: exaustivo_omp
 exaustivo_omp: build
 	$(CC) $(CFLAGS) -fopenmp -o exaustivo_omp exaustivo_omp.cpp *.o
+
+.PHONY: exaustivo_gpu
+exaustivo_gpu: build
+	$(CGPU) -o exaustivo_gpu exaustivo_gpu.cu *.o
 
 
 .PHONY: build
