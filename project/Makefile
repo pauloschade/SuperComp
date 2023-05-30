@@ -3,8 +3,8 @@ DFFLAGS = -Wall -O3 -g
 STDFLAG = -std=c++17
 CFLAGS = $(DFFLAGS) $(STDFLAG)
 #CC = g++
-CC = g++-12
-CCN = g++
+CCN = g++-12
+CC = g++
 
 CGPU = nvcc -arch=sm_70 -std=c++14
 #g++ -Wall -O3 -g file.cpp -o file

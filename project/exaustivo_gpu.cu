@@ -3,6 +3,8 @@
 #include <thrust/device_vector.h>
 #include <thrust/functional.h>
 #include <thrust/transform.h>
+#include <thrust/fill.h>
+#include <thrust/copy.h>
 #include <iostream>
 #include <cassert>
 #include <random>
@@ -11,25 +13,45 @@
 
 using namespace std;
 
+struct mov_selection
+{
+  int mov_count;
+  int n_cat;
+  int *lim_cats;
+  movie *movies;
+
+  mov_selection()
+
+  /* data */
+};
+
+
 struct functor 
 {
    int mov_count;
    int n_cat;
    int *lim_cats;
    movie *movies;
-   functor(int _mov_count, movie *_movies, int _n_cat, int *_lim_cats) : mov_count(_mov_count), movies(_movies), n_cat(_n_cat), lim_cats(lim_cats) {};
+   functor(int _mov_count, movie *_movies, int _n_cat ,int *_lim_cats) : mov_count(_mov_count), movies(_movies), n_cat(_n_cat) ,lim_cats(_lim_cats) {};
    __device__
    int operator() (int selection_it)
    {
-      bool slots[30];
-      for(int h = 0; h < 30; h++) {
-        slots[h] = false;
-      }
+          
+      // bool slots[30];
+      // for(int h = 0; h < 30; h++) {
+      //   slots[h] = false;
+      // }
 
-      int lim_cats_cp[n_cat];
-      for(int h = 0; h < n_cat; h++) {
-        lim_cats_cp[h+1] = lim_cats[h+1];
-      }
+      // int lim_cats_cp[100];
+      // for(int i = 0; i < 30; i++) lim_cats_cp[i] = 0;
+      // for(int h = 0; h < n_cat; h++) {
+      //   lim_cats_cp[h] = lim_cats[h];
+      // }
+      
+      thrust::device_vector<bool> slots(30);
+      thrust::fill(slots.begin(), slots.end(), false);
+      thrust::device_vector<int> lim_cats_tmp(n_cat+1);
+      thrust::copy(lim_cats_tmp.begin(), lim_cats_tmp.end(), lim_cats);
 
       int added = 0;
       for(int i = 0; i < mov_count; i++)
@@ -39,14 +61,15 @@ struct functor
           {
               if(movies[i].end == movies[i].start) {
                 if(slots[movies[i].start]) return -1;
-                else filled_slots[movies[i].start] = true;
+                else slots[movies[i].start] = true;
               } 
               else {
                 for(int j = movies[i].start; j < movies[i].end; j++) {
                   if(slots[j]) return -1;
-                  else filled_slots[j] = true;
+                  else slots[j] = true;
                 }
               }
+              //cout << movies[i].cat << endl;
               if(lim_cats_cp[movies[i].cat] == 0) return -1;
               lim_cats_cp[movies[i].cat] --;
               added++;
@@ -77,24 +100,19 @@ double get_interval(chrono::steady_clock::time_point begin) {
 }
 //ref:
 //https://stackoverflow.com/questions/43241174/javascript-generating-all-combinations-of-elements-in-a-single-array-in-pairs
-void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat) {
+void test_combinations(vector<movie> &movies, vector<int> &lim_cats, int n_cat) {
 
-  int lim_cats_cp[n_cat];
-  for(int h = 0; h < n_cat; h++) {
-    lim_cats_cp[h+1] = lim_cats[h+1];
-  }
+  thrust::device_vector<int> cats_lim_gpu(lim_cats);
+  //cats_lim_gpu = lim_cats;
 
-  thrust::device_vector<int> cats_lim_gpu(n_cat);
-  cats_lim_gpu = lim_cats_cp;
-
-  thrust::device_vector<movie> mov_gpu(movies.size());
-  mov_gpu = movies;
+  thrust::device_vector<movie> mov_gpu(movies);
+  //mov_gpu = movies;
 
   thrust::device_vector<int> mov_count(pow(movies.size(), 2));
   
   thrust::counting_iterator<int> comb(0);
 
-  thrust::transform(comb, comb +  pow(movies.size(), 2), mov_count.begin(), functor(movies.size(), thrust::raw_pointer_cast(mov_gpu.data()), n_cat, thrust::raw_pointer_cast(cats_lim_gpu.data())));
+  thrust::transform(comb, comb + pow(movies.size(), 2), mov_count.begin(), functor(movies.size(), thrust::raw_pointer_cast(mov_gpu.data()), n_cat ,thrust::raw_pointer_cast(cats_lim_gpu.data())));
 
   //get max element of mov_count
   thrust::device_vector<int>::iterator iter = thrust::max_element(mov_count.begin(), mov_count.end());
@@ -108,10 +126,8 @@ void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat
 int main(int argc, char *argv[]) {
   int n_mov, n_cat;
   // int id, n, w, weigth, val;
-
-  map<int, bool> filled_slots;
-  map<int, int> lim_cats;
   vector<movie> movies, selected;
+  vector<int> lim_cats;
 
   cin >> n_mov >> n_cat;
   
@@ -119,7 +135,15 @@ int main(int argc, char *argv[]) {
 
   read_cats_limit(lim_cats, n_cat);
 
+  for(int i = 0; i<=n_cat; i++) {
+    cout << lim_cats[i] << ' ';
+  }
+
+  cout << endl;
+
   read_movies_data(movies, n_mov);
+
+  for(int i=0; i < movies.size(); i++) cout << movies[i].cat << endl;
 
   test_combinations(movies, lim_cats, n_cat);
 

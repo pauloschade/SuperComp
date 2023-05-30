@@ -44,6 +44,16 @@ void read_cats_limit(std::map<int, int> &lim_cats, int n_cat) {
   }
 }
 
+void read_cats_limit(std::vector<int> &lim_cats, int n_cat) {
+  lim_cats.push_back(0);
+  for(int i=0; i<n_cat; i++) {
+    int val;
+    std::cin >> val;
+    lim_cats.push_back(val);
+  }
+}
+
+
 void read_movies_data(std::vector<movie> &movies, int n_mov) {
   for(int id = 0; id < n_mov; id++) {
     movie new_movie;
