@@ -11,24 +11,6 @@
 
 using namespace std;
 
-bool hasSlot(bool filled_slots[], movie curr) {
-  if(curr.end == curr.start) return !filled_slots[curr.start];
-  for(int i = curr.start; i < curr.end; i++) {
-    if(filled_slots[i]) return false;
-  }
-  return true;
-}
-
-void fill_slot(bool filled_slots[], movie curr) {
-  if(curr.end == curr.start) {
-    filled_slots[curr.start] = true;
-    return;
-  }
-  for(int i = curr.start; i < curr.end; i++) {
-    filled_slots[i] = true;
-  }
-}
-
 struct functor 
 {
    int mov_count;

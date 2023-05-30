@@ -6,24 +6,46 @@
 
 using namespace std;
 
-bool has_slot(movie curr, movie prev) {
-  return curr.start >= prev.end;
-}
 
-bool is_valid(vector<movie> &selected) {
-  for(int i = 0; i < selected.size() - 1; i++)
-    if(!has_slot(selected[i + 1], selected[i])) return false;
-  return true;
-}
+// bool has_slot(movie curr, movie prev) {
+//   return curr.start >= prev.end;
+// }
 
-bool check_limit(vector<movie> &selected, map<int, int> lim_cats, int n_cat) {
-  map<int, int> cats_count;
-  for(auto& mov: selected) {
-    if(lim_cats[mov.cat] == 0) return false;
-    lim_cats[mov.cat] --;
+// bool is_valid(vector<movie> &selected) {
+//   for(int i = 0; i < selected.size() - 1; i++)
+//     if(!has_slot(selected[i + 1], selected[i])) return false;
+//   return true;
+// }
+
+bool has_slot(bool *filled_slots, movie curr) {
+  for(int i = curr.start; i < curr.end; i++) {
+    if(filled_slots[i]) return false;
   }
   return true;
 }
+
+void fill_slot(bool *filled_slots, movie curr) {
+  for(int i = curr.start; i < curr.end; i++) {
+    filled_slots[i] = true;
+  }
+}
+
+bool check_limit(movie mov, int *lim_cats) {
+  if(lim_cats[mov.cat] == 0) return false;
+  lim_cats[mov.cat] --;
+  return true;
+}
+
+// bool check_limit(vector<movie> &selected, map<int, int> lim_cats, int n_cat) {
+//   map<int, int> cats_count;
+//   for(auto& mov: selected) {
+//     if(lim_cats[mov.cat] == 0) return false;
+//     lim_cats[mov.cat] --;
+//   }
+//   return true;
+// }
+
+
 
 
 chrono::steady_clock::time_point get_time() {
@@ -40,38 +62,54 @@ double get_interval(chrono::steady_clock::time_point begin) {
 void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat) {
   int tested = 0;
   chrono::steady_clock::time_point begin = get_time();
-  vector<movie> best;
+
+  // vector<movie> best;
   const long long unsigned int slent = pow(2, min(int (movies.size()), 50));
+  int best = 0;
   for (long long unsigned int i = 0; i < slent; i++) {
-    vector<movie> temp;
+    bool slots[30];
+    for(int h = 0; h < 30; h++) {
+      slots[h] = false;
+    }
+
+    int lim_cats_cp[n_cat];
+    for(int h = 0; h < n_cat; h++) {
+      lim_cats_cp[h+1] = lim_cats[h+1];
+    }
+
+    int added = 0;
     for (size_t j = 0; j < movies.size(); j++) {
       //mascara para testar se o bit j esta ligado
       //could be changed for biset
       //same idea
+      if(added > 24 || added < 0) continue;
       if ((i & int(pow(2, j)))) {
-        temp.push_back(movies[j]);
+        if(!has_slot(slots, movies[j]) || !check_limit(movies[j], lim_cats_cp)) {
+          added = -1;
+          continue;
+        }
+        fill_slot(slots, movies[j]);
+        added++;
       }
     }
     tested++;
-    if(get_interval(begin) > 5) {
-      cout << " tested samples: " << tested << endl;
-      exit(0);
-    }
-    if (temp.size() > 0 && temp.size() <= 24) {
-      sort(temp.begin(), temp.end(), [](auto& i, auto& j){return i.end < j.end;});
-      if(is_valid(temp) && check_limit(temp, lim_cats, n_cat)) {
-        if (temp.size() > best.size()) {
-          best = temp;
-        }
+    if(added <= 24 && added > 0) {
+      if(added > best) {
+        best = added;
       }
     }
+    // if (temp.size() > 0 && temp.size() <= 24) {
+    //   sort(temp.begin(), temp.end(), [](auto& i, auto& j){return i.end < j.end;});
+    //   if(is_valid(temp) && check_limit(temp, lim_cats, n_cat)) {
+    //     if (temp.size() > best.size()) {
+    //       best = temp;
+    //     }
+    //   }
+    // }
   }
 
-
-  for (size_t i = 0; i < best.size(); i++) {
-    cout << best[i].id << " ";
-    cout << endl;
-  }
+  cout << "most watched: " << best << endl;
+  cout << "\r" << tested << " / " << slent << " - " << get_interval(begin) << "s" << flush;
 
   return;             
 }
