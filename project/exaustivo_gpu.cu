@@ -19,9 +19,10 @@ struct mov_selection
   int mov_count;
   int n_cat;
   int *lim_cats;
-  movie *movie;
+  bool *slots;
+  movie *movies;
 
-  mov_selection(int _selection_it ,int _mov_count, movie *_movies, int _n_cat ,int *_lim_cats) : selection_it(_selection_it), mov_count(_mov_count), movies(_movies), n_cat(_n_cat) ,lim_cats(_lim_cats) {};
+  mov_selection(int _selection_it ,int _mov_count, movie *_movies, int _n_cat ,int *_lim_cats, bool *_slots) : selection_it(_selection_it), mov_count(_mov_count), movies(_movies), n_cat(_n_cat) ,lim_cats(_lim_cats), slots(_slots) {};
 
   __device__
   int operator() (int i)
@@ -39,8 +40,8 @@ struct mov_selection
           }
         }
         //cout << movies[i].cat << endl;
-        if(lim_cats_cp[movies[i].cat] == 0) return -1;
-        lim_cats_cp[movies[i].cat] --;
+        if(lim_cats[movies[i].cat] == 0) return -1;
+        lim_cats[movies[i].cat] --;
         return 1;
     }
     return 0;
@@ -56,44 +57,65 @@ struct functor
    int n_cat;
    int *lim_cats;
    movie *movies;
-   functor(int _mov_count, movie *_movies, int _n_cat ,int *_lim_cats) : mov_count(_mov_count), movies(_movies), n_cat(_n_cat) ,lim_cats(_lim_cats) {};
-   __device__
+
+  //  bool *slots;
+  //  int *lim_cats_tmp;
+  //  int *counting_it;
+
+   functor(int _mov_count, movie *_movies, int _n_cat ,int *_lim_cats) : mov_count(_mov_count), movies(_movies), n_cat(_n_cat) ,lim_cats(_lim_cats) {
+      // thrust::device_vector<bool> _slots(30);
+      // thrust::fill(_slots.begin(), _slots.end(), false);
+      // thrust::device_vector<int> _lim_cats_tmp(_n_cat+1);
+      // thrust::copy(_lim_cats_tmp.begin(), _lim_cats_tmp.end(), _lim_cats);
+
+      // thrust::counting_iterator<int> _counting_it(0);
+
+
+      // slots = thrust::raw_pointer_cast(_slots.data());
+      // lim_cats_tmp = thrust::raw_pointer_cast(_lim_cats_tmp.data());
+   };
+   __device__ __host__
    int operator() (int selection_it)
    {  
-      thrust::device_vector<bool> slots(30);
-      thrust::fill(slots.begin(), slots.end(), false);
-      thrust::device_vector<int> lim_cats_tmp(n_cat+1);
-      thrust::copy(lim_cats_tmp.begin(), lim_cats_tmp.end(), lim_cats);
+      // thrust::counting_iterator<int> comb(0);
 
-      thrust::counting_iterator<int> comb(0);
+      // int added = thrust::transform_reduce(comb, comb + mov_count, mov_selection(selection_it, mov_count, movies, n_cat, lim_cats_tmp, slots), 0, thrust::plus<int>());
 
-      int added = thrust::transform_reduce(comb, comb + mov_count, mov_selection(selection_it, mov_count, movies, n_cat, thrust::raw_pointer_cast(lim_cats_tmp.data())), 0, thrust::plus<int>());
+      // return added;
 
+      bool slots[30];
+      for(int h = 0; h < 30; h++) {
+        slots[h] = false;
+      } 
+
+      int lim_cats_cp[30];
+      for(int h = 0; h < n_cat; h++) {
+        lim_cats_cp[h] = lim_cats[h];
+      }
+
+      int added = 0;
+      for(int i = 0; i < mov_count; i++)
+      {
+          if(added > 24) return -1;
+          if(selection_it & (1 << i))
+          {
+              if(movies[i].end == movies[i].start) {
+                if(slots[movies[i].start]) return -1;
+                slots[movies[i].start] = true;
+              } 
+              else {
+                for(int j = movies[i].start; j < movies[i].end; j++) {
+                  if(slots[j]) return -1;
+                  slots[j] = true;
+                }
+              }
+              //cout << movies[i].cat << endl;
+              if(lim_cats_cp[movies[i].cat] == 0) return -1;
+              lim_cats_cp[movies[i].cat] --;
+              added++;
+          }
+      }
       return added;
-
-      // int added = 0;
-      // for(int i = 0; i < mov_count; i++)
-      // {
-      //     if(added > 24) return -1;
-      //     if(selection_it & (1 << i))
-      //     {
-      //         if(movies[i].end == movies[i].start) {
-      //           if(slots[movies[i].start]) return -1;
-      //           else slots[movies[i].start] = true;
-      //         } 
-      //         else {
-      //           for(int j = movies[i].start; j < movies[i].end; j++) {
-      //             if(slots[j]) return -1;
-      //             else slots[j] = true;
-      //           }
-      //         }
-      //         //cout << movies[i].cat << endl;
-      //         if(lim_cats_cp[movies[i].cat] == 0) return -1;
-      //         lim_cats_cp[movies[i].cat] --;
-      //         added++;
-      //     }
-      // }
-      //return added;
    }
 };
 
@@ -137,7 +159,7 @@ void test_combinations(vector<movie> &movies, vector<int> &lim_cats, int n_cat) 
 
   int max = *iter;
 
-  cout << "MAXXXXX: " << max << endl;
+  cout << "MAX: " << max << endl;
 
 }
 
@@ -153,15 +175,15 @@ int main(int argc, char *argv[]) {
 
   read_cats_limit(lim_cats, n_cat);
 
-  for(int i = 0; i<=n_cat; i++) {
-    cout << lim_cats[i] << ' ';
-  }
+  // for(int i = 0; i<=n_cat; i++) {
+  //   cout << lim_cats[i] << ' ';
+  // }
 
   cout << endl;
 
   read_movies_data(movies, n_mov);
 
-  for(int i=0; i < movies.size(); i++) cout << movies[i].cat << endl;
+  // for(int i=0; i < movies.size(); i++) cout << movies[i].cat << endl;
 
   test_combinations(movies, lim_cats, n_cat);
 
