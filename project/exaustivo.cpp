@@ -18,16 +18,16 @@ using namespace std;
 // }
 
 bool has_slot(bool *filled_slots, movie curr) {
-  for(int i = curr.start; i < curr.end; i++) {
-    if(filled_slots[i]) return false;
+  if(curr.end == curr.start) {
+    if(filled_slots[curr.start]) return false;
+    else filled_slots[curr.start] = true;
+    return true;
+  } 
+  for(int j = curr.start; j < curr.end; j++) {
+    if(filled_slots[j]) return false;
+    else filled_slots[j] = true;
   }
   return true;
-}
-
-void fill_slot(bool *filled_slots, movie curr) {
-  for(int i = curr.start; i < curr.end; i++) {
-    filled_slots[i] = true;
-  }
 }
 
 bool check_limit(movie mov, int *lim_cats) {
@@ -88,7 +88,6 @@ void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat
           added = -1;
           continue;
         }
-        fill_slot(slots, movies[j]);
         added++;
       }
     }
