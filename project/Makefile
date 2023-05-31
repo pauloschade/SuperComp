@@ -18,11 +18,6 @@ guloso: build
 aleatorio: build
 	$(CC) $(CFLAGS) -o aleatorio aleatorio.cpp *.o
 
-.PHONY: exaustivo
-exaustivo: build
-	$(CC) $(CFLAGS) -o exaustivo exaustivo.cpp *.o
-
-
 .PHONY: exaustivo_gpu
 exaust: build
 	$(CC) $(CFLAGS) -o exaustivo_gpu exaustivo_gpu.cpp *.o

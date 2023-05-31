@@ -13,42 +13,42 @@
 
 using namespace std;
 
-struct mov_selection
-{
-  int selection_it;
-  int mov_count;
-  int n_cat;
-  int *lim_cats;
-  bool *slots;
-  movie *movies;
+// struct mov_selection
+// {
+//   int selection_it;
+//   int mov_count;
+//   int n_cat;
+//   int *lim_cats;
+//   bool *slots;
+//   movie *movies;
 
-  mov_selection(int _selection_it ,int _mov_count, movie *_movies, int _n_cat ,int *_lim_cats, bool *_slots) : selection_it(_selection_it), mov_count(_mov_count), movies(_movies), n_cat(_n_cat) ,lim_cats(_lim_cats), slots(_slots) {};
+//   mov_selection(int _selection_it ,int _mov_count, movie *_movies, int _n_cat ,int *_lim_cats, bool *_slots) : selection_it(_selection_it), mov_count(_mov_count), movies(_movies), n_cat(_n_cat) ,lim_cats(_lim_cats), slots(_slots) {};
 
-  __device__
-  int operator() (int i)
-  {
-    if(selection_it & (1 << i))
-    {
-        if(movies[i].end == movies[i].start) {
-          if(slots[movies[i].start]) return -1000;
-          else slots[movies[i].start] = true;
-        } 
-        else {
-          for(int j = movies[i].start; j < movies[i].end; j++) {
-            if(slots[j]) return -1000;
-            else slots[j] = true;
-          }
-        }
-        //cout << movies[i].cat << endl;
-        if(lim_cats[movies[i].cat] == 0) return -1;
-        lim_cats[movies[i].cat] --;
-        return 1;
-    }
-    return 0;
-  }
+//   __device__
+//   int operator() (int i)
+//   {
+//     if(selection_it & (1 << i))
+//     {
+//         if(movies[i].end == movies[i].start) {
+//           if(slots[movies[i].start]) return -1000;
+//           else slots[movies[i].start] = true;
+//         } 
+//         else {
+//           for(int j = movies[i].start; j < movies[i].end; j++) {
+//             if(slots[j]) return -1000;
+//             else slots[j] = true;
+//           }
+//         }
+//         //cout << movies[i].cat << endl;
+//         if(lim_cats[movies[i].cat] == 0) return -1;
+//         lim_cats[movies[i].cat] --;
+//         return 1;
+//     }
+//     return 0;
+//   }
 
-  /* data */
-};
+//   /* data */
+// };
 
 
 struct functor 
@@ -86,10 +86,10 @@ struct functor
       bool slots[30];
       for(int h = 0; h < 30; h++) {
         slots[h] = false;
-      } 
+      }
 
       int lim_cats_cp[30];
-      for(int h = 0; h < n_cat; h++) {
+      for(int h = 0; h <= n_cat; h++) {
         lim_cats_cp[h] = lim_cats[h];
       }
 
@@ -128,38 +128,38 @@ struct functor
 //   return true;
 // }
 
-
-chrono::steady_clock::time_point get_time() {
-  return chrono::steady_clock::now();
-}
-
-//function to get chrono interval in seconds
-double get_interval(chrono::steady_clock::time_point begin) {
-  chrono::steady_clock::time_point end = get_time();
-  return chrono::duration_cast<chrono::seconds>(end - begin).count();
-}
 //ref:
 //https://stackoverflow.com/questions/43241174/javascript-generating-all-combinations-of-elements-in-a-single-array-in-pairs
 void test_combinations(vector<movie> &movies, vector<int> &lim_cats, int n_cat) {
-
+  chrono::steady_clock::time_point begin = get_time();
+  
   thrust::device_vector<int> cats_lim_gpu(lim_cats);
   //cats_lim_gpu = lim_cats;
 
   thrust::device_vector<movie> mov_gpu(movies);
   //mov_gpu = movies;
 
-  thrust::device_vector<int> mov_count(pow(movies.size(), 2));
+  thrust::device_vector<int> mov_count(pow(2, movies.size()));
   
   thrust::counting_iterator<int> comb(0);
 
-  thrust::transform(comb, comb + pow(movies.size(), 2), mov_count.begin(), functor(movies.size(), thrust::raw_pointer_cast(mov_gpu.data()), n_cat ,thrust::raw_pointer_cast(cats_lim_gpu.data())));
+
+
+  //for(int i = 0; i < pow(2, movies.size()); i)
+  // chrono::steady_clock::time_point begin = get_time();
+  thrust::transform(comb, comb + pow(2, movies.size()), mov_count.begin(), functor(movies.size(), thrust::raw_pointer_cast(mov_gpu.data()), n_cat ,thrust::raw_pointer_cast(cats_lim_gpu.data())));
 
   //get max element of mov_count
-  thrust::device_vector<int>::iterator iter = thrust::max_element(mov_count.begin(), mov_count.end());
+  int best = *thrust::max_element(mov_count.begin(), mov_count.end());
+  
+  // int soma=thrust::reduce(mov_count.begin(), mov_count.end(), (int) 0, thrust::plus<int>());
 
-  int max = *iter;
+  cout << "best: " << best << endl;
+  cout << "time: " << get_interval(begin) << endl;
 
-  cout << "MAX: " << max << endl;
+  // cout << "size: " <<  mov_count.size() << endl;
+
+  // cout << "ssize: " << pow(2, movies.size()) << endl;
 
 }
 

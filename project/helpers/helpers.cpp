@@ -68,3 +68,13 @@ void set_cats_limit(std::map<int, int> &lim_cats, int mov_cat, int &cats_n) {
   lim_cats[mov_cat] --;
   if(lim_cats[mov_cat] == 0) cats_n --;
 }
+
+std::chrono::steady_clock::time_point get_time() {
+  return std::chrono::steady_clock::now();
+}
+
+//function to get chrono interval in seconds
+double get_interval(std::chrono::steady_clock::time_point begin) {
+  std::chrono::steady_clock::time_point end = get_time();
+  return std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count();
+}
