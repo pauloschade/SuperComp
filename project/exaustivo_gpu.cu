@@ -151,11 +151,12 @@ void test_combinations(vector<movie> &movies, vector<int> &lim_cats, int n_cat) 
 
   //get max element of mov_count
   int best = *thrust::max_element(mov_count.begin(), mov_count.end());
+
+  chrono::steady_clock::time_point end = get_time();
   
   // int soma=thrust::reduce(mov_count.begin(), mov_count.end(), (int) 0, thrust::plus<int>());
 
-  cout << "best: " << best << endl;
-  cout << "time: " << get_interval(begin) << endl;
+  cout << get_interval(begin, end) << 'x' << 0 << 'x' << best;
 
   // cout << "size: " <<  mov_count.size() << endl;
 
@@ -178,8 +179,6 @@ int main(int argc, char *argv[]) {
   // for(int i = 0; i<=n_cat; i++) {
   //   cout << lim_cats[i] << ' ';
   // }
-
-  cout << endl;
 
   read_movies_data(movies, n_mov);
 

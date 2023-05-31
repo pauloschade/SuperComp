@@ -74,7 +74,6 @@ std::chrono::steady_clock::time_point get_time() {
 }
 
 //function to get chrono interval in seconds
-double get_interval(std::chrono::steady_clock::time_point begin) {
-  std::chrono::steady_clock::time_point end = get_time();
-  return std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count();
+double get_interval(std::chrono::steady_clock::time_point begin, std::chrono::steady_clock::time_point end) {
+  return std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count();
 }

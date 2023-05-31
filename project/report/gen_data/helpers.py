@@ -6,7 +6,7 @@ import numpy as np
 from run import run_program
 import pandas as pd
 
-PATH = '../../in/'
+PATH = '../../in_2/'
 
 #save as json function
 def save_json(data, file):
@@ -43,9 +43,8 @@ def get_data(i, prog, run_x, args):
     stdout = run_program(prog, i, args).split('x')
     if(len(stdout) != 3) :
       print(f'error: {stdout}')
-      breakpoint()
       return
-    run_time.append(int(stdout[0]))
+    run_time.append(int(float(stdout[0])))
     screen_time.append(int(stdout[1]))
     n_movies.append(int(stdout[2]))
   return [rows,cats, [int(np.min(run_time)), int(np.max(run_time))], [int(np.min(screen_time)), int(np.max(screen_time))], [int(np.min(n_movies)), int(np.max(n_movies))]]

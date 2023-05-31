@@ -98,8 +98,9 @@ void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat
     }
   }
 
-  cout << "best: " << best << endl;
-  cout << "time: " << get_interval(begin) << endl;
+  chrono::steady_clock::time_point end = get_time();
+
+  cout << get_interval(begin, end) << 'x' << 0 << 'x' << best;
 
   return;             
 }
