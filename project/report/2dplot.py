@@ -2,7 +2,7 @@ from aux import extract, get_csv
 import matplotlib.pyplot as plt
 
 def plot_comp(datas):
-  #plot_fixing_movies(datas)
+  plot_fixing_movies(datas)
   plot_fixing_categories(datas)
 
 
@@ -24,7 +24,7 @@ def plot_fixing_movies(datas):
     for k,v in datas.items():
       vals[k] = (v[v['movies'] == i])
     plot_2d_comp(vals,  str(i) + ' movies - run time', 'categories', 'run_time', 0)
-    plot_2d_comp(vals,  str(i) + ' movies - screen time', 'categories', 'screen_time', 1)
+    #plot_2d_comp(vals,  str(i) + ' movies - screen time', 'categories', 'screen_time', 1)
     plot_2d_comp(vals,  str(i) + ' movies - selected movies', 'categories', 'n_movies', 1)
 
 def plot_2d_comp(vals, title, plot_col, zname, col = 0):
