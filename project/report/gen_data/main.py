@@ -5,7 +5,7 @@ import numpy as np
 if __name__ == '__main__':
   # progs = ['guloso', 'aleatorio', 'exaustivo', 'exaustivo_omp', 'exaustivo_gpu']
   # avg = [False, True, True, True, True]
-  progs = ['guloso']
+  progs = ['exaustivo_gpu_red']
   avg = [True]
   for i in range(len(progs)):
     run_time = get_output(progs[i], avg[i], get_data, '-p')

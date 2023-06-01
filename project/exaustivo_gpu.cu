@@ -148,6 +148,7 @@ void test_combinations(vector<movie> &movies, vector<int> &lim_cats, int n_cat) 
   //for(int i = 0; i < pow(2, movies.size()); i)
   // chrono::steady_clock::time_point begin = get_time();
   thrust::transform(comb, comb + pow(2, movies.size()), mov_count.begin(), functor(movies.size(), thrust::raw_pointer_cast(mov_gpu.data()), n_cat ,thrust::raw_pointer_cast(cats_lim_gpu.data())));
+  // chrono::steady_clock::time_point end = get_time();
 
   //get max element of mov_count
   int best = *thrust::max_element(mov_count.begin(), mov_count.end());

@@ -27,6 +27,10 @@ exaustivo_omp: build
 exaustivo_gpu: build
 	$(CGPU) -o exaustivo_gpu exaustivo_gpu.cu *.o
 
+.PHONY: exaustivo_gpu_red
+exaustivo_gpu_red: build
+	$(CGPU) -o exaustivo_gpu_red exaustivo_gpu.cu *.o
+
 .PHONY: exaustivo
 exaustivo: build
 	$(CC) $(CFLAGS) -o exaustivo exaustivo.cpp *.o
