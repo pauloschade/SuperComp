@@ -4,10 +4,10 @@ from aux import generate
 
 #function to generate many args for generator.cpp
 def generate_args():
-  rows = np.arange(1, 31, 1)
+  rows = np.arange(20, 30, 1)
   cats = np.arange(1, 11, 1)
   return rows, cats
 
 if __name__ == '__main__':
   rows, cats = generate_args()
-  generate(rows, cats, '../in_2/')
+  generate(rows, cats, '../in_3/')

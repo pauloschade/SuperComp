@@ -48,5 +48,6 @@ if __name__ == '__main__':
     exaustivo = get_csv('data_2/exaustivo.csv')
     exaustivo_omp = get_csv('data_2/exaustivo_omp.csv')
     exaustivo_gpu = get_csv('data_2/exaustivo_gpu.csv')
-    dicti = {'guloso': guloso, 'aleatorio': aleatorio, 'exaustivo': exaustivo, 'exaustivo_omp': exaustivo_omp, 'exaustivo_gpu': exaustivo_gpu}
+    exaustivo_gpu_red = get_csv('data_2/exaustivo_gpu_red.csv')
+    dicti = {'guloso': guloso, 'aleatorio': aleatorio, 'exaustivo': exaustivo, 'exaustivo_omp': exaustivo_omp, 'exaustivo_gpu': exaustivo_gpu, 'exaustivo_gpu_red': exaustivo_gpu_red}
     plot_comp(dicti)
