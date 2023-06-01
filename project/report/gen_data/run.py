@@ -3,7 +3,7 @@ import time
 import os
 
 def run_program(name, input, args = '-python'):
-  proc = subprocess.run([f'../../{name} {args} < ../../in_2/{input}'],text=True, capture_output=True, shell=True)
+  proc = subprocess.run([f'../../{name} {args} < ../../in_3/{input}'],text=True, capture_output=True, shell=True)
   if proc.returncode < 0:
     print(f'Error: {proc.stderr}')
     exit(1)
