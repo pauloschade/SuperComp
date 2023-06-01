@@ -7,7 +7,7 @@ def plot_comp(datas):
 
 
 def plot_fixing_categories(datas):
-  fixed_cats = [1, 2, 3, 5, 10, 20]
+  fixed_cats = [1, 2, 3, 5, 10]
   for i in fixed_cats:
     vals = {}
     for k,v in datas.items():
@@ -18,7 +18,7 @@ def plot_fixing_categories(datas):
 
 
 def plot_fixing_movies(datas):
-  fixed_movs = [10, 100, 1000, 10000]
+  fixed_movs = [1, 5, 10, 15, 20, 25]
   for i in fixed_movs:
     vals = {}
     for k,v in datas.items():

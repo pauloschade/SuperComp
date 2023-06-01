@@ -1,33 +1,21 @@
 #include "helpers/helpers.h"
 #include <cassert>
 #include <random>
-#include <chrono>
 #include <math.h>
 
 using namespace std;
 
-
-// bool has_slot(movie curr, movie prev) {
-//   return curr.start >= prev.end;
-// }
-
-// bool is_valid(vector<movie> &selected) {
-//   for(int i = 0; i < selected.size() - 1; i++)
-//     if(!has_slot(selected[i + 1], selected[i])) return false;
-//   return true;
-// }
-
 bool has_slot(bool *filled_slots, movie curr) {
-  for(int i = curr.start; i < curr.end; i++) {
-    if(filled_slots[i]) return false;
+  if(curr.end == curr.start) {
+    if(filled_slots[curr.start]) return false;
+    else filled_slots[curr.start] = true;
+    return true;
+  } 
+  for(int j = curr.start; j < curr.end; j++) {
+    if(filled_slots[j]) return false;
+    else filled_slots[j] = true;
   }
   return true;
-}
-
-void fill_slot(bool *filled_slots, movie curr) {
-  for(int i = curr.start; i < curr.end; i++) {
-    filled_slots[i] = true;
-  }
 }
 
 bool check_limit(movie mov, int *lim_cats) {
@@ -36,27 +24,6 @@ bool check_limit(movie mov, int *lim_cats) {
   return true;
 }
 
-// bool check_limit(vector<movie> &selected, map<int, int> lim_cats, int n_cat) {
-//   map<int, int> cats_count;
-//   for(auto& mov: selected) {
-//     if(lim_cats[mov.cat] == 0) return false;
-//     lim_cats[mov.cat] --;
-//   }
-//   return true;
-// }
-
-
-
-
-chrono::steady_clock::time_point get_time() {
-  return chrono::steady_clock::now();
-}
-
-//function to get chrono interval in seconds
-double get_interval(chrono::steady_clock::time_point begin) {
-  chrono::steady_clock::time_point end = get_time();
-  return chrono::duration_cast<chrono::seconds>(end - begin).count();
-}
 //ref:
 //https://stackoverflow.com/questions/43241174/javascript-generating-all-combinations-of-elements-in-a-single-array-in-pairs
 void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat) {
@@ -79,20 +46,23 @@ void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat
 
     int added = 0;
     for (size_t j = 0; j < movies.size(); j++) {
+      if(added > 24 || added < 0) continue;
       //mascara para testar se o bit j esta ligado
       //could be changed for biset
       //same idea
-      if(added > 24 || added < 0) continue;
       if ((i & int(pow(2, j)))) {
         if(!has_slot(slots, movies[j]) || !check_limit(movies[j], lim_cats_cp)) {
           added = -1;
           continue;
         }
-        fill_slot(slots, movies[j]);
         added++;
       }
     }
     tested++;
+    // if(get_interval(begin) > 20) {
+    //     cout << "tested: " << tested << endl;
+    //     exit(0);
+    // }
     if(added <= 24 && added > 0) {
       if(added > best) {
         best = added;
@@ -108,8 +78,9 @@ void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat
     // }
   }
 
-  cout << "most watched: " << best << endl;
-  cout << "\r" << tested << " / " << slent << " - " << get_interval(begin) << "s" << flush;
+  chrono::steady_clock::time_point end = get_time();
+
+  cout << get_interval(begin, end) << 'x' << 0 << 'x' << best;
 
   return;             
 }

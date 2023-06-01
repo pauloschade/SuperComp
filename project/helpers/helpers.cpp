@@ -44,6 +44,16 @@ void read_cats_limit(std::map<int, int> &lim_cats, int n_cat) {
   }
 }
 
+void read_cats_limit(std::vector<int> &lim_cats, int n_cat) {
+  lim_cats.push_back(0);
+  for(int i=0; i<n_cat; i++) {
+    int val;
+    std::cin >> val;
+    lim_cats.push_back(val);
+  }
+}
+
+
 void read_movies_data(std::vector<movie> &movies, int n_mov) {
   for(int id = 0; id < n_mov; id++) {
     movie new_movie;
@@ -57,4 +67,13 @@ void read_movies_data(std::vector<movie> &movies, int n_mov) {
 void set_cats_limit(std::map<int, int> &lim_cats, int mov_cat, int &cats_n) {
   lim_cats[mov_cat] --;
   if(lim_cats[mov_cat] == 0) cats_n --;
+}
+
+std::chrono::steady_clock::time_point get_time() {
+  return std::chrono::steady_clock::now();
+}
+
+//function to get chrono interval in seconds
+double get_interval(std::chrono::steady_clock::time_point begin, std::chrono::steady_clock::time_point end) {
+  return std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count();
 }

@@ -5,45 +5,32 @@
 #include <math.h>
 #include <omp.h>
 
-#define SEED 42
-#define PROB 0.75
-
 using namespace std;
 
-bool has_slot(movie curr, movie prev) {
-  return curr.start >= prev.end;
-}
-
-bool is_valid(vector<movie> &selected) {
-  for(int i = 0; i < selected.size() - 1; i++)
-    if(!has_slot(selected[i + 1], selected[i])) return false;
-  return true;
-}
-
-bool check_limit(vector<movie> &selected, map<int, int> lim_cats, int n_cat) {
-  map<int, int> cats_count;
-  for(auto& mov: selected) {
-    if(lim_cats[mov.cat] == 0) return false;
-    lim_cats[mov.cat] --;
+bool has_slot(bool *filled_slots, movie curr) {
+  if(curr.end == curr.start) {
+    if(filled_slots[curr.start]) return false;
+    else filled_slots[curr.start] = true;
+    return true;
+  } 
+  for(int j = curr.start; j < curr.end; j++) {
+    if(filled_slots[j]) return false;
+    else filled_slots[j] = true;
   }
   return true;
 }
 
-chrono::steady_clock::time_point get_time() {
-  return chrono::steady_clock::now();
-}
-
-//function to get chrono interval in seconds
-double get_interval(chrono::steady_clock::time_point begin) {
-  chrono::steady_clock::time_point end = get_time();
-  return chrono::duration_cast<chrono::seconds>(end - begin).count();
+bool check_limit(movie mov, int *lim_cats) {
+  if(lim_cats[mov.cat] == 0) return false;
+  lim_cats[mov.cat] --;
+  return true;
 }
 
 //ref:
 //https://stackoverflow.com/questions/43241174/javascript-generating-all-combinations-of-elements-in-a-single-array-in-pairs
 void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat)
 {
-  vector<vector<movie>> bests;
+  vector<int> bests;
   const long long unsigned int slent = pow(2, min(int (movies.size()), 50));
   int n_threads= omp_get_max_threads();
   bests.resize(n_threads);
@@ -55,58 +42,65 @@ void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat
 
   #pragma omp parallel
   {
-    vector<movie> best;
+    int best = 0;
     #pragma omp for
     for (long long unsigned int i = 0; i < slent; i++) {
-      vector<movie> temp;
+      bool slots[30];
+      for(int h = 0; h < 30; h++) {
+        slots[h] = false;
+      }
 
+      int lim_cats_cp[n_cat];
+      for(int h = 0; h < n_cat; h++) {
+        lim_cats_cp[h+1] = lim_cats[h+1];
+      }
+
+      int added = 0;
       for (size_t j = 0; j < movies.size(); j++) {
+        if(added > 24 || added < 0) continue;
+
         //mascara para testar se o bit j esta ligado
         //could be changed for biset
         //same idea
         if ((i & int(pow(2, j)))) {
-          temp.push_back(movies[j]);
+          if(!has_slot(slots, movies[j]) || !check_limit(movies[j], lim_cats_cp)) {
+            added = -1;
+            continue;
+          }
+          added++;
         }
       }
       tested[omp_get_thread_num()]++;
-      if(get_interval(begin) > 5) {
-        #pragma omp critical
-        {
-          int sum = 0;
-          for (size_t i = 0; i < n_threads; i++) {
-            sum += tested[i];
-          }
-          cout << "tested: " << sum << endl;
-          exit(0);
+      // if(get_interval(begin) > 20) {
+      //   #pragma omp critical
+      //   {
+      //     int sum = 0;
+      //     for (size_t i = 0; i < n_threads; i++) {
+      //       sum += tested[i];
+      //     }
+      //     cout << "tested: " << sum << endl;
+      //     exit(0);
+      //   }
+      // }
+      if(added <= 24 && added > 0) {
+        if(added > best) {
+          best = added;
+          bests[omp_get_thread_num()] = best;
         }
       }
-      if (temp.size() > 0 && temp.size() <= 24) {
-        sort(temp.begin(), temp.end(), [](auto& i, auto& j){return i.end < j.end;});
-        if(is_valid(temp) && check_limit(temp, lim_cats, n_cat)) {
-          if (temp.size() > best.size()) {
-            best = temp;
-          }
-        }
-      }
-    }
-    #pragma omp critical
-    {
-      bests[omp_get_thread_num()] = best;
     }
   }
 
-  vector<movie> best;
+  int best = 0;
   for (size_t i = 0; i < n_threads; i++) {
-    cout << "size: " << bests[i].size() << endl;
-    if(bests[i].size() > best.size()) {
+    if(bests[i] > best) {
       best = bests[i];
     }
   }
 
-  for (size_t i = 0; i < best.size(); i++) {
-    cout << best[i].id << " ";
-    cout << endl;
-  }
+  chrono::steady_clock::time_point end = get_time();
+
+  cout << get_interval(begin, end) << 'x' << 0 << 'x' << best;
 
   return;             
 }

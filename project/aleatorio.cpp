@@ -103,7 +103,7 @@ int main(int argc, char *argv[]) {
 
   chrono::steady_clock::time_point end = chrono::steady_clock::now();
 
-  cout << chrono::duration_cast<chrono::microseconds>(end - begin).count() << 'x' << screen_time << 'x' << selected.size();
+  cout << get_interval(begin, end) << 'x' << 0 << 'x' << selected.size();
 
   if(argc > 1) return 0;
 
