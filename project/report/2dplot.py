@@ -2,7 +2,7 @@ from aux import extract, get_csv
 import matplotlib.pyplot as plt
 
 def plot_comp(datas):
-  plot_fixing_movies(datas)
+  #plot_fixing_movies(datas)
   plot_fixing_categories(datas)
 
 
@@ -13,7 +13,7 @@ def plot_fixing_categories(datas):
     for k,v in datas.items():
       vals[k] = (v[v['categories'] == i])
     plot_2d_comp(vals,  str(i) + ' categories - run time', 'movies', 'run_time', 0)
-    plot_2d_comp(vals,  str(i) + ' categories - screen time', 'movies', 'screen_time', 1)
+    #plot_2d_comp(vals,  str(i) + ' categories - screen time', 'movies', 'screen_time', 1)
     plot_2d_comp(vals,  str(i) + ' categories - selected movies', 'movies', 'n_movies', 1)
 
 
@@ -43,7 +43,10 @@ def plot_2d(data, plot_col ,ax, label, zname, col):
   ax.scatter(data[plot_col] , extract(data[zname], col), label = label)
 
 if __name__ == '__main__':
-    guloso = get_csv('data/guloso.csv')
-    aleatorio = get_csv('data/aleatorio.csv')
-    dicti = {'guloso': guloso, 'aleatorio': aleatorio}
+    guloso = get_csv('data_2/guloso.csv')
+    aleatorio = get_csv('data_2/aleatorio.csv')
+    exaustivo = get_csv('data_2/exaustivo.csv')
+    exaustivo_omp = get_csv('data_2/exaustivo_omp.csv')
+    exaustivo_gpu = get_csv('data_2/exaustivo_gpu.csv')
+    dicti = {'guloso': guloso, 'aleatorio': aleatorio, 'exaustivo': exaustivo, 'exaustivo_omp': exaustivo_omp, 'exaustivo_gpu': exaustivo_gpu}
     plot_comp(dicti)
