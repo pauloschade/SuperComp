@@ -10,7 +10,7 @@ bool has_slot(bool *filled_slots, movie curr) {
     if(filled_slots[curr.start]) return false;
     else filled_slots[curr.start] = true;
     return true;
-  } 
+  }
   for(int j = curr.start; j < curr.end; j++) {
     if(filled_slots[j]) return false;
     else filled_slots[j] = true;

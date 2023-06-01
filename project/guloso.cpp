@@ -4,6 +4,7 @@
 using namespace std;
 
 bool has_slot(movie curr, movie prev) {
+  if(curr.start == curr.end) return false;
   return curr.start >= prev.end;
 }
 
