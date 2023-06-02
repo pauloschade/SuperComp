@@ -43,10 +43,7 @@ def get_data(i, prog, run_x, args):
     stdout = run_program(prog, i, args).split('x')
     if(len(stdout) != 3) :
       print(f'error: {stdout}')
-      run_time.append(30)
-      screen_time.append(int(2 ** rows))
-      n_movies.append(int(2 ** rows))
-      continue
+      return
     run_time.append(int(float(stdout[0])))
     screen_time.append(int(float(stdout[1])))
     n_movies.append(int(float(stdout[2])))

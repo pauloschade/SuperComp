@@ -31,7 +31,7 @@ bool check_limit(movie mov, int *lim_cats) {
 void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat)
 {
   vector<int> bests;
-  const long long unsigned int slent = pow(2, min(int (movies.size()), 50));
+  const long long unsigned int slent = pow(2, movies.size());
   int n_threads= omp_get_max_threads();
   bests.resize(n_threads);
   //omp parallel for
