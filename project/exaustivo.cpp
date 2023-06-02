@@ -39,7 +39,7 @@ void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat
       slots[h] = false;
     }
 
-    int lim_cats_cp[n_cat];
+    int lim_cats_cp[30];
     for(int h = 0; h < n_cat; h++) {
       lim_cats_cp[h+1] = lim_cats[h+1];
     }
