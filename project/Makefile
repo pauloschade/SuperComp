@@ -46,5 +46,5 @@ generator:
 
 .PHONY: clean
 clean:
-	rm -f *.o *.gch *.out guloso aleatorio gen exaustivo exaustivo_omp exaustivo_gpu
+	rm -f *.o *.gch *.out guloso aleatorio gen exaustivo exaustivo_omp exaustivo_gpu exaustivo_gpu_red
 	rm -rf generator/*.dSYM *.dSYM
