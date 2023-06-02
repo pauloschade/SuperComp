@@ -31,7 +31,7 @@ bool check_limit(movie mov, int *lim_cats) {
 void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat)
 {
   vector<int> bests;
-  const long long unsigned int slent = pow(2, min(int (movies.size()), 50));
+  const long long unsigned int slent = pow(2, movies.size());
   int n_threads= omp_get_max_threads();
   bests.resize(n_threads);
   //omp parallel for
@@ -71,17 +71,17 @@ void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat
         }
       }
       tested[omp_get_thread_num()]++;
-      // if(get_interval(begin) > 20) {
-      //   #pragma omp critical
-      //   {
-      //     int sum = 0;
-      //     for (size_t i = 0; i < n_threads; i++) {
-      //       sum += tested[i];
-      //     }
-      //     cout << "tested: " << sum << endl;
-      //     exit(0);
-      //   }
-      // }
+      if(get_interval_s(begin, get_time()) > 30) {
+        #pragma omp critical
+        {
+          int sum = 0;
+          for (size_t i = 0; i < n_threads; i++) {
+            sum += tested[i];
+          }
+          cout << 30 << 'x' << slent << 'x' << sum;
+          exit(0);
+        }
+      }
       if(added <= 24 && added > 0) {
         if(added > best) {
           best = added;
@@ -97,10 +97,14 @@ void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat
       best = bests[i];
     }
   }
+  // chrono::steady_clock::time_point end = get_time();
 
-  chrono::steady_clock::time_point end = get_time();
-
-  cout << get_interval(begin, end) << 'x' << 0 << 'x' << best;
+  int sum = 0;
+  for (size_t i = 0; i < n_threads; i++) {
+    sum += tested[i];
+  }
+  cout << 30 << 'x' << slent << 'x' << sum;
+  exit(0);
 
   return;             
 }

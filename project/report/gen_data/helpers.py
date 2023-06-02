@@ -6,7 +6,7 @@ import numpy as np
 from run import run_program
 import pandas as pd
 
-PATH = '../../in_2/'
+PATH = '../../in_3/'
 
 #save as json function
 def save_json(data, file):
@@ -28,7 +28,7 @@ def get_output(prog, avg, callback, args):
   pool.close()
   pool.join()
 
-  df = pd.DataFrame(outputs, columns=['movies', 'categories', 'run_time', 'screen_time', 'n_movies'])
+  df = pd.DataFrame(outputs, columns=['movies', 'categories', 'run_time', 'total_comb', 'tested_comb'])
 
   return df
 
@@ -45,6 +45,6 @@ def get_data(i, prog, run_x, args):
       print(f'error: {stdout}')
       return
     run_time.append(int(float(stdout[0])))
-    screen_time.append(int(stdout[1]))
-    n_movies.append(int(stdout[2]))
+    screen_time.append(int(float(stdout[1])))
+    n_movies.append(int(float(stdout[2])))
   return [rows,cats, [int(np.min(run_time)), int(np.max(run_time))], [int(np.min(screen_time)), int(np.max(screen_time))], [int(np.min(n_movies)), int(np.max(n_movies))]]

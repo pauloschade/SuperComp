@@ -22,5 +22,6 @@ void print_agenda(std::vector<movie> selected);
 
 std::chrono::steady_clock::time_point get_time();
 double get_interval(std::chrono::steady_clock::time_point begin, std::chrono::steady_clock::time_point end);
+double get_interval_s(std::chrono::steady_clock::time_point begin, std::chrono::steady_clock::time_point end);
 
 #endif // HELPERS_H_
