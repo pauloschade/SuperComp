@@ -42,7 +42,7 @@ build:
 
 .PHONY: generator
 generator:
-	$(CC) $(CFLAGS) -o gen generator/generator.cpp
+	g++ $(CFLAGS) -o gen generator/generator.cpp
 
 .PHONY: clean
 clean:

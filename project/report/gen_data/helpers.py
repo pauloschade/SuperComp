@@ -6,7 +6,7 @@ import numpy as np
 from run import run_program
 import pandas as pd
 
-PATH = '../../in_3/'
+PATH = '../../in_4/'
 
 #save as json function
 def save_json(data, file):
