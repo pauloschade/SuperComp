@@ -1,4 +1,5 @@
 from aux import extract, get_csv
+import ast
 import matplotlib.pyplot as plt
 
 DATA = 'data_4/'
@@ -9,7 +10,8 @@ EXTRA_FOLDER = ''
 
 def plot_comp(datas):
   # plot_fixing_movies(datas)
-  plot_fixing_categories(datas)
+  #plot_fixing_categories(datas)
+  plot_avg(datas)
 
 
 def plot_fixing_categories(datas):
@@ -23,6 +25,42 @@ def plot_fixing_categories(datas):
     # plot_2d_comp(vals,  str(i) + ' categories - selected movies', 'movies', 'n_movies', 1)
     #plot_2d_comp(vals,  str(i) + ' categories - screen time', 'movies', 'screen_time', 1)
     plot_2d_comp(vals,  str(i) + ' categories - tested sample', 'movies', 'tested_comb', 1)
+
+def plot_avg(datas):
+  #get average per movie count, read everything
+  global_vals = {}
+  for k,v in datas.items():
+    vals = {}
+    combs = (v.groupby('movies')["tested_comb"]).apply(list)
+
+    movs = 20
+    for i in combs:
+      mean = 0
+      for j in i:
+        lst = ast.literal_eval(j)
+        mean += lst[0]
+      mean = int(mean/len(i))
+
+      vals[movs] = mean
+      movs += 1
+    global_vals[k] = vals
+    #combs is array, get only first element
+  # plot_2d_comp(vals,  'average - run time', 'categories', 'run_time', 0)
+  # plot_2d_comp(vals,  'average - selected movies', 'categories', 'n_movies', 1)
+  # plot_2d_comp(vals,  'average - screen time', 'categories', 'screen_time', 1)
+
+  fig = plt.figure()
+  ax = fig.add_subplot(111)
+  for k,v in global_vals.items():
+    ax.set_title('average - tested sample')
+    ax.set_xlabel('movies')
+    ax.set_ylabel('tested_comb')
+    ax.scatter(v.keys(), v.values(), label = k)
+
+  plt.legend(loc = 'upper left')
+  plt.savefig(SAVE_DIR + DATA + EXTRA_FOLDER + 'average - tested sample' + '.png')
+
+
 
 
 def plot_fixing_movies(datas):
