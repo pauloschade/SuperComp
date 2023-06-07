@@ -1,4 +1,4 @@
-# Relatório Parcial
+# Relatório Final
 
 ## Heurísticas
 
@@ -469,3 +469,122 @@ Observando os gráficos com filmes fixados, pode-se tomar as seguintes conclusõ
 O aleatório traz uma funcionalidade que o guloso não tem: exploration. O mesmo consegue sair do estado atual e gerar novos valores sem relacão a tal estado. Por esse motivo o mesmo ganha um destaque em tempo de tela, a maior chance de selecionar filmes mais longos, ainda mais quando viram a madrugada, é um game-changer. Por fazer tais escolhas de filmes longos, o seu run-time também tende a ser menor. 
 
 Contudo, quando se opta por filmes mais longos, uma métrica é sacrificada: a quantidade de filmes. Nesta métrica, por tender a sempre escolher filmes que caibam nos menores slots, ou seja, filmes curtos, o guloso leva uma grande vantagem.
+
+
+## Variacões
+
+* `exaustiva`
+* `exaustiva_omp`
+* `exaustiva_gpu`
+
+## Implementação base
+Essa implementação parece ser uma função chamada `test_combinations`, que recebe uma referência para um vetor de filmes (`movies`), um mapa de categorias limitadas (`lim_cats`) e um inteiro representando o número de categorias (`n_cat`). A função realiza um teste de combinações para encontrar a melhor combinação de filmes dentro dos limites estabelecidos.
+
+A função começa inicializando algumas variáveis, como `begin` para registrar o tempo de início do teste.
+
+Em seguida, é definida uma constante `slent` com o valor de 2 elevado ao tamanho do vetor `movies`. Isso indica o número total de combinações possíveis de filmes.
+
+A função itera por todas as combinações possíveis usando um loop `for` que percorre os números de 0 a `slent - 1`. Cada número é tratado como uma máscara binária para representar a presença ou ausência de cada filme no conjunto de filmes selecionados.
+
+Dentro do loop, é criado um array `slots` com tamanho 30, inicializado com todos os valores `false`. Além disso, é feita uma cópia do mapa `lim_cats` para um array `lim_cats_cp` de tamanho 30.
+
+Em seguida, a função itera por todos os filmes no vetor `movies` usando um loop `for`. Para cada filme, é verificado se a máscara binária indica que o filme está presente na combinação atual. Se estiver presente, é verificado se há espaço disponível nos slots e se os limites das categorias não foram excedidos. Se essas condições forem atendidas, o contador `added` é incrementado.
+
+Após o término do loop interno, o número de testes é incrementado. Se o valor de `added` estiver entre 1 e 24 (inclusive), significa que a combinação atual é válida. Nesse caso, o número de filmes adicionados é comparado com o valor atual de `best`, e se for maior, `best` é atualizado.
+
+No final, o tempo de término do teste é registrado na variável `end`. A função imprime a variável `best` e o tempo de execucão.
+
+## Comparacão entre implementacões
+
+As diferencas principais se encontram no fato da implementacão `exaustiva` rodar o código descrito de maneira sequencial, a `exaustiva_omp` paralelizar o código e por fim a `exaustiva_gpu` rodar em GPU. A ideia é comparar o desempenho dessas variacões. Além de compará-las entre sí, as mesmas serão comparadas as heurísticas `gulosa` e `aleatória`.
+
+
+### Filmes selecionados
+
+O grande desafio do problema se encontrava em selecionar a maior quantidade de filmes possíveis para serem assistidos. As implementacões `gulosa` e `aleatória` utilizavam de técnicas (já previamente descritas) para encontrar solucões em um tempo pequeno. Por outro lado, a nova implementacão `exaustiva`, e suas variantes (`exaustiva_omp` e `exaustiva_gpu`), testam todas as combinacões possíveis até acharem a melhor. Para verificar se de fato elas tem um desempenho melhor (por testar todas possibilidades), vamos comparar essas implementacões.
+
+### Gráficos 1: filmes selecionados
+
+**2 categories**               |  **4 categories**
+:-------------------------:|:-------------------------:
+![selected_movies_01_cat](plots/data_2/solo/2%20categories%20-%20selected%20movies.png)  | ![selected_movies_01_cat](plots/data_2/solo/4%20categories%20-%20selected%20movies.png)
+**6 categories**            |  **8 categories** 
+![selected_movies_06_cat](plots/data_2/solo/6%20categories%20-%20selected%20movies.png)  |  ![selected_movies_10_cat](plots/data_2/solo/8%20categories%20-%20selected%20movies.png)
+
+Podemos observar que, independentemente do número de filmes e categorias, as abordagens exaustivas sempre produzem o mesmo resultado, como era esperado, e são sempre melhores ou iguais às heurísticas aleatória e gulosa, como esperado.
+
+No entanto, é importante ressaltar que todo esse desempenho vem acompanhado de um custo: a velocidade de execução do programa. Para analisar e comparar o tempo de execução das diferentes abordagens, vamos examinar os gráficos 2.
+
+Esses gráficos permitirão uma visualização clara das diferenças de desempenho entre as abordagens. Ao analisar os dados apresentados, podemos tirar conclusões mais precisas sobre o tempo necessário para executar cada uma das estratégias e identificar qual delas oferece um equilíbrio ideal entre qualidade de resultado e velocidade de execução.
+
+### Gráficos 2.1: tempo de execucão
+
+**2 categories**               |  **4 categories**
+:-------------------------:|:-------------------------:
+![selected_movies_01_cat](plots/data_2/solo/2%20categories%20-%20run%20time.png)  | ![selected_movies_01_cat](plots/data_2/solo/4%20categories%20-%20run%20time.png)
+
+**6 categories**            |  **8 categories**
+:-------------------------:|:-------------------------:
+![selected_movies_06_cat](plots/data_2/solo/6%20categories%20-%20run%20time.png)  |  ![selected_movies_10_cat](plots/data_2/solo/8%20categories%20-%20run%20time.png)
+
+Como é possível observar, o tempo de execução das abordagens exaustivas é significativamente maior em comparação com as heurísticas gulosa e aleatória. Isso ocorre porque as abordagens exaustivas testam todas as combinações possíveis, enquanto as outras param assim que encontram uma solução válida.
+
+Além disso, ao comparar as implementações exaustivas (sequencial, paralela e em GPU), é evidente que, com inputs maiores, a implementação paralela é mais eficiente, e a implementação em GPU é ainda melhor. No entanto, é interessante observar que o desempenho da implementação em GPU parece não variar conforme o aumento dos inputs. Uma suspeita para essa observação é o fato de que o processo de transferência dos dados para a GPU pode ser a parte mais demorada do programa. Para testar essa suspeita, podemos adicionar a implementação `exaustiva_gpu_red`, que mede apenas o tempo de execução do functor da GPU, excluindo o tempo de transferência dos dados.
+
+Essa adição permitirá uma análise mais precisa para determinar se o tempo de transferência de dados para a GPU é o fator limitante e se a implementação exaustiva_gpu_red é uma alternativa viável para reduzir o tempo de execução geral. Com essa informação, poderemos tomar decisões mais fundamentadas em relação às estratégias de implementação e ao equilíbrio entre qualidade de resultado e tempo de execução.
+
+### Gráficos 2.2: tempo de execucão
+
+**2 categories**               |  **3 categories**
+:-------------------------:|:-------------------------:
+![selected_movies_01_cat](plots/data_2/2%20categories%20-%20run%20time.png)  | ![selected_movies_01_cat](plots/data_2/3%20categories%20-%20run%20time.png)
+
+**5 categories**           |  **10 categories**
+:-------------------------:|:-------------------------:
+![selected_movies_01_cat](plots/data_2/5%20categories%20-%20run%20time.png)  | ![selected_movies_01_cat](plots/data_2/10%20categories%20-%20run%20time.png)
+
+
+Com base nos resultados obtidos, podemos confirmar que a hipótese estava correta: o tempo de execução da implementação em GPU é consideravelmente maior do que o tempo de execução do functor da GPU. Essa diferença ocorre devido ao fato de que o tempo de transferência de dados é significativamente maior do que o tempo de execução do functor em si.
+
+No entanto, mesmo levando em consideração esse tempo de transferência de dados, é importante ressaltar que a implementação em GPU ainda é mais rápida do que as abordagens paralela e sequencial para inputs maiores. Embora a transferência de dados possa representar uma sobrecarga significativa, a capacidade de processamento massivamente paralelo da GPU permite explorar um espaço de busca muito maior em menos tempo, compensando a latência introduzida pela transferência de dados.
+
+## Comparacão entre exaustivas
+
+De fato foi possível mostrar que as implementacoes exaustivas são melhores que as heurísticas gulosa e aleatória. Contudo, como foi visto, a implementacão da GPU é melhor que a paralela e a sequencial, mas o quanto melhor ela é? Para comparar as implementacões exaustivas, vamos analisar os gráficos 3. Para a próxima comparacão, foi testado con entradas diferentes, em um intervalo de 30 segundos, quantas combinacões cada implementacão conseguiu testar.
+
+### Gráficos 3.1: Amostras testadas (com GPU)
+
+**4 categories**               |  **8 categories**
+:-------------------------:|:-------------------------:
+![selected_movies_01_cat](plots/data_3/4%20categories%20-%20tested%20sample.png)  | ![selected_movies_01_cat](plots/data_3/8%20categories%20-%20tested%20sample.png)
+
+**obs: o numero de filmes foi limatado a 29 pois era o máximo que a GPU do monstrinho suportou**
+
+Com base nos gráficos apresentados, podemos constatar que a implementação em GPU é capaz de testar um número muito maior de combinações do que as implementações paralela e sequencial. Essa diferença evidencia a capacidade da GPU de processamento massivamente paralelo, o que permite explorar um espaço de busca mais amplo em comparação com as outras abordagens.
+
+No entanto, é válido ressaltar que os gráficos 3.2 fornecerão uma análise mais clara e conclusiva sobre o desempenho da implementação paralela e sequencial. Esses gráficos nos permitirão observar o tempo de execução dessas abordagens em relação ao tamanho dos inputs, fornecendo uma visão mais precisa sobre o seu comportamento e eficiência.
+
+Ao analisar os dados apresentados nos gráficos 3.2, poderemos obter conclusões mais sólidas sobre o desempenho das implementações paralela e sequencial em relação ao tamanho dos inputs, facilitando a tomada de decisões em relação às estratégias de implementação a serem adotadas.
+
+### Gráficos 3.2: Amostras testadas (sem GPU)
+
+**4 categories**               |  **8 categories**
+:-------------------------:|:-------------------------:
+![selected_movies_01_cat](plots/data_4/4%20categories%20-%20tested%20sample.png)  | ![selected_movies_01_cat](plots/data_4/8%20categories%20-%20tested%20sample.png)
+
+**Average per n movies** |
+:-------------------------:|
+![selected_movies_01_cat](plots/data_4/average%20-%20tested%20sample.png)
+
+Agora podemos evidenciar a grande vantagem da implementação paralela em relação à sequencial. À medida que o número de filmes aumenta, é possível observar que ambas as abordagens atingem o limite máximo de combinações testadas. No entanto, a implementação paralela consegue testar o dobro de combinações em comparação à sequencial. Embora essa seja uma melhoria significativa, a implementação paralela ainda é inferior à abordagem em GPU.
+
+A implementação em GPU supera tanto a sequencial quanto a paralela em termos de desempenho. Com a capacidade de processar um número muito maior de combinações, a GPU se destaca como a opção mais eficiente. Ao aproveitar seu poder de processamento massivamente paralelo, a implementação em GPU é capaz de explorar um espaço de busca muito mais amplo, resultando em resultados de alta qualidade em um tempo consideravelmente menor.
+
+Portanto, é evidente que, ao lidar com um número crescente de filmes, a implementação paralela é uma melhoria em relação à sequencial, mas ainda fica significativamente atrás da abordagem em GPU em termos de eficiência e velocidade de execução.
+
+
+## Conclusão
+
+Em suma, a implementação exaustiva se destaca em termos de qualidade de resultado em comparação com as abordagens heurísticas, embora seu tempo de execução seja significativamente maior. Para mitigar esse problema, foram exploradas implementações paralelas e em GPU. A implementação paralela demonstrou ser uma melhoria em relação à sequencial, mas a implementação em GPU se revelou ainda mais eficaz. Isso ocorre devido à capacidade da GPU de explorar um número muito maior de combinações em comparação à implementação paralela, e o tempo de transferência de dados é compensado pelo tempo de execução do functor.
+
+Essas otimizações permitiram obter resultados de alta qualidade em um tempo razoável, tornando a implementação em GPU a escolha preferencial para resolver o problema em questão. No entanto, é importante considerar as características específicas do problema e as restrições de tempo para determinar a abordagem mais adequada.
