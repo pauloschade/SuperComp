@@ -39,7 +39,7 @@ void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat
       slots[h] = false;
     }
 
-    int lim_cats_cp[n_cat];
+    int lim_cats_cp[30];
     for(int h = 0; h < n_cat; h++) {
       lim_cats_cp[h+1] = lim_cats[h+1];
     }
@@ -59,10 +59,10 @@ void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat
       }
     }
     tested++;
-    // if(get_interval(begin) > 20) {
-    //     cout << "tested: " << tested << endl;
-    //     exit(0);
-    // }
+    if(get_interval_s(begin, get_time()) > 30) {
+        cout << 30 << 'x' << slent << 'x' << tested;
+        exit(0);
+    }
     if(added <= 24 && added > 0) {
       if(added > best) {
         best = added;
@@ -80,7 +80,7 @@ void test_combinations(vector<movie> &movies, map<int, int> &lim_cats, int n_cat
 
   chrono::steady_clock::time_point end = get_time();
 
-  cout << get_interval(begin, end) << 'x' << 0 << 'x' << best;
+  cout << 30 << 'x' << slent << 'x' << tested;
 
   return;             
 }

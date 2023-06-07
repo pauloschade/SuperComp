@@ -157,7 +157,7 @@ void test_combinations(vector<movie> &movies, vector<int> &lim_cats, int n_cat) 
   
   // int soma=thrust::reduce(mov_count.begin(), mov_count.end(), (int) 0, thrust::plus<int>());
 
-  cout << get_interval(begin, end) << 'x' << 0 << 'x' << best;
+  cout << get_interval(begin, end) << 'x' << pow(2, movies.size()) << 'x' << pow(2, movies.size());
 
   // cout << "size: " <<  mov_count.size() << endl;
 

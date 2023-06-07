@@ -3,8 +3,8 @@ DFFLAGS = -Wall -O3 -g
 STDFLAG = -std=c++17
 CFLAGS = $(DFFLAGS) $(STDFLAG)
 #CC = g++
-CCN = g++-12
-CC = g++
+CC = g++-12
+CCN = g++
 
 CGPU = nvcc -arch=sm_70 -std=c++14
 #g++ -Wall -O3 -g file.cpp -o file
@@ -42,9 +42,9 @@ build:
 
 .PHONY: generator
 generator:
-	$(CC) $(CFLAGS) -o gen generator/generator.cpp
+	g++ $(CFLAGS) -o gen generator/generator.cpp
 
 .PHONY: clean
 clean:
-	rm -f *.o *.gch *.out guloso aleatorio gen exaustivo exaustivo_omp exaustivo_gpu
+	rm -f *.o *.gch *.out guloso aleatorio gen exaustivo exaustivo_omp exaustivo_gpu exaustivo_gpu_red
 	rm -rf generator/*.dSYM *.dSYM
